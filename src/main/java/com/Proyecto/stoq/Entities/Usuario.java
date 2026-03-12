@@ -20,11 +20,13 @@ public class Usuario {
 
     private Boolean estado;
 
-    private String rol;
+    @ManyToOne
+    @JoinColumn(name = "rol_id")
+    private Rol rol;
 
     public Usuario() {}
 
-    public Usuario(String nombre, String correo, String contrasenaHash, Boolean estado, String rol) {
+    public Usuario(String nombre, String correo, String contrasenaHash, Boolean estado, Rol rol) {
         this.nombre = nombre;
         this.correo = correo;
         this.contrasenaHash = contrasenaHash;
@@ -52,7 +54,7 @@ public class Usuario {
         return estado;
     }
 
-    public String getRol() {
+    public Rol getRol() {
         return rol;
     }
 
@@ -72,7 +74,7 @@ public class Usuario {
         this.estado = estado;
     }
 
-    public void setRol(String rol) {
+    public void setRol(Rol rol){
         this.rol = rol;
     }
 }
