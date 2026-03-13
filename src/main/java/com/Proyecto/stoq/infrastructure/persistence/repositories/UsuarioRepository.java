@@ -1,8 +1,8 @@
-package com.Proyecto.stoq.Repositories;
+package com.Proyecto.stoq.infrastructure.persistence.repositories;
 
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.Proyecto.stoq.Entities.Usuario;
+import com.Proyecto.stoq.domain.model.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, UUID> {
 

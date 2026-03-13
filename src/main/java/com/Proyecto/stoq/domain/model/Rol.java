@@ -1,7 +1,11 @@
-package com.Proyecto.stoq.Entities;
+package com.Proyecto.stoq.domain.model;
 
-import jakarta.persistence.*;
 import java.util.UUID;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "roles")
