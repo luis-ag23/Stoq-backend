@@ -24,4 +24,12 @@ public class UsuarioController {
         return usuarioService.obtenerUsuarios();
     }
 
+    /* futura mejora a implementar
+    @GetMapping
+    public List<UsuarioResponseDTO> obtenerUsuarios(){
+        return usuarioService.obtenerUsuarios();
+    }
+    
+    */
+
 }
