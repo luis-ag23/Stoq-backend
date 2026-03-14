@@ -1,5 +1,6 @@
-STOQ - Sistema de Gestión de Inventario
-Descripción
+# STOQ - Sistema de Gestión de Inventario
+
+## Descripción
 
 STOQ es un sistema de información web diseñado para optimizar la gestión de inventarios en pequeñas y medianas empresas.
 
@@ -9,98 +10,62 @@ Muchas organizaciones gestionan su inventario mediante hojas de cálculo, regist
 
 STOQ busca solucionar estos problemas proporcionando una plataforma moderna que mejore la eficiencia operativa y permita mantener un control confiable del inventario.
 
-Características
+## 📋 Características Principales
 
-Autenticación
+* **Autenticación y Seguridad:** Control de acceso mediante Login y Registro de usuarios.
+* **Gestión de Catálogo:** Administración completa de productos y categorización jerárquica.
+* **Control de Stock Proactivo:** Registro automatizado de entradas y salidas con actualización en tiempo real.
+* **Auditoría de Movimientos:** Historial detallado de operaciones, permitiendo trazabilidad (quién, cuándo y qué se movió).
+* **Dashboard Operativo:** Panel principal con indicadores visuales sobre el estado actual del inventario.
 
-Registro y login de usuarios.
+---
 
-Control de acceso seguro al sistema.
+## 🛠️ Stack Tecnológico
 
-Gestión de Productos
+### **Backend**
+* **Framework:** Spring Boot
+* **Lenguaje:** Java
+* **Gestión de Dependencias:** Gradle (Kotlin DSL)
+* **Persistencia:** Spring Data JPA
 
-Registro y administración de productos.
+### **Infraestructura & Base de Datos**
+* **Motor:** PostgreSQL
+* **Hosting de Datos:** Supabase
 
-Asociación de productos con categorías.
+---
 
-Control de Inventario
+## 🗄️ Arquitectura de Datos
 
-Registro de entradas y salidas de productos.
+El sistema utiliza un modelo relacional robusto para garantizar la integridad de la información:
 
-Actualización automática del stock.
+### **Entidades Principales**
+1.  **Usuarios:** Gestión de credenciales y perfiles.
+2.  **Categorías:** Clasificación lógica de los artículos.
+3.  **Productos:** Información detallada de los activos de la empresa.
+4.  **Movimientos de Inventario:** Registro de transacciones (Kardex).
 
-Historial de Movimientos
+### **Relaciones (ER)**
+* `Usuarios (1) ──── (N) Movimientos_Inventario`
+* `Categorías (1) ──── (N) Productos`
+* `Productos (1) ──── (N) Movimientos_Inventario`
 
-Registro de movimientos de inventario.
+---
 
-Seguimiento de quién realizó cada operación.
+## Equipo
 
-Panel Principal
+-Robert Ortiz
+-Harold Sejas
+-Osthin Colque
+-Luis Aguilar
 
-Vista general del estado del inventario
+## Compilación del Proyecto
 
-Tecnologías
-Frontend
+./gradlew build
 
-Angular
+## Pruebas unitarias
 
-TypeScript
+./gradlew test
 
-HTML
+## Ejecución del Servidor (Desarrollo)
 
-CSS
-
-Bootstrap
-
-Para iniciar el servidor de desarrollo local:
-ng serve
-
-Backend
-
-El backend está desarrollado con Spring Boot y utiliza Supabase (PostgreSQL) como base de datos.
-
-Tecnologías Backend
-
-Java
-
-Spring Boot
-
-Spring Data JPA
-
-Gradle
-
-Kotlin DSL (build.gradle.kts)
-
-PostgreSQL
-
-Supabase
-Base de Datos
-
-La base de datos está alojada en Supabase, que utiliza PostgreSQL.
-
-Principales entidades del sistema:
-
-usuarios
-
-categorias
-
-productos
-
-movimientos_inventario
-
-Relaciones:
-usuarios (1) ──── (N) movimientos_inventario
-
-categorias (1) ──── (N) productos
-
-productos (1) ──── (N) movimientos_inventario
-
-Equipo
-
-Robert Ortiz
-
-Harold Sejas
-
-Ostin Colque
-
-Luis Aguilar
+./gradlew bootRun
