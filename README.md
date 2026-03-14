@@ -1,5 +1,6 @@
-STOQ - Sistema de Gestión de Inventario
-Descripción
+# STOQ - Sistema de Gestión de Inventario
+
+## Descripción
 
 STOQ es un sistema de información web diseñado para optimizar la gestión de inventarios en pequeñas y medianas empresas.
 
