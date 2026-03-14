@@ -1,0 +1,7 @@
+.gradle/
+build/
+bin/
+out/
+gradle.properties
+.idea/
+.vscode/
