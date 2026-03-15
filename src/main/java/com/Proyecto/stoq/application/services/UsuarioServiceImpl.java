@@ -37,6 +37,10 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public Usuario crearUsuario(CreateUsuarioDTO dto){
 
+        if (usuarioRepository.findByCorreo(dto.correo).isPresent()) {
+            throw new RuntimeException("El correo ya está registrado");
+        }
+
         Rol rol = rolRepository
                 .findByNombre(dto.rol)
                 .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
@@ -47,7 +51,6 @@ public class UsuarioServiceImpl implements UsuarioService {
                 dto.contrasenaHash,
                 rol
         );
-
         return usuarioRepository.save(usuario);
     }
 

@@ -36,4 +36,9 @@ public class UsuarioRepositoryAdapter implements UsuarioRepositoryPort {
     public void deleteById(UUID id){
         repository.deleteById(id);
     }
+
+    @Override
+    public Optional<Usuario> findByCorreo(String correo) {
+        return repository.findByCorreo(correo);
+    }
 }
