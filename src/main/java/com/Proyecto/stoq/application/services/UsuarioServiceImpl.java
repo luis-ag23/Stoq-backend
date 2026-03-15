@@ -58,7 +58,7 @@ public class UsuarioServiceImpl implements UsuarioService {
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
         Rol rol = rolRepository
-                .findByNombre(dto.rol)
+                .findByNombre(dto.rol.trim().toUpperCase())
                 .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
 
         usuarioExistente.setNombre(dto.nombre);
@@ -66,6 +66,11 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuarioExistente.setContrasenaHash(dto.contrasenaHash);
         usuarioExistente.setEstado(dto.estado);
         usuarioExistente.setRol(rol);
+
+        System.out.println("ROL BUSCADO: " + dto.rol);
+
+        rolRepository.findByNombre(dto.rol)
+                .ifPresent(r -> System.out.println("ROL ENCONTRADO: " + r.getNombre()));
 
         return usuarioRepository.save(usuarioExistente);
     }
