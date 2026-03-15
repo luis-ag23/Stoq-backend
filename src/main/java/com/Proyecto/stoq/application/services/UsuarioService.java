@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 import com.Proyecto.stoq.domain.model.Usuario;
 import com.Proyecto.stoq.dto.CreateUsuarioDTO;
+import com.Proyecto.stoq.dto.UpdateUsuarioDTO;
 
 public interface UsuarioService {
 
@@ -14,7 +15,7 @@ public interface UsuarioService {
 
     Usuario crearUsuario(CreateUsuarioDTO dto);
 
-    Usuario actualizarUsuario(UUID id, CreateUsuarioDTO dto);
+    Usuario actualizarUsuario(UUID id, UpdateUsuarioDTO dto);
 
     void eliminarUsuario(UUID id);
 

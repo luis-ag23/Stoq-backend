@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 class UsuarioServiceImplTest {
@@ -64,6 +65,7 @@ class UsuarioServiceImplTest {
         Rol rol = new Rol();
         rol.setNombre("ADMIN");
 
+        when(usuarioRepository.findByCorreo(dto.correo)).thenReturn(Optional.empty());
         when(rolRepository.findByNombre("ADMIN")).thenReturn(Optional.of(rol));
 
         Usuario usuarioGuardado = new Usuario(
@@ -78,6 +80,8 @@ class UsuarioServiceImplTest {
         Usuario resultado = usuarioService.crearUsuario(dto);
 
         assertEquals("Carlos", resultado.getNombre());
+
+        verify(usuarioRepository,times(1)).findByCorreo(dto.correo);
         verify(usuarioRepository, times(1)).save(any());
     }
 
@@ -92,5 +96,33 @@ class UsuarioServiceImplTest {
         assertThrows(RuntimeException.class, () -> {
             usuarioService.crearUsuario(dto);
         });
+    }
+
+    @Test
+    void crearUsuario_deberiaLanzarErrorSiCorreoYaExiste() {
+
+        CreateUsuarioDTO dto = new CreateUsuarioDTO();
+        dto.nombre = "Carlos";
+        dto.correo = "carlos@email.com";
+        dto.contrasenaHash = "123";
+        dto.rol = "ADMIN";
+
+        Rol rol = new Rol();
+        rol.setNombre("ADMIN");
+
+        Usuario usuarioExistente = new Usuario(
+                "Otro",
+                dto.correo,
+                "hash456",
+                rol
+        );
+
+        when(usuarioRepository.findByCorreo(dto.correo)).thenReturn(Optional.of(usuarioExistente));
+
+        assertThrows(RuntimeException.class, () -> {
+            usuarioService.crearUsuario(dto);
+        });
+
+        verify(usuarioRepository, never()).save(any());
     }
 }
