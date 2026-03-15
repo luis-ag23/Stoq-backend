@@ -9,6 +9,7 @@ import java.util.UUID;
 import com.Proyecto.stoq.domain.model.Usuario;
 import com.Proyecto.stoq.domain.model.Rol;
 import com.Proyecto.stoq.dto.CreateUsuarioDTO;
+import com.Proyecto.stoq.dto.UpdateUsuarioDTO;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
@@ -55,20 +56,37 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario actualizarUsuario(UUID id, CreateUsuarioDTO dto){
-        Usuario usuarioExistente = usuarioRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+    public Usuario actualizarUsuario(UUID id, UpdateUsuarioDTO dto){
+        Usuario usuario = usuarioRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
-        Rol rol = rolRepository
-                .findByNombre(dto.rol)
-                .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
+        if (dto.nombre != null && !dto.nombre.isBlank()) {
+            usuario.setNombre(dto.nombre);
+        }
 
-        usuarioExistente.setNombre(dto.nombre);
-        usuarioExistente.setCorreo(dto.correo);
-        usuarioExistente.setContrasenaHash(dto.contrasenaHash);
-        usuarioExistente.setRol(rol);
+        if (dto.correo != null && !dto.correo.isBlank()) {
+            Optional<Usuario> usuarioConMismoCorreo = usuarioRepository.findByCorreo(dto.correo);
 
-        return usuarioRepository.save(usuarioExistente);
+            if (usuarioConMismoCorreo.isPresent()
+                    && !usuarioConMismoCorreo.get().getId().equals(id)) {
+                throw new RuntimeException("El correo ya está registrado por otro usuario");
+            }
+
+            usuario.setCorreo(dto.correo);
+        }
+
+        if (dto.contrasena != null && !dto.contrasena.isBlank()) {
+            usuario.setContrasenaHash(dto.contrasena);
+        }
+
+        if (dto.rol != null && !dto.rol.isBlank()) {
+            Rol rol = rolRepository.findByNombre(dto.rol)
+                    .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
+
+            usuario.setRol(rol);
+        }
+
+        return usuarioRepository.save(usuario);
     }
 
     @Override

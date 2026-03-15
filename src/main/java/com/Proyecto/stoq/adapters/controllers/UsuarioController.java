@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.Proyecto.stoq.application.services.UsuarioService;
 import com.Proyecto.stoq.domain.model.Usuario;
 import com.Proyecto.stoq.dto.CreateUsuarioDTO;
+import com.Proyecto.stoq.dto.UpdateUsuarioDTO;
 
 @RestController
 @RequestMapping("/api/usuarios")
@@ -49,7 +50,7 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> actualizarUsuario(@PathVariable UUID id, @RequestBody CreateUsuarioDTO dto){
+    public ResponseEntity<Usuario> actualizarUsuario(@PathVariable UUID id, @RequestBody UpdateUsuarioDTO dto){
         try {
             Usuario usuario = usuarioService.actualizarUsuario(id, dto);
             return ResponseEntity.ok(usuario);
