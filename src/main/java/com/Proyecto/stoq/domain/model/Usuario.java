@@ -18,14 +18,18 @@ public class Usuario {
     @GeneratedValue
     private UUID id;
 
+    @Column(nullable = false)
     private String nombre;
 
+    @Column(nullable = false)
     private String correo;
 
-    @Column(name = "contrasena_hash")
+
+    @Column(name = "contrasena_hash", nullable = false)
     private String contrasenaHash;
 
-    private Boolean estado;
+    @Column(nullable = false)
+    private Boolean estado = true;
 
     @ManyToOne
     @JoinColumn(name = "rol_id")
