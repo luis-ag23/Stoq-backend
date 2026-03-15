@@ -77,4 +77,16 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
         usuarioRepository.deleteById(id);
     }
+
+    @Override
+    public Usuario login(String correo, String contrasena){
+
+        Usuario usuario = usuarioRepository
+            .findByCorreo(correo)
+            .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        if(!usuario.getContrasenaHash().equals(contrasena)){
+            throw new RuntimeException("Contraseña incorrecta");
+        }
+        return usuario;
+    }
 }
