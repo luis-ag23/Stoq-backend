@@ -41,7 +41,6 @@ class UsuarioServiceImplTest {
                 "Juan",
                 "juan@email.com",
                 "hash123",
-                true,
                 rol
         );
 
@@ -60,7 +59,6 @@ class UsuarioServiceImplTest {
         dto.nombre = "Carlos";
         dto.correo = "carlos@email.com";
         dto.contrasenaHash = "123";
-        dto.estado = true;
         dto.rol = "ADMIN";
 
         Rol rol = new Rol();
@@ -72,7 +70,6 @@ class UsuarioServiceImplTest {
                 dto.nombre,
                 dto.correo,
                 dto.contrasenaHash,
-                dto.estado,
                 rol
         );
 

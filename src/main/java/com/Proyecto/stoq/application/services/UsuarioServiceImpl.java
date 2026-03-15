@@ -45,7 +45,6 @@ public class UsuarioServiceImpl implements UsuarioService {
                 dto.nombre,
                 dto.correo,
                 dto.contrasenaHash,
-                dto.estado,
                 rol
         );
 
@@ -64,7 +63,6 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuarioExistente.setNombre(dto.nombre);
         usuarioExistente.setCorreo(dto.correo);
         usuarioExistente.setContrasenaHash(dto.contrasenaHash);
-        usuarioExistente.setEstado(dto.estado);
         usuarioExistente.setRol(rol);
 
         return usuarioRepository.save(usuarioExistente);
