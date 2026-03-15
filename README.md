@@ -55,7 +55,7 @@ El sistema utiliza un modelo relacional robusto para garantizar la integridad de
 
 -Robert Ortiz
 -Harold Sejas
--Osthin Colque
+-Ostin Colque
 -Luis Aguilar
 
 ## Compilación del Proyecto
