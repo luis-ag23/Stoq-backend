@@ -1,27 +1,32 @@
 package com.Proyecto.stoq.application.services;
 
-import org.springframework.stereotype.Service;
-import com.Proyecto.stoq.domain.ports.UsuarioRepositoryPort;
-import com.Proyecto.stoq.domain.ports.RolRepositoryPort;
+import com.Proyecto.stoq.security.JwtService;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import com.Proyecto.stoq.domain.model.Usuario;
+
+import org.springframework.stereotype.Service;
+
 import com.Proyecto.stoq.domain.model.Rol;
+import com.Proyecto.stoq.domain.model.Usuario;
+import com.Proyecto.stoq.domain.ports.RolRepositoryPort;
+import com.Proyecto.stoq.domain.ports.UsuarioRepositoryPort;
 import com.Proyecto.stoq.dto.CreateUsuarioDTO;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 
+    private final JwtService jwtService;
     private final UsuarioRepositoryPort usuarioRepository;
     private final RolRepositoryPort rolRepository;
 
     public UsuarioServiceImpl(
         UsuarioRepositoryPort usuarioRepository,
-        RolRepositoryPort rolRepository
+        RolRepositoryPort rolRepository, JwtService jwtService
     ){
         this.usuarioRepository = usuarioRepository;
         this.rolRepository = rolRepository;
+        this.jwtService = jwtService;
     }
 
     @Override
@@ -84,14 +89,16 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario login(String correo, String contrasena){
-
+    public String login(String correo, String contrasena){
         Usuario usuario = usuarioRepository
-            .findByCorreo(correo)
-            .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        .findByCorreo(correo)
+        .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        
         if(!usuario.getContrasenaHash().equals(contrasena)){
             throw new RuntimeException("Contraseña incorrecta");
         }
-        return usuario;
+        return jwtService.generateToken(usuario.getCorreo());
     }
+
+    
 }

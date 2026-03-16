@@ -6,6 +6,8 @@ import com.Proyecto.stoq.application.services.UsuarioService;
 import com.Proyecto.stoq.domain.model.Usuario;
 import com.Proyecto.stoq.dto.LoginRequestDTO;
 
+
+import com.Proyecto.stoq.dto.LoginResponseDTO;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -16,8 +18,11 @@ public class AuthController {
         this.usuarioService = usuarioService;
     }
 
-    @PostMapping("/login")  
-    public Usuario login(@RequestBody LoginRequestDTO dto){
-        return usuarioService.login(dto.correo, dto.contrasena);
+    @PostMapping("/login")
+    public LoginResponseDTO login(@RequestBody LoginRequestDTO dto){
+
+        String token = usuarioService.login(dto.correo, dto.contrasena);
+
+        return new LoginResponseDTO(token);
     }
 }

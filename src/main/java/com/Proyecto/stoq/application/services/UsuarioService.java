@@ -19,6 +19,6 @@ public interface UsuarioService {
 
     void eliminarUsuario(UUID id);
 
-    Usuario login(String correo, String contrasena);
+    String login(String correo, String contrasena);
 
 }
