@@ -1,10 +1,10 @@
 package com.Proyecto.stoq.application.services;
 
-import com.Proyecto.stoq.security.JwtService;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.Proyecto.stoq.domain.model.Rol;
@@ -12,21 +12,24 @@ import com.Proyecto.stoq.domain.model.Usuario;
 import com.Proyecto.stoq.domain.ports.RolRepositoryPort;
 import com.Proyecto.stoq.domain.ports.UsuarioRepositoryPort;
 import com.Proyecto.stoq.dto.CreateUsuarioDTO;
+import com.Proyecto.stoq.security.JwtService;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 
+    private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final UsuarioRepositoryPort usuarioRepository;
     private final RolRepositoryPort rolRepository;
 
     public UsuarioServiceImpl(
         UsuarioRepositoryPort usuarioRepository,
-        RolRepositoryPort rolRepository, JwtService jwtService
+        RolRepositoryPort rolRepository, JwtService jwtService, PasswordEncoder passwordEncoder
     ){
         this.usuarioRepository = usuarioRepository;
         this.rolRepository = rolRepository;
         this.jwtService = jwtService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -68,7 +71,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         usuarioExistente.setNombre(dto.nombre);
         usuarioExistente.setCorreo(dto.correo);
-        usuarioExistente.setContrasenaHash(dto.contrasenaHash);
+        //usuarioExistente.setContrasenaHash(dto.contrasenaHash);
+        usuarioExistente.setContrasenaHash(passwordEncoder.encode(dto.contrasenaHash));
         usuarioExistente.setEstado(dto.estado);
         usuarioExistente.setRol(rol);
 
@@ -93,8 +97,8 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario usuario = usuarioRepository
         .findByCorreo(correo)
         .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-        
-        if(!usuario.getContrasenaHash().equals(contrasena)){
+        //if(!usuario.getContrasenaHash().equals(contrasena))
+        if(passwordEncoder.matches(contrasena, usuario.getContrasenaHash())){
             throw new RuntimeException("Contraseña incorrecta");
         }
         return jwtService.generateToken(usuario.getCorreo());

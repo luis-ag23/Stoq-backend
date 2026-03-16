@@ -24,5 +24,5 @@ public class AuthService {
         return jwtService.generateToken(usuario.getCorreo());
     }
     
-    
+
 }
