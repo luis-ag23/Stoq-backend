@@ -37,10 +37,11 @@ public class Usuario {
 
     public Usuario() {}
 
-    public Usuario(String nombre, String correo, String contrasenaHash, Rol rol) {
+    public Usuario(String nombre, String correo, String contrasenaHash,Boolean estado, Rol rol) {
         this.nombre = nombre;
         this.correo = correo;
         this.contrasenaHash = contrasenaHash;
+        this.estado = estado;
         this.rol = rol;
     }
 

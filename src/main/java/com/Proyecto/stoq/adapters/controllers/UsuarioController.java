@@ -68,13 +68,4 @@ public class UsuarioController {
             return ResponseEntity.notFound().build();
         }
     }
-
-    /* futura mejora a implementar
-    @GetMapping
-    public List<UsuarioResponseDTO> obtenerUsuarios(){
-        return usuarioService.obtenerUsuarios();
-    }
-    
-    */
-
 }
