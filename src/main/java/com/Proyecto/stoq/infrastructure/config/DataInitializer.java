@@ -33,5 +33,13 @@ public class DataInitializer implements CommandLineRunner {
             rolRepository.save(adminRol);
             System.out.println("Rol ADMIN creado");
         }
+
+        if (rolRepository.findByNombre("OPERADOR").isEmpty()) {
+            Rol operadorRol = new Rol();
+            operadorRol.setNombre("OPERADOR");
+            operadorRol.setDescripcion("Operador del sistema");
+            rolRepository.save(operadorRol);
+            System.out.println("Rol OPERADOR creado");
+        }
     }
 }
