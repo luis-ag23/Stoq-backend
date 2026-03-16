@@ -49,10 +49,11 @@ public class UsuarioServiceImpl implements UsuarioService {
                 .findByNombre(dto.rol)
                 .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
 
+        String passwordHash = passwordEncoder.encode(dto.contrasenaHash);
         Usuario usuario = new Usuario(
                 dto.nombre,
                 dto.correo,
-                dto.contrasenaHash,
+                passwordHash,
                 dto.estado,
                 rol
         );
@@ -97,9 +98,8 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario usuario = usuarioRepository
         .findByCorreo(correo)
         .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-        //if(!usuario.getContrasenaHash().equals(contrasena))
-        if(passwordEncoder.matches(contrasena, usuario.getContrasenaHash())){
-            throw new RuntimeException("Contraseña incorrecta");
+        if(!passwordEncoder.matches(contrasena, usuario.getContrasenaHash())){
+           throw new RuntimeException("Contraseña incorrecta");
         }
         return jwtService.generateToken(usuario.getCorreo());
     }
