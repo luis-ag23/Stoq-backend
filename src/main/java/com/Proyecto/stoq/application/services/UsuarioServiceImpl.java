@@ -58,8 +58,8 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario usuario = new Usuario(
             dto.nombre,
             dto.correo,
+            dto.empresa,
             passwordHash,
-            dto.estado,
             rol);
         return usuarioRepository.save(usuario);
     }

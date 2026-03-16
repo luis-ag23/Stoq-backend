@@ -24,6 +24,8 @@ public class Usuario {
     @Column(nullable = false, unique = true)
     private String correo;
 
+    @Column(name = "empresa")
+    private String empresa;
 
     @Column(name = "contrasena_hash", nullable = false)
     private String contrasenaHash;
@@ -37,11 +39,11 @@ public class Usuario {
 
     public Usuario() {}
 
-    public Usuario(String nombre, String correo, String contrasenaHash,Boolean estado, Rol rol) {
+    public Usuario(String nombre, String correo,String empresa, String contrasenaHash, Rol rol) {
         this.nombre = nombre;
         this.correo = correo;
+        this.empresa = empresa;
         this.contrasenaHash = contrasenaHash;
-        this.estado = estado;
         this.rol = rol;
     }
 
@@ -55,6 +57,10 @@ public class Usuario {
 
     public String getCorreo() {
         return correo;
+    }
+
+    public String getEmpresa() {
+        return empresa;
     }
 
     public String getContrasenaHash() {
@@ -71,6 +77,10 @@ public class Usuario {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public void setEmpresa(String empresa) {
+        this.empresa = empresa;
     }
 
     public void setCorreo(String correo) {

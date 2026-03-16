@@ -29,7 +29,7 @@ class UsuarioServiceImplTest {
         usuarioRepository = Mockito.mock(UsuarioRepositoryPort.class);
         rolRepository = Mockito.mock(RolRepositoryPort.class);
 
-        usuarioService = new UsuarioServiceImpl(usuarioRepository, rolRepository);
+        usuarioService = new UsuarioServiceImpl(usuarioRepository, rolRepository, null, null);
     }
 
     @Test
@@ -41,6 +41,7 @@ class UsuarioServiceImplTest {
         Usuario usuario = new Usuario(
                 "Juan",
                 "juan@email.com",
+                "empresa1",
                 "hash123",
                 rol
         );
@@ -71,6 +72,7 @@ class UsuarioServiceImplTest {
         Usuario usuarioGuardado = new Usuario(
                 dto.nombre,
                 dto.correo,
+                dto.empresa,
                 dto.contrasenaHash,
                 rol
         );
@@ -113,6 +115,7 @@ class UsuarioServiceImplTest {
         Usuario usuarioExistente = new Usuario(
                 "Otro",
                 dto.correo,
+                dto.empresa, 
                 "hash456",
                 rol
         );
