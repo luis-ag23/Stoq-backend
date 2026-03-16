@@ -5,10 +5,12 @@ import com.Proyecto.stoq.domain.model.Rol;
 import com.Proyecto.stoq.domain.ports.UsuarioRepositoryPort;
 import com.Proyecto.stoq.domain.ports.RolRepositoryPort;
 import com.Proyecto.stoq.dto.CreateUsuarioDTO;
+import com.Proyecto.stoq.security.JwtService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +23,8 @@ class UsuarioServiceImplTest {
 
     private UsuarioRepositoryPort usuarioRepository;
     private RolRepositoryPort rolRepository;
+    private JwtService jwtService;
+    private PasswordEncoder passwordEncoder;
     private UsuarioServiceImpl usuarioService;
 
     @BeforeEach
@@ -28,8 +32,10 @@ class UsuarioServiceImplTest {
 
         usuarioRepository = Mockito.mock(UsuarioRepositoryPort.class);
         rolRepository = Mockito.mock(RolRepositoryPort.class);
+        jwtService = Mockito.mock(JwtService.class);
+        passwordEncoder = Mockito.mock(PasswordEncoder.class);
 
-        usuarioService = new UsuarioServiceImpl(usuarioRepository, rolRepository, null, null);
+        usuarioService = new UsuarioServiceImpl(usuarioRepository, rolRepository, jwtService, passwordEncoder);
     }
 
     @Test
@@ -60,7 +66,7 @@ class UsuarioServiceImplTest {
         CreateUsuarioDTO dto = new CreateUsuarioDTO();
         dto.nombre = "Carlos";
         dto.correo = "carlos@email.com";
-        dto.contrasenaHash = "123";
+        dto.contrasena = "123";
         dto.rol = "ADMIN";
 
         Rol rol = new Rol();
@@ -68,12 +74,13 @@ class UsuarioServiceImplTest {
 
         when(usuarioRepository.findByCorreo(dto.correo)).thenReturn(Optional.empty());
         when(rolRepository.findByNombre("ADMIN")).thenReturn(Optional.of(rol));
+        when(passwordEncoder.encode(dto.contrasena)).thenReturn("hashed123");
 
         Usuario usuarioGuardado = new Usuario(
                 dto.nombre,
                 dto.correo,
                 dto.empresa,
-                dto.contrasenaHash,
+                "hashed123",
                 rol
         );
 
@@ -84,6 +91,7 @@ class UsuarioServiceImplTest {
         assertEquals("Carlos", resultado.getNombre());
 
         verify(usuarioRepository,times(1)).findByCorreo(dto.correo);
+        verify(passwordEncoder, times(1)).encode(dto.contrasena);
         verify(usuarioRepository, times(1)).save(any());
     }
 
@@ -106,7 +114,7 @@ class UsuarioServiceImplTest {
         CreateUsuarioDTO dto = new CreateUsuarioDTO();
         dto.nombre = "Carlos";
         dto.correo = "carlos@email.com";
-        dto.contrasenaHash = "123";
+        dto.contrasena = "123";
         dto.rol = "ADMIN";
 
         Rol rol = new Rol();

@@ -7,4 +7,5 @@ public interface RolRepositoryPort {
 
     Optional<Rol> findByNombre(String nombre);
 
+    Rol save(Rol rol);
 }

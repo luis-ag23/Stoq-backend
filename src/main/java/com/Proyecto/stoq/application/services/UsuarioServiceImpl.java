@@ -54,7 +54,7 @@ public class UsuarioServiceImpl implements UsuarioService {
                 .findByNombre(dto.rol)
                 .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
 
-        String passwordHash = passwordEncoder.encode(dto.contrasenaHash);
+        String passwordHash = passwordEncoder.encode(dto.contrasena);
         Usuario usuario = new Usuario(
             dto.nombre,
             dto.correo,

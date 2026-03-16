@@ -21,4 +21,9 @@ public class RolRepositoryAdapter implements RolRepositoryPort {
     public Optional<Rol> findByNombre(String nombre) {
         return rolRepository.findByNombre(nombre);
     }
+
+    @Override
+    public Rol save(Rol rol) {
+        return rolRepository.save(rol);
+    }
 }
