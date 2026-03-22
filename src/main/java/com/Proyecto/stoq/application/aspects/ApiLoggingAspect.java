@@ -6,6 +6,8 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -34,8 +36,8 @@ public class ApiLoggingAspect {
         String remoteAddr = request.getRemoteAddr();
         String userAgent = request.getHeader("User-Agent");
 
-        // Intentar obtener usuario si hay autenticación (placeholder)
-        String user = "Anonymous"; // Cambiar si implementas auth
+        // Obtener usuario autenticado del SecurityContext
+        String user = obtenerUsuarioAutenticado();
 
         logger.info("[API AUDIT] {} | {} {} | User: {} | IP: {} | User-Agent: {}",
                 timestamp, method, uri, user, remoteAddr, userAgent);
@@ -62,5 +64,22 @@ public class ApiLoggingAspect {
 
             throw e; // Re-lanzar la excepción
         }
+    }
+
+    /**
+     * Extrae el usuario autenticado del SecurityContext
+     * @return email del usuario o "ANONYMOUS" si no está autenticado
+     */
+    private String obtenerUsuarioAutenticado() {
+        try {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            if (authentication != null && authentication.isAuthenticated() && 
+                !authentication.getName().equals("anonymousUser")) {
+                return authentication.getName();
+            }
+        } catch (Exception e) {
+            logger.debug("No authentication found in context");
+        }
+        return "ANONYMOUS";
     }
 }
