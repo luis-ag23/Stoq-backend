@@ -14,6 +14,8 @@ public interface UsuarioService {
 
     Optional<Usuario> obtenerUsuarioPorId(UUID id);
 
+    Optional<Usuario> obtenerUsuarioPorCorreo(String correo);
+
     Usuario crearUsuario(CreateUsuarioDTO dto);
 
     Usuario actualizarUsuario(UUID id, UpdateUsuarioDTO dto);

@@ -44,21 +44,28 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
+    public Optional<Usuario> obtenerUsuarioPorCorreo(String correo){
+        return usuarioRepository.findByCorreo(normalizarCorreo(correo));
+    }
+
+    @Override
     public Usuario crearUsuario(CreateUsuarioDTO dto){
 
-        if (usuarioRepository.findByCorreo(dto.correo).isPresent()) {
+        String correoNormalizado = normalizarCorreo(dto.correo());
+
+        if (usuarioRepository.findByCorreo(correoNormalizado).isPresent()) {
             throw new RuntimeException("El correo ya está registrado");
         }
 
         Rol rol = rolRepository
-                .findByNombre(dto.rol)
+                .findByNombre(dto.rol())
                 .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
 
-        String passwordHash = passwordEncoder.encode(dto.contrasena);
+        String passwordHash = passwordEncoder.encode(dto.contrasena());
         Usuario usuario = new Usuario(
-            dto.nombre,
-            dto.correo,
-            dto.empresa,
+            limpiarTexto(dto.nombre()),
+            correoNormalizado,
+            limpiarTexto(dto.empresa()),
             passwordHash,
             rol);
         return usuarioRepository.save(usuario);
@@ -69,34 +76,40 @@ public class UsuarioServiceImpl implements UsuarioService {
         
         Usuario usuario = usuarioRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-        if (dto.nombre != null && !dto.nombre.isBlank()) {
-            usuario.setNombre(dto.nombre);
+        if (dto.nombre() != null && !dto.nombre().isBlank()) {
+            usuario.setNombre(limpiarTexto(dto.nombre()));
         }
 
-        if (dto.correo != null && !dto.correo.isBlank()) {
-            Optional<Usuario> usuarioConMismoCorreo = usuarioRepository.findByCorreo(dto.correo);
+        if (dto.correo() != null && !dto.correo().isBlank()) {
+            String correoNormalizado = normalizarCorreo(dto.correo());
+            Optional<Usuario> usuarioConMismoCorreo = usuarioRepository.findByCorreo(correoNormalizado);
 
             if (usuarioConMismoCorreo.isPresent()
                     && !usuarioConMismoCorreo.get().getId().equals(id)) {
                 throw new RuntimeException("El correo ya está registrado por otro usuario");
             }
 
-            usuario.setCorreo(dto.correo);
+            usuario.setCorreo(correoNormalizado);
         }
 
-        if (dto.contrasena != null && !dto.contrasena.isBlank()) {
-            usuario.setContrasenaHash(passwordEncoder.encode(dto.contrasena));
+        if (dto.empresa() != null) {
+            usuario.setEmpresa(limpiarTexto(dto.empresa()));
         }
 
-        if (dto.rol != null && !dto.rol.isBlank()) {
-            Rol rol = rolRepository.findByNombre(dto.rol)
+        if (dto.contrasena() != null && !dto.contrasena().isBlank()) {
+            usuario.setContrasenaHash(passwordEncoder.encode(dto.contrasena()));
+        }
+
+        if (dto.rol() != null && !dto.rol().isBlank()) {
+            Rol rol = rolRepository.findByNombre(dto.rol())
                     .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
 
             usuario.setRol(rol);
         }
 
-        rolRepository.findByNombre(dto.rol)
-                .ifPresent(r -> System.out.println("ROL ENCONTRADO: " + r.getNombre()));
+        if (dto.estado() != null) {
+            usuario.setEstado(dto.estado());
+        }
 
         return usuarioRepository.save(usuario);
     }
@@ -112,7 +125,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public String login(String correo, String contrasena){
         Usuario usuario = usuarioRepository
-        .findByCorreo(correo)
+        .findByCorreo(normalizarCorreo(correo))
         .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
         if(!passwordEncoder.matches(contrasena, usuario.getContrasenaHash())){
            throw new RuntimeException("Contraseña incorrecta");
@@ -120,5 +133,14 @@ public class UsuarioServiceImpl implements UsuarioService {
         return jwtService.generateToken(usuario.getCorreo());
     }
 
-    
+    private String normalizarCorreo(String correo) {
+        return limpiarTexto(correo).toLowerCase();
+    }
+
+    private String limpiarTexto(String texto) {
+        if (texto == null) {
+            return null;
+        }
+        return texto.trim();
+    }
 }

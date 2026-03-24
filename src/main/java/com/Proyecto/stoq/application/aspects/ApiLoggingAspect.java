@@ -23,10 +23,10 @@ public class ApiLoggingAspect {
     private static final Logger logger = LoggerFactory.getLogger(ApiLoggingAspect.class);
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    @Pointcut("@within(org.springframework.web.bind.annotation.RestController)")
-    public void restControllerMethods() {}
+    @Pointcut("within(com.Proyecto.stoq.adapters.controllers.UsuarioController)")
+    public void usuarioControllerMethods() {}
 
-    @Around("restControllerMethods()")
+    @Around("usuarioControllerMethods()")
     public Object logApiCall(ProceedingJoinPoint joinPoint) throws Throwable {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 
