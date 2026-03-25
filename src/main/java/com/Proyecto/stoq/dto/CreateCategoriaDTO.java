@@ -1,6 +1,6 @@
 package com.Proyecto.stoq.dto;
 
-public class CreateProductoDTO {
+public class CreateCategoriaDTO {
     public String nombre;
     public String descripcion;
 }

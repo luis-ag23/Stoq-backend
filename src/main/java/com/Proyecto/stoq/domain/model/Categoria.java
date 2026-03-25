@@ -31,6 +31,11 @@ public class Categoria {
     private LocalDateTime fechaCreacion;
 
     public Categoria() {}
+    
+    public Categoria(String nombre, String descripcion) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+    }
 
     @PrePersist
     protected void onCreate() {
