@@ -10,6 +10,7 @@ public interface ProductosRepositoryPort {
     List<Producto> findAll();
     Optional<Producto> findById(UUID id);
     Optional<Producto> findByNombre(String nombre);
+    Optional<Producto> findByCodigo(String codigo);
     Producto save(Producto producto);
     void deleteById(UUID id);
 }

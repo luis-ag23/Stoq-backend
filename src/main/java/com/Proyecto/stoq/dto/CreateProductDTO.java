@@ -1,9 +1,11 @@
 package com.Proyecto.stoq.dto;
 
+import java.util.UUID;
+
 public class CreateProductDTO {
     public String codigo;
     public String nombre;
-    public String categoria;
-    public String unidad;
+    public UUID categoriaId;
+    public UUID unidadId;
     public int stock_minimo;
 }

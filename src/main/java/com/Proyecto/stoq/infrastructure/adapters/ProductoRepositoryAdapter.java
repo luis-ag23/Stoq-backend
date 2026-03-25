@@ -41,6 +41,11 @@ public class ProductoRepositoryAdapter implements ProductosRepositoryPort {
     public void deleteById(UUID id) {
         productosRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<Producto> findByCodigo(String codigo) {
+        return productosRepository.findByCodigo(codigo);
+    }
     
 
 }

@@ -111,6 +111,10 @@ public class Producto {
         this.nombre = nombre;
     }
 
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
