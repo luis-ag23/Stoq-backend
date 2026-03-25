@@ -1,32 +1,24 @@
 package com.Proyecto.stoq.adapters.controllers;
 
-import java.lang.classfile.ClassFile.Option;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.Proyecto.stoq.application.services.ProductoService;
 import com.Proyecto.stoq.domain.model.Producto;
-import org.springframework.web.bind.annotation.RequestParam;
 import com.Proyecto.stoq.dto.CreateProductDTO;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import com.Proyecto.stoq.dto.UpdateProductDTO;
-
 
 @RestController
 @RequestMapping("/api/productos")
 public class ProductosController {
+
     private final ProductoService productoService;
-    
+
     public ProductosController(ProductoService productoService) {
         this.productoService = productoService;
     }
@@ -47,8 +39,9 @@ public class ProductosController {
     }
 
     @PostMapping
-    public Producto crearProducto(@RequestParam CreateProductDTO dto) {
-        return productoService.crearProducto(dto);
+    public ResponseEntity<Producto> crearProducto(@RequestBody CreateProductDTO dto) {
+        Producto producto = productoService.crearProducto(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(producto);
     }
 
     @PutMapping("/{id}")
@@ -60,6 +53,7 @@ public class ProductosController {
             return ResponseEntity.notFound().build();
         }
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarProducto(@PathVariable UUID id) {
         try {
