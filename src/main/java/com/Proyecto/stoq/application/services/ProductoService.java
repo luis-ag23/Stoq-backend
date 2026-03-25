@@ -11,7 +11,7 @@ public interface ProductoService {
     List<Producto> obtenerProductos();
     Optional<Producto> obtenerProductoPorId(UUID id);
     
-    void crearProducto(CreateProductDTO dto);
+    Producto crearProducto(CreateProductDTO dto);
     Producto actualizarProducto(UUID id, UpdateProductDTO dto);
     
     void eliminarProducto(UUID id);

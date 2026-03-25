@@ -58,6 +58,14 @@ public class Producto {
     }
     public Producto() {}
 
+    public Producto(String nombre, String codigo, Categoria categoria, Unidad unidad, Integer stockMinimo) {
+        this.nombre = nombre;
+        this.codigo = codigo;
+        this.categoria = categoria;
+        this.unidad = unidad;
+        this.stockMinimo = stockMinimo;
+    }
+
     @PreUpdate
     protected void onUpdate() {
         this.fechaActualizacion = LocalDateTime.now();
