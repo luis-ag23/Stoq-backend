@@ -27,6 +27,11 @@ public class Unidad {
 
     public Unidad() {}
 
+    public Unidad(String nombre, String abreviatura) {
+        this.nombre = nombre;
+        this.abreviatura = abreviatura;
+    }
+
     public String getNombre() {
         return nombre;
     }
