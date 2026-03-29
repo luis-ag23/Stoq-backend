@@ -7,5 +7,6 @@ public class CreateProductDTO {
     public String nombre;
     public UUID categoriaId;
     public UUID unidadId;
+    public int stock_inicial;
     public int stock_minimo;
 }

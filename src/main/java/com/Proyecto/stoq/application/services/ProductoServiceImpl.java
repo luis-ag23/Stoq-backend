@@ -61,6 +61,8 @@ public class ProductoServiceImpl implements ProductoService {
                 dto.stock_minimo
         );
 
+        producto.setStockActual(dto.stock_inicial);
+
         return productoRepository.save(producto);
     }
 
