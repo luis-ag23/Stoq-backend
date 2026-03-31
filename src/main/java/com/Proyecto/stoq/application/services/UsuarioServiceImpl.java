@@ -58,7 +58,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
 
         Rol rol = rolRepository
-                .findByNombre(dto.rol())
+            .findByNombre(normalizarRol(dto.rol()))
                 .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
 
         String passwordHash = passwordEncoder.encode(dto.contrasena());
@@ -101,7 +101,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
 
         if (dto.rol() != null && !dto.rol().isBlank()) {
-            Rol rol = rolRepository.findByNombre(dto.rol())
+            Rol rol = rolRepository.findByNombre(normalizarRol(dto.rol()))
                     .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
 
             usuario.setRol(rol);
@@ -142,5 +142,9 @@ public class UsuarioServiceImpl implements UsuarioService {
             return null;
         }
         return texto.trim();
+    }
+
+    private String normalizarRol(String rol) {
+        return limpiarTexto(rol).toUpperCase();
     }
 }

@@ -63,23 +63,25 @@ class UsuarioServiceImplTest {
     @Test
     void crearUsuario_deberiaGuardarUsuario() {
 
-        CreateUsuarioDTO dto = new CreateUsuarioDTO();
-        dto.nombre = "Carlos";
-        dto.correo = "carlos@email.com";
-        dto.contrasena = "123";
-        dto.rol = "ADMIN";
+        CreateUsuarioDTO dto = new CreateUsuarioDTO(
+            "Carlos",
+            "carlos@email.com",
+            null,
+            "123456",
+            "ADMIN"
+        );
 
         Rol rol = new Rol();
         rol.setNombre("ADMIN");
 
-        when(usuarioRepository.findByCorreo(dto.correo)).thenReturn(Optional.empty());
+        when(usuarioRepository.findByCorreo(dto.correo())).thenReturn(Optional.empty());
         when(rolRepository.findByNombre("ADMIN")).thenReturn(Optional.of(rol));
-        when(passwordEncoder.encode(dto.contrasena)).thenReturn("hashed123");
+        when(passwordEncoder.encode(dto.contrasena())).thenReturn("hashed123");
 
         Usuario usuarioGuardado = new Usuario(
-                dto.nombre,
-                dto.correo,
-                dto.empresa,
+            dto.nombre(),
+            dto.correo(),
+            dto.empresa(),
                 "hashed123",
                 rol
         );
@@ -90,16 +92,21 @@ class UsuarioServiceImplTest {
 
         assertEquals("Carlos", resultado.getNombre());
 
-        verify(usuarioRepository,times(1)).findByCorreo(dto.correo);
-        verify(passwordEncoder, times(1)).encode(dto.contrasena);
+        verify(usuarioRepository,times(1)).findByCorreo(dto.correo());
+        verify(passwordEncoder, times(1)).encode(dto.contrasena());
         verify(usuarioRepository, times(1)).save(any());
     }
 
     @Test
     void crearUsuario_deberiaLanzarErrorSiRolNoExiste() {
 
-        CreateUsuarioDTO dto = new CreateUsuarioDTO();
-        dto.rol = "ADMIN";
+        CreateUsuarioDTO dto = new CreateUsuarioDTO(
+            "Carlos",
+            "carlos@email.com",
+            null,
+            "123456",
+            "ADMIN"
+        );
 
         when(rolRepository.findByNombre("ADMIN")).thenReturn(Optional.empty());
 
@@ -111,24 +118,26 @@ class UsuarioServiceImplTest {
     @Test
     void crearUsuario_deberiaLanzarErrorSiCorreoYaExiste() {
 
-        CreateUsuarioDTO dto = new CreateUsuarioDTO();
-        dto.nombre = "Carlos";
-        dto.correo = "carlos@email.com";
-        dto.contrasena = "123";
-        dto.rol = "ADMIN";
+        CreateUsuarioDTO dto = new CreateUsuarioDTO(
+            "Carlos",
+            "carlos@email.com",
+            null,
+            "123456",
+            "ADMIN"
+        );
 
         Rol rol = new Rol();
         rol.setNombre("ADMIN");
 
         Usuario usuarioExistente = new Usuario(
                 "Otro",
-                dto.correo,
-                dto.empresa, 
+            dto.correo(),
+            dto.empresa(),
                 "hash456",
                 rol
         );
 
-        when(usuarioRepository.findByCorreo(dto.correo)).thenReturn(Optional.of(usuarioExistente));
+        when(usuarioRepository.findByCorreo(dto.correo())).thenReturn(Optional.of(usuarioExistente));
 
         assertThrows(RuntimeException.class, () -> {
             usuarioService.crearUsuario(dto);
