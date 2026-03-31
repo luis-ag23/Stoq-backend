@@ -68,12 +68,8 @@ public class UsuarioController {
 
     @PutMapping("/{id}")
     public ResponseEntity<UsuarioResponseDTO> actualizarUsuario(@PathVariable UUID id, @Valid @RequestBody UpdateUsuarioDTO dto){
-        try {
-            Usuario usuario = usuarioService.actualizarUsuario(id, dto);
-            return ResponseEntity.ok(UsuarioResponseDTO.fromEntity(usuario));
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        Usuario usuario = usuarioService.actualizarUsuario(id, dto);
+        return ResponseEntity.ok(UsuarioResponseDTO.fromEntity(usuario));
     }
 
     @PutMapping("/me")
@@ -94,12 +90,8 @@ public class UsuarioController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarUsuario(@PathVariable UUID id){
-        try {
-            usuarioService.eliminarUsuario(id);
-            return ResponseEntity.noContent().build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        usuarioService.eliminarUsuario(id);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/me")

@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.Proyecto.stoq.application.services.UsuarioService;
@@ -26,28 +25,15 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@Valid @RequestBody LoginRequestDTO dto){
-        try {
-            String token = usuarioService.login(dto.correo(), dto.contrasena());
-            return ResponseEntity.ok(new LoginResponseDTO(token));
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(new ErrorResponse(e.getMessage()));
-        }
+    public ResponseEntity<LoginResponseDTO> login(@Valid @RequestBody LoginRequestDTO dto){
+        String token = usuarioService.login(dto.correo(), dto.contrasena());
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@Valid @RequestBody CreateUsuarioDTO dto){
-        try {
-            Usuario usuario = usuarioService.crearUsuario(dto);
-            String token = usuarioService.login(usuario.getCorreo(), dto.contrasena());
-            return ResponseEntity.status(HttpStatus.CREATED).body(new LoginResponseDTO(token));
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new ErrorResponse(e.getMessage()));
-        }
-    }
-
-    private record ErrorResponse(String message) {
+    public ResponseEntity<LoginResponseDTO> register(@Valid @RequestBody CreateUsuarioDTO dto){
+        Usuario usuario = usuarioService.crearUsuario(dto);
+        String token = usuarioService.login(usuario.getCorreo(), dto.contrasena());
+        return ResponseEntity.status(201).body(new LoginResponseDTO(token));
     }
 }

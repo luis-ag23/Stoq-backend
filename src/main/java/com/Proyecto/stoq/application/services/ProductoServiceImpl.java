@@ -79,7 +79,7 @@ public class ProductoServiceImpl implements ProductoService {
             Optional<Producto> productoConMismoCodigo = productoRepository.findByCodigo(dto.codigo);
 
             if (productoConMismoCodigo.isPresent()
-                    && !productoConMismoCodigo.get().getCodigo().equals(dto.codigo)) {
+                    && !productoConMismoCodigo.get().getId().equals(id)) {
                 throw new RuntimeException("El código ya está registrado por otro producto");
             }
 

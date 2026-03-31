@@ -58,9 +58,9 @@ public class Producto {
     }
     public Producto() {}
 
-    public Producto(String nombre, String codigo, Categoria categoria, Unidad unidad, Integer stockMinimo) {
-        this.nombre = nombre;
+    public Producto(String codigo, String nombre, Categoria categoria, Unidad unidad, Integer stockMinimo) {
         this.codigo = codigo;
+        this.nombre = nombre;
         this.categoria = categoria;
         this.unidad = unidad;
         this.stockMinimo = stockMinimo;
@@ -69,6 +69,10 @@ public class Producto {
     @PreUpdate
     protected void onUpdate() {
         this.fechaActualizacion = LocalDateTime.now();
+    }
+
+    public UUID getId() {
+        return id;
     }
 
     public String getCodigo() {

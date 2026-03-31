@@ -46,21 +46,13 @@ public class ProductosController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Producto> actualizarProducto(@PathVariable UUID id, @RequestBody UpdateProductDTO dto) {
-        try {
-            Producto producto = productoService.actualizarProducto(id, dto);
-            return ResponseEntity.ok(producto);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        Producto producto = productoService.actualizarProducto(id, dto);
+        return ResponseEntity.ok(producto);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarProducto(@PathVariable UUID id) {
-        try {
-            productoService.eliminarProducto(id);
-            return ResponseEntity.noContent().build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        productoService.eliminarProducto(id);
+        return ResponseEntity.noContent().build();
     }
 }
