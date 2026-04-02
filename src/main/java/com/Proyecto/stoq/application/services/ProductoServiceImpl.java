@@ -56,6 +56,7 @@ public class ProductoServiceImpl implements ProductoService {
         Producto producto = new Producto(
                 dto.codigo,
                 dto.nombre,
+            limpiarTexto(dto.ubicacion),
                 categoria,
                 unidad,
                 dto.stock_minimo
@@ -73,6 +74,10 @@ public class ProductoServiceImpl implements ProductoService {
 
         if (dto.nombre != null && !dto.nombre.isBlank()) {
             producto.setNombre(dto.nombre);
+        }
+
+        if (dto.ubicacion != null) {
+            producto.setUbicacion(limpiarTexto(dto.ubicacion));
         }
 
         if (dto.codigo != null && !dto.codigo.isBlank()) {
@@ -113,6 +118,14 @@ public class ProductoServiceImpl implements ProductoService {
             throw new RuntimeException("Producto no encontrado");
         }
         productoRepository.deleteById(id);
+    }
+
+    private String limpiarTexto(String texto) {
+        if (texto == null) {
+            return null;
+        }
+
+        return texto.trim();
     }
 
 }

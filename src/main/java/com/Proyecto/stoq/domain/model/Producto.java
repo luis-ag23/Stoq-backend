@@ -27,6 +27,9 @@ public class Producto {
     @Column(nullable = false)
     private String nombre;
 
+    @Column(name = "ubicacion")
+    private String ubicacion;
+
     @ManyToOne
     @JoinColumn(name = "categoria_id", nullable = false)
     private Categoria categoria;
@@ -58,9 +61,16 @@ public class Producto {
     }
     public Producto() {}
 
+<<<<<<< Updated upstream
     public Producto(String nombre, String codigo, Categoria categoria, Unidad unidad, Integer stockMinimo) {
         this.nombre = nombre;
         this.codigo = codigo;
+=======
+    public Producto(String codigo, String nombre, String ubicacion, Categoria categoria, Unidad unidad, Integer stockMinimo) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.ubicacion = ubicacion;
+>>>>>>> Stashed changes
         this.categoria = categoria;
         this.unidad = unidad;
         this.stockMinimo = stockMinimo;
@@ -77,6 +87,10 @@ public class Producto {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public String getUbicacion() {
+        return ubicacion;
     }
 
     public Categoria getCategoria() {
@@ -109,6 +123,10 @@ public class Producto {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
     }
 
     public void setCodigo(String codigo) {

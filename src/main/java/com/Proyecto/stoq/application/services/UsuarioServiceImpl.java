@@ -12,8 +12,10 @@ import com.Proyecto.stoq.domain.model.Usuario;
 import com.Proyecto.stoq.domain.ports.RolRepositoryPort;
 import com.Proyecto.stoq.domain.ports.UsuarioRepositoryPort;
 import com.Proyecto.stoq.dto.CreateUsuarioDTO;
+import com.Proyecto.stoq.dto.LoginResponseDTO;
 import com.Proyecto.stoq.dto.UpdateUsuarioDTO;
 import com.Proyecto.stoq.security.JwtService;
+import com.Proyecto.stoq.security.RoleCatalog;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
@@ -57,8 +59,17 @@ public class UsuarioServiceImpl implements UsuarioService {
             throw new RuntimeException("El correo ya está registrado");
         }
 
+        String nombreRol = normalizarRol(dto.rol());
+        if (!RoleCatalog.isAllowed(nombreRol)) {
+            throw new RuntimeException("Rol no permitido");
+        }
+
         Rol rol = rolRepository
+<<<<<<< Updated upstream
                 .findByNombre(dto.rol())
+=======
+            .findByNombre(nombreRol)
+>>>>>>> Stashed changes
                 .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
 
         String passwordHash = passwordEncoder.encode(dto.contrasena());
@@ -101,7 +112,16 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
 
         if (dto.rol() != null && !dto.rol().isBlank()) {
+<<<<<<< Updated upstream
             Rol rol = rolRepository.findByNombre(dto.rol())
+=======
+            String nombreRol = normalizarRol(dto.rol());
+            if (!RoleCatalog.isAllowed(nombreRol)) {
+                throw new RuntimeException("Rol no permitido");
+            }
+
+            Rol rol = rolRepository.findByNombre(nombreRol)
+>>>>>>> Stashed changes
                     .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
 
             usuario.setRol(rol);
@@ -123,14 +143,20 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public String login(String correo, String contrasena){
+    public LoginResponseDTO login(String correo, String contrasena){
         Usuario usuario = usuarioRepository
         .findByCorreo(normalizarCorreo(correo))
         .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
         if(!passwordEncoder.matches(contrasena, usuario.getContrasenaHash())){
            throw new RuntimeException("Contraseña incorrecta");
         }
-        return jwtService.generateToken(usuario.getCorreo());
+        String rolNormalizado = RoleCatalog.normalize(usuario.getRol() != null ? usuario.getRol().getNombre() : null);
+        return new LoginResponseDTO(
+                jwtService.generateToken(usuario.getCorreo()),
+                rolNormalizado,
+                usuario.getNombre(),
+                usuario.getCorreo()
+        );
     }
 
     private String normalizarCorreo(String correo) {
@@ -143,4 +169,11 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
         return texto.trim();
     }
+<<<<<<< Updated upstream
+=======
+
+    private String normalizarRol(String rol) {
+        return RoleCatalog.normalize(limpiarTexto(rol));
+    }
+>>>>>>> Stashed changes
 }

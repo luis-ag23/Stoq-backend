@@ -1,5 +1,6 @@
 package com.Proyecto.stoq.infrastructure.adapters;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
@@ -20,6 +21,11 @@ public class RolRepositoryAdapter implements RolRepositoryPort {
     @Override
     public Optional<Rol> findByNombre(String nombre) {
         return rolRepository.findByNombre(nombre);
+    }
+
+    @Override
+    public List<Rol> findAll() {
+        return rolRepository.findAll();
     }
 
     @Override

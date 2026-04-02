@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import com.Proyecto.stoq.domain.model.Usuario;
 import com.Proyecto.stoq.dto.CreateUsuarioDTO;
+import com.Proyecto.stoq.dto.LoginResponseDTO;
 import com.Proyecto.stoq.dto.UpdateUsuarioDTO;
 
 public interface UsuarioService {
@@ -22,6 +23,6 @@ public interface UsuarioService {
 
     void eliminarUsuario(UUID id);
 
-    String login(String correo, String contrasena);
+    LoginResponseDTO login(String correo, String contrasena);
 
 }

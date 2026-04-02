@@ -1,12 +1,16 @@
 package com.Proyecto.stoq.security;
 
 import java.io.IOException;
-import java.util.Collections;
+import java.util.List;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+
+import com.Proyecto.stoq.security.RoleCatalog;
+import com.Proyecto.stoq.infrastructure.persistence.repositories.UsuarioRepository;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -17,9 +21,11 @@ import jakarta.servlet.http.HttpServletResponse;
 public class JwtFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
+    private final UsuarioRepository usuarioRepository;
 
-    public JwtFilter(JwtService jwtService){
+    public JwtFilter(JwtService jwtService, UsuarioRepository usuarioRepository){
         this.jwtService = jwtService;
+        this.usuarioRepository = usuarioRepository;
     }
 
     @Override
@@ -43,12 +49,20 @@ public class JwtFilter extends OncePerRequestFilter {
         }
 
         String email = jwtService.extractEmail(token);
+        String rol = usuarioRepository.findByCorreo(email)
+            .map(usuario -> usuario.getRol() != null ? usuario.getRol().getNombre() : null)
+            .map(RoleCatalog::normalize)
+            .orElse(null);
+
+        List<SimpleGrantedAuthority> authorities = rol == null
+            ? List.of()
+            : List.of(new SimpleGrantedAuthority("ROLE_" + rol));
 
         UsernamePasswordAuthenticationToken auth =
             new UsernamePasswordAuthenticationToken(
                 email,
                 null,
-                Collections.emptyList()
+            authorities
             );
 
         SecurityContextHolder
