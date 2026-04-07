@@ -4,6 +4,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -23,44 +24,46 @@ public class ApiLoggingAspect {
     private static final Logger logger = LoggerFactory.getLogger(ApiLoggingAspect.class);
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    @Pointcut("within(com.Proyecto.stoq.adapters.controllers.UsuarioController)")
-    public void usuarioControllerMethods() {}
+    @Pointcut("within(com.Proyecto.stoq.adapters.controllers..*)")
+    public void apiControllerMethods() {}
 
-    @Around("usuarioControllerMethods()")
+    @Around("apiControllerMethods()")
     public Object logApiCall(ProceedingJoinPoint joinPoint) throws Throwable {
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        if (attributes == null) {
+            return joinPoint.proceed();
+        }
+        HttpServletRequest request = attributes.getRequest();
 
         String timestamp = LocalDateTime.now().format(formatter);
         String method = request.getMethod();
         String uri = request.getRequestURI();
         String remoteAddr = request.getRemoteAddr();
         String userAgent = request.getHeader("User-Agent");
+        String handler = ((MethodSignature) joinPoint.getSignature()).getDeclaringType().getSimpleName()
+                + "."
+                + joinPoint.getSignature().getName();
 
         // Obtener usuario autenticado del SecurityContext
         String user = obtenerUsuarioAutenticado();
 
-        logger.info("[API AUDIT] {} | {} {} | User: {} | IP: {} | User-Agent: {}",
-                timestamp, method, uri, user, remoteAddr, userAgent);
+        logger.info("[API-AUDIT][START] ts={} method={} uri={} handler={} user={} ip={} ua={}",
+                timestamp, method, uri, handler, user, remoteAddr, userAgent);
 
         long startTime = System.currentTimeMillis();
-        Object result = null;
         try {
-            result = joinPoint.proceed();
+            Object result = joinPoint.proceed();
             long executionTime = System.currentTimeMillis() - startTime;
 
-            logger.info("[API PERFORMANCE] {} {} completed in {} ms", method, uri, executionTime);
-
-            // Loguear respuesta exitosa
-            logger.debug("[API RESPONSE] {} {} | Status: 200 | Response: {}", method, uri, result != null ? "Success" : "No Content");
+            logger.info("[API-AUDIT][END] method={} uri={} handler={} user={} durationMs={} result={}",
+                    method, uri, handler, user, executionTime, result != null ? "Success" : "NoContent");
 
             return result;
         } catch (Exception e) {
             long executionTime = System.currentTimeMillis() - startTime;
 
-            logger.error("[API ERROR] {} {} failed after {} ms | Error: {}", method, uri, executionTime, e.getMessage(), e);
-
-            // Loguear error para auditoría
-            logger.warn("[API SECURITY] Potential issue detected on {} {} | User: {} | IP: {}", method, uri, user, remoteAddr);
+            logger.error("[API-AUDIT][ERROR] method={} uri={} handler={} user={} ip={} durationMs={} error={}",
+                    method, uri, handler, user, remoteAddr, executionTime, e.getMessage(), e);
 
             throw e; // Re-lanzar la excepción
         }
