@@ -2,6 +2,7 @@ package com.Proyecto.stoq.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,10 +27,7 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())   
             .authorizeHttpRequests(auth -> auth
-<<<<<<< Updated upstream
-                .requestMatchers("/api/auth/**").permitAll() 
-=======
-                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // 🔥 CLAVE (arregla el 403)
+                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/usuarios/me").authenticated()
                 .requestMatchers("/api/usuarios/**").hasRole("ADMIN")
@@ -42,7 +40,6 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/api/movimientos/**").hasAnyRole("ADMIN", "OPERADOR", "GERENTE")
                 .requestMatchers(HttpMethod.POST, "/api/movimientos/**").hasAnyRole("ADMIN", "OPERADOR")
                 .requestMatchers(HttpMethod.GET, "/api/reportes/**").hasAnyRole("ADMIN", "GERENTE")
->>>>>>> Stashed changes
                 .anyRequest().authenticated()
             ).addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 

@@ -32,6 +32,10 @@ public class Unidad {
         this.abreviatura = abreviatura;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
     public String getNombre() {
         return nombre;
     }

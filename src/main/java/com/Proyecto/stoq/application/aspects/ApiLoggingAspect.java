@@ -22,11 +22,12 @@ public class ApiLoggingAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(ApiLoggingAspect.class);
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private static final String MONITOR_TAG = "[STOQ-MONITOR]";
 
-    @Pointcut("within(com.Proyecto.stoq.adapters.controllers.UsuarioController)")
-    public void usuarioControllerMethods() {}
+    @Pointcut("within(@org.springframework.web.bind.annotation.RestController *) && within(com.Proyecto.stoq.adapters.controllers..*)")
+    public void apiControllerMethods() {}
 
-    @Around("usuarioControllerMethods()")
+    @Around("apiControllerMethods()")
     public Object logApiCall(ProceedingJoinPoint joinPoint) throws Throwable {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 
@@ -39,7 +40,9 @@ public class ApiLoggingAspect {
         // Obtener usuario autenticado del SecurityContext
         String user = obtenerUsuarioAutenticado();
 
-        logger.info("[API AUDIT] {} | {} {} | User: {} | IP: {} | User-Agent: {}",
+        logger.info("{} ============================================================", MONITOR_TAG);
+        logger.info("{} IN  {} | {} {} | user={} | ip={} | ua={}",
+            MONITOR_TAG,
                 timestamp, method, uri, user, remoteAddr, userAgent);
 
         long startTime = System.currentTimeMillis();
@@ -48,19 +51,17 @@ public class ApiLoggingAspect {
             result = joinPoint.proceed();
             long executionTime = System.currentTimeMillis() - startTime;
 
-            logger.info("[API PERFORMANCE] {} {} completed in {} ms", method, uri, executionTime);
-
-            // Loguear respuesta exitosa
-            logger.debug("[API RESPONSE] {} {} | Status: 200 | Response: {}", method, uri, result != null ? "Success" : "No Content");
+            logger.info("{} OUT {} {} | status=OK | time={} ms | endpoint={}",
+                MONITOR_TAG, method, uri, executionTime, joinPoint.getSignature().toShortString());
+            logger.info("{} ============================================================", MONITOR_TAG);
 
             return result;
         } catch (Exception e) {
             long executionTime = System.currentTimeMillis() - startTime;
 
-            logger.error("[API ERROR] {} {} failed after {} ms | Error: {}", method, uri, executionTime, e.getMessage(), e);
-
-            // Loguear error para auditoría
-            logger.warn("[API SECURITY] Potential issue detected on {} {} | User: {} | IP: {}", method, uri, user, remoteAddr);
+            logger.error("{} OUT {} {} | status=ERROR | time={} ms | error={} | user={} | ip={}",
+                MONITOR_TAG, method, uri, executionTime, e.getMessage(), user, remoteAddr, e);
+            logger.info("{} ============================================================", MONITOR_TAG);
 
             throw e; // Re-lanzar la excepción
         }
@@ -78,7 +79,7 @@ public class ApiLoggingAspect {
                 return authentication.getName();
             }
         } catch (Exception e) {
-            logger.debug("No authentication found in context");
+            logger.debug("{} No se encontro autenticacion en el contexto", MONITOR_TAG);
         }
         return "ANONYMOUS";
     }

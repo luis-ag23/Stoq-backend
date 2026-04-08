@@ -1,9 +1,13 @@
 package com.Proyecto.stoq.application.services;
 
 import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.Proyecto.stoq.domain.model.Categoria;
@@ -18,17 +22,23 @@ import com.Proyecto.stoq.domain.ports.UnidadRepositoryPort;
 @Service
 public class ProductoServiceImpl implements ProductoService {
 
+    private static final Logger logger = LoggerFactory.getLogger(ProductoServiceImpl.class);
+    private static final String BIZ_TAG = "[STOQ-BIZ]";
+
     private final ProductosRepositoryPort productoRepository;
     private final CategoriaRepositoryPort categoriaRepository;
     private final UnidadRepositoryPort unidadRepository;
+    private final AuditService auditService;
 
     public ProductoServiceImpl(ProductosRepositoryPort productoRepository, 
         CategoriaRepositoryPort categoriaRepository, 
-        UnidadRepositoryPort unidadRepository) 
+        UnidadRepositoryPort unidadRepository,
+        AuditService auditService) 
     {
         this.productoRepository = productoRepository;
         this.categoriaRepository = categoriaRepository;
         this.unidadRepository = unidadRepository;
+        this.auditService = auditService;
     }
 
     @Override
@@ -56,21 +66,24 @@ public class ProductoServiceImpl implements ProductoService {
         Producto producto = new Producto(
                 dto.codigo,
                 dto.nombre,
-            limpiarTexto(dto.ubicacion),
+                limpiarTexto(dto.ubicacion),
                 categoria,
                 unidad,
                 dto.stock_minimo
         );
 
         producto.setStockActual(dto.stock_inicial);
-
-        return productoRepository.save(producto);
+        logger.info("{} CREATE Producto | codigo={} | nombre={}", BIZ_TAG, dto.codigo, dto.nombre);
+        Producto productoGuardado = productoRepository.save(producto);
+        auditService.registrarAuditoria("Producto", "CREATE", productoGuardado.getId(), null, snapshotProducto(productoGuardado));
+        return productoGuardado;
     }
 
     @Override
     public Producto actualizarProducto(UUID id, UpdateProductDTO dto) {
-       Producto producto = productoRepository.findById(id)
+        Producto producto = productoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+        Map<String, Object> estadoAnterior = snapshotProducto(producto);
 
         if (dto.nombre != null && !dto.nombre.isBlank()) {
             producto.setNombre(dto.nombre);
@@ -109,14 +122,20 @@ public class ProductoServiceImpl implements ProductoService {
             producto.setStockMinimo(dto.stock_minimo);
         }
 
-        return productoRepository.save(producto);
+        logger.info("{} UPDATE Producto | id={} | codigo={}", BIZ_TAG, id, producto.getCodigo());
+        Producto productoActualizado = productoRepository.save(producto);
+        auditService.registrarAuditoria("Producto", "UPDATE", id, estadoAnterior, snapshotProducto(productoActualizado));
+        return productoActualizado;
     }
 
     @Override
     public void eliminarProducto(UUID id) {
-        if (!productoRepository.findById(id).isPresent()) {
+        Optional<Producto> producto = productoRepository.findById(id);
+        if (!producto.isPresent()) {
             throw new RuntimeException("Producto no encontrado");
         }
+        logger.info("{} DELETE Producto | id={}", BIZ_TAG, id);
+        auditService.registrarAuditoria("Producto", "DELETE", id, snapshotProducto(producto.get()));
         productoRepository.deleteById(id);
     }
 
@@ -126,6 +145,20 @@ public class ProductoServiceImpl implements ProductoService {
         }
 
         return texto.trim();
+    }
+
+    private Map<String, Object> snapshotProducto(Producto producto) {
+        Map<String, Object> snapshot = new LinkedHashMap<>();
+        snapshot.put("id", producto.getId());
+        snapshot.put("codigo", producto.getCodigo());
+        snapshot.put("nombre", producto.getNombre());
+        snapshot.put("ubicacion", producto.getUbicacion());
+        snapshot.put("categoriaId", producto.getCategoria() != null ? producto.getCategoria().getId() : null);
+        snapshot.put("unidadId", producto.getUnidad() != null ? producto.getUnidad().getId() : null);
+        snapshot.put("stockActual", producto.getStockActual());
+        snapshot.put("stockMinimo", producto.getStockMinimo());
+        snapshot.put("estado", producto.getEstado());
+        return snapshot;
     }
 
 }

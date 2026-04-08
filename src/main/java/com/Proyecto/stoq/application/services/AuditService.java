@@ -3,6 +3,8 @@ package com.Proyecto.stoq.application.services;
 import com.Proyecto.stoq.adapters.repositories.AuditLogRepository;
 import com.Proyecto.stoq.domain.model.AuditLog;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,9 @@ import java.util.UUID;
 
 @Service
 public class AuditService {
+
+    private static final Logger logger = LoggerFactory.getLogger(AuditService.class);
+    private static final String AUDIT_TAG = "[STOQ-AUDIT]";
 
     private final AuditLogRepository auditLogRepository;
     private final ObjectMapper objectMapper;
@@ -56,9 +61,17 @@ public class AuditService {
             );
 
             auditLogRepository.save(auditLog);
+            logger.info("{} SAVE | entity={} | operation={} | record={} | user={} | endpoint={} | ip={}",
+                    AUDIT_TAG,
+                    entidad,
+                    operacion,
+                    idRegistro,
+                    obtenerUsuarioActual(),
+                    endpoint,
+                    ipOrigen);
         } catch (Exception e) {
             // No lanzar excepción si la auditoría falla, solo registrar en logs
-            System.err.println("Error al registrar auditoría: " + e.getMessage());
+            logger.error("{} ERROR | No se pudo registrar auditoria: {}", AUDIT_TAG, e.getMessage(), e);
         }
     }
 

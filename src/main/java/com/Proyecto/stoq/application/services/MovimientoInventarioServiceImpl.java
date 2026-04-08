@@ -1,8 +1,12 @@
 package com.Proyecto.stoq.application.services;
 
 import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,18 +22,24 @@ import com.Proyecto.stoq.security.RoleCatalog;
 @Service
 public class MovimientoInventarioServiceImpl implements MovimientoInventarioService {
 
+    private static final Logger logger = LoggerFactory.getLogger(MovimientoInventarioServiceImpl.class);
+    private static final String BIZ_TAG = "[STOQ-BIZ]";
+
     private final MovimientoInventarioRepository movimientoRepository;
     private final ProductosRepositoryPort productoRepository;
     private final UsuarioRepositoryPort usuarioRepository;
+    private final AuditService auditService;
 
     public MovimientoInventarioServiceImpl(
             MovimientoInventarioRepository movimientoRepository,
             ProductosRepositoryPort productoRepository,
-            UsuarioRepositoryPort usuarioRepository
+            UsuarioRepositoryPort usuarioRepository,
+            AuditService auditService
     ) {
         this.movimientoRepository = movimientoRepository;
         this.productoRepository = productoRepository;
         this.usuarioRepository = usuarioRepository;
+        this.auditService = auditService;
     }
 
     @Override
@@ -65,6 +75,15 @@ public class MovimientoInventarioServiceImpl implements MovimientoInventarioServ
             throw new RuntimeException("El stock no puede quedar en negativo");
         }
 
+        logger.info("{} MOVIMIENTO {} | productoId={} | cantidad={} | stockAnterior={} | stockResultante={} | usuario={}",
+            BIZ_TAG,
+            tipoMovimiento,
+            dto.productoId(),
+            dto.cantidad(),
+            stockAnterior,
+            stockResultante,
+            correoUsuario);
+
         producto.setStockActual(stockResultante);
         productoRepository.save(producto);
 
@@ -77,6 +96,28 @@ public class MovimientoInventarioServiceImpl implements MovimientoInventarioServ
         movimiento.setStockAnterior(stockAnterior);
         movimiento.setStockResultante(stockResultante);
 
-        return movimientoRepository.save(movimiento);
+        Movimiento_Inventario movimientoGuardado = movimientoRepository.save(movimiento);
+        auditService.registrarAuditoria(
+                "MovimientoInventario",
+                "CREATE",
+                movimientoGuardado.getId(),
+                null,
+                snapshotMovimiento(movimientoGuardado)
+        );
+        return movimientoGuardado;
+    }
+
+    private Map<String, Object> snapshotMovimiento(Movimiento_Inventario movimiento) {
+        Map<String, Object> snapshot = new LinkedHashMap<>();
+        snapshot.put("id", movimiento.getId());
+        snapshot.put("productoId", movimiento.getProducto() != null ? movimiento.getProducto().getId() : null);
+        snapshot.put("usuarioId", movimiento.getUsuario() != null ? movimiento.getUsuario().getId() : null);
+        snapshot.put("tipoMovimiento", movimiento.getTipoMovimiento());
+        snapshot.put("cantidad", movimiento.getCantidad());
+        snapshot.put("motivo", movimiento.getMotivo());
+        snapshot.put("stockAnterior", movimiento.getStockAnterior());
+        snapshot.put("stockResultante", movimiento.getStockResultante());
+        snapshot.put("fechaMovimiento", movimiento.getFechaMovimiento());
+        return snapshot;
     }
 }

@@ -60,8 +60,8 @@ El sistema utiliza un modelo relacional robusto para garantizar la integridad de
 ## 🔎 Auditoría y Monitoreo (Resumen Operativo)
 
 ### **Componentes implementados**
-* **ApiLoggingAspect:** Intercepta solo la API de usuarios (`/api/usuarios`) y registra auditoría técnica por request.
-* **AuditService + AuditLogRepository:** Persisten y consultan auditoría de eventos de negocio.
+* **ApiLoggingAspect:** Intercepta todas las APIs REST bajo `/api/**` y registra entrada/salida, usuario, IP, endpoint y tiempo de respuesta.
+* **AuditService + AuditLogRepository:** Persisten y consultan auditoría de eventos de negocio (CREATE, UPDATE, DELETE, LOGIN).
 * **AuditLogController:** Exposición de endpoints para consultar historial de auditoría.
 * **Actuator:** Exposición de estado de la aplicación y métricas de runtime.
 
@@ -70,6 +70,19 @@ El sistema utiliza un modelo relacional robusto para garantizar la integridad de
 * **Usuarios:** `GET/POST/PUT/DELETE /api/usuarios`
 * **Auditoría:** `GET /api/audit-logs` y filtros por entidad, usuario, registro y rango de fechas
 * **Monitoreo:** `GET /actuator/health`, `GET /actuator/metrics`, `GET /actuator/prometheus`
+
+### **Guía breve de logs (monitoreo + auditoría)**
+* **Log de monitoreo HTTP global:** se hace en `ApiLoggingAspect` y aparece con etiqueta `[STOQ-MONITOR]` para cada request/respuesta de todas las APIs.
+* **Log de negocio por operación:** se hace en servicios (`UsuarioServiceImpl`, `ProductoServiceImpl`, `CategoriaServiceImpl`, `UnidadServiceImpl`, `MovimientoInventarioServiceImpl`) con etiqueta `[STOQ-BIZ]`.
+* **Log de auditoría persistida:** se hace con `auditService.registrarAuditoria(...)` y se confirma en consola con etiqueta `[STOQ-AUDIT]`; además queda guardado en tabla `audit_logs`.
+
+Ejemplo mínimo en servicios:
+
+```java
+auditService.registrarAuditoria("Producto", "UPDATE", id, estadoAnterior, estadoNuevo);
+```
+
+Con esto, al ejecutar localmente o en Render verás logs llamativos en consola y también trazabilidad histórica en base de datos.
 
 ---
 

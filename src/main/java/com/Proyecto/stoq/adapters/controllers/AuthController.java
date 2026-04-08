@@ -26,26 +26,13 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-<<<<<<< Updated upstream
     public LoginResponseDTO login(@Valid @RequestBody LoginRequestDTO dto){
-
-        String token = usuarioService.login(dto.correo(), dto.contrasena());
-
-        return new LoginResponseDTO(token);
-=======
-    public ResponseEntity<LoginResponseDTO> login(@Valid @RequestBody LoginRequestDTO dto){
-        return ResponseEntity.ok(usuarioService.login(dto.correo(), dto.contrasena()));
->>>>>>> Stashed changes
+        return usuarioService.login(dto.correo(), dto.contrasena());
     }
 
     @PostMapping("/register")
     public LoginResponseDTO register(@Valid @RequestBody CreateUsuarioDTO dto){
         Usuario usuario = usuarioService.crearUsuario(dto);
-<<<<<<< Updated upstream
-        String token = usuarioService.login(usuario.getCorreo(), dto.contrasena());
-        return new LoginResponseDTO(token);
-=======
-        return ResponseEntity.status(201).body(usuarioService.login(usuario.getCorreo(), dto.contrasena()));
->>>>>>> Stashed changes
+        return usuarioService.login(usuario.getCorreo(), dto.contrasena());
     }
 }
