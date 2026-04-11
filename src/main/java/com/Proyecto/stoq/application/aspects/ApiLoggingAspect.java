@@ -4,7 +4,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -23,47 +22,46 @@ public class ApiLoggingAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(ApiLoggingAspect.class);
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private static final String MONITOR_TAG = "[STOQ-MONITOR]";
 
-    @Pointcut("within(com.Proyecto.stoq.adapters.controllers..*)")
+    @Pointcut("within(@org.springframework.web.bind.annotation.RestController *) && within(com.Proyecto.stoq.adapters.controllers..*)")
     public void apiControllerMethods() {}
 
     @Around("apiControllerMethods()")
     public Object logApiCall(ProceedingJoinPoint joinPoint) throws Throwable {
-        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        if (attributes == null) {
-            return joinPoint.proceed();
-        }
-        HttpServletRequest request = attributes.getRequest();
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 
         String timestamp = LocalDateTime.now().format(formatter);
         String method = request.getMethod();
         String uri = request.getRequestURI();
         String remoteAddr = request.getRemoteAddr();
         String userAgent = request.getHeader("User-Agent");
-        String handler = ((MethodSignature) joinPoint.getSignature()).getDeclaringType().getSimpleName()
-                + "."
-                + joinPoint.getSignature().getName();
 
         // Obtener usuario autenticado del SecurityContext
         String user = obtenerUsuarioAutenticado();
 
-        logger.info("[API-AUDIT][START] ts={} method={} uri={} handler={} user={} ip={} ua={}",
-                timestamp, method, uri, handler, user, remoteAddr, userAgent);
+        logger.info("{} ============================================================", MONITOR_TAG);
+        logger.info("{} IN  {} | {} {} | user={} | ip={} | ua={}",
+            MONITOR_TAG,
+                timestamp, method, uri, user, remoteAddr, userAgent);
 
         long startTime = System.currentTimeMillis();
+        Object result = null;
         try {
-            Object result = joinPoint.proceed();
+            result = joinPoint.proceed();
             long executionTime = System.currentTimeMillis() - startTime;
 
-            logger.info("[API-AUDIT][END] method={} uri={} handler={} user={} durationMs={} result={}",
-                    method, uri, handler, user, executionTime, result != null ? "Success" : "NoContent");
+            logger.info("{} OUT {} {} | status=OK | time={} ms | endpoint={}",
+                MONITOR_TAG, method, uri, executionTime, joinPoint.getSignature().toShortString());
+            logger.info("{} ============================================================", MONITOR_TAG);
 
             return result;
         } catch (Exception e) {
             long executionTime = System.currentTimeMillis() - startTime;
 
-            logger.error("[API-AUDIT][ERROR] method={} uri={} handler={} user={} ip={} durationMs={} error={}",
-                    method, uri, handler, user, remoteAddr, executionTime, e.getMessage(), e);
+            logger.error("{} OUT {} {} | status=ERROR | time={} ms | error={} | user={} | ip={}",
+                MONITOR_TAG, method, uri, executionTime, e.getMessage(), user, remoteAddr, e);
+            logger.info("{} ============================================================", MONITOR_TAG);
 
             throw e; // Re-lanzar la excepción
         }
@@ -81,7 +79,7 @@ public class ApiLoggingAspect {
                 return authentication.getName();
             }
         } catch (Exception e) {
-            logger.debug("No authentication found in context");
+            logger.debug("{} No se encontro autenticacion en el contexto", MONITOR_TAG);
         }
         return "ANONYMOUS";
     }

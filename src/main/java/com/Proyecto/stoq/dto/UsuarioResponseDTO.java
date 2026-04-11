@@ -3,6 +3,7 @@ package com.Proyecto.stoq.dto;
 import java.util.UUID;
 
 import com.Proyecto.stoq.domain.model.Usuario;
+import com.Proyecto.stoq.security.RoleCatalog;
 
 public record UsuarioResponseDTO(
         UUID id,
@@ -13,7 +14,7 @@ public record UsuarioResponseDTO(
         String rol
 ) {
     public static UsuarioResponseDTO fromEntity(Usuario usuario) {
-        String nombreRol = usuario.getRol() != null ? usuario.getRol().getNombre() : null;
+        String nombreRol = usuario.getRol() != null ? RoleCatalog.normalize(usuario.getRol().getNombre()) : null;
         return new UsuarioResponseDTO(
                 usuario.getId(),
                 usuario.getNombre(),

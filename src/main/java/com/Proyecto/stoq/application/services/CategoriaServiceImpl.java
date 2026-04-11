@@ -1,9 +1,13 @@
 package com.Proyecto.stoq.application.services;
 
 import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.Proyecto.stoq.domain.model.Categoria;
@@ -13,10 +17,15 @@ import com.Proyecto.stoq.dto.CreateCategoriaDTO;
 @Service
 public class CategoriaServiceImpl implements CategoriaService{
 
-    private final CategoriaRepositoryPort categoriaRepository;
+    private static final Logger logger = LoggerFactory.getLogger(CategoriaServiceImpl.class);
+    private static final String BIZ_TAG = "[STOQ-BIZ]";
 
-    public CategoriaServiceImpl(CategoriaRepositoryPort categoriaRepository) {
+    private final CategoriaRepositoryPort categoriaRepository;
+    private final AuditService auditService;
+
+    public CategoriaServiceImpl(CategoriaRepositoryPort categoriaRepository, AuditService auditService) {
         this.categoriaRepository = categoriaRepository;
+        this.auditService = auditService;
     }
 
     @Override
@@ -35,11 +44,14 @@ public class CategoriaServiceImpl implements CategoriaService{
             throw new RuntimeException("La categoría ya existe");
         }
 
+        logger.info("{} CREATE Categoria | nombre={}", BIZ_TAG, dto.nombre);
         Categoria categoria = new Categoria(
             dto.nombre,
             dto.descripcion
         );
-        return categoriaRepository.save(categoria);
+        Categoria categoriaGuardada = categoriaRepository.save(categoria);
+        auditService.registrarAuditoria("Categoria", "CREATE", categoriaGuardada.getId(), null, snapshotCategoria(categoriaGuardada));
+        return categoriaGuardada;
 
     }
 
@@ -47,6 +59,7 @@ public class CategoriaServiceImpl implements CategoriaService{
     public Categoria actualizarCategoria(UUID id, CreateCategoriaDTO dto) {
         Categoria categoria = categoriaRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));
+        Map<String, Object> estadoAnterior = snapshotCategoria(categoria);
 
         if(dto.nombre != null && !dto.nombre.isBlank()) {
             Optional<Categoria> categoriaExistente = categoriaRepository.findByNombre(dto.nombre);
@@ -59,15 +72,31 @@ public class CategoriaServiceImpl implements CategoriaService{
         categoria.setNombre(dto.nombre);
         categoria.setDescripcion(dto.descripcion);
 
-        return categoriaRepository.save(categoria);
+        logger.info("{} UPDATE Categoria | id={} | nuevoNombre={}", BIZ_TAG, id, dto.nombre);
+        Categoria categoriaActualizada = categoriaRepository.save(categoria);
+        auditService.registrarAuditoria("Categoria", "UPDATE", id, estadoAnterior, snapshotCategoria(categoriaActualizada));
+        return categoriaActualizada;
     }
 
     @Override
     public void eliminarCategoria(UUID id) {
-        if (!categoriaRepository.findById(id).isPresent()) {
+        Optional<Categoria> categoria = categoriaRepository.findById(id);
+        if (!categoria.isPresent()) {
             throw new RuntimeException("Categoría no encontrada");
         }
+
+        logger.info("{} DELETE Categoria | id={}", BIZ_TAG, id);
+        auditService.registrarAuditoria("Categoria", "DELETE", id, snapshotCategoria(categoria.get()));
         categoriaRepository.deleteById(id);
+    }
+
+    private Map<String, Object> snapshotCategoria(Categoria categoria) {
+        Map<String, Object> snapshot = new LinkedHashMap<>();
+        snapshot.put("id", categoria.getId());
+        snapshot.put("nombre", categoria.getNombre());
+        snapshot.put("descripcion", categoria.getDescripcion());
+        snapshot.put("estado", categoria.getEstado());
+        return snapshot;
     }
     
 }

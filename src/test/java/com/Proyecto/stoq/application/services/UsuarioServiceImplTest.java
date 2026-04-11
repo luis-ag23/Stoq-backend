@@ -25,6 +25,7 @@ class UsuarioServiceImplTest {
     private RolRepositoryPort rolRepository;
     private JwtService jwtService;
     private PasswordEncoder passwordEncoder;
+    private AuditService auditService;
     private UsuarioServiceImpl usuarioService;
 
     @BeforeEach
@@ -34,8 +35,9 @@ class UsuarioServiceImplTest {
         rolRepository = Mockito.mock(RolRepositoryPort.class);
         jwtService = Mockito.mock(JwtService.class);
         passwordEncoder = Mockito.mock(PasswordEncoder.class);
+        auditService = Mockito.mock(AuditService.class);
 
-        usuarioService = new UsuarioServiceImpl(usuarioRepository, rolRepository, jwtService, passwordEncoder);
+        usuarioService = new UsuarioServiceImpl(usuarioRepository, rolRepository, jwtService, passwordEncoder, auditService);
     }
 
     @Test
@@ -66,7 +68,7 @@ class UsuarioServiceImplTest {
         CreateUsuarioDTO dto = new CreateUsuarioDTO(
             "Carlos",
             "carlos@email.com",
-            null,
+            "empresa1",
             "123456",
             "ADMIN"
         );
@@ -103,11 +105,12 @@ class UsuarioServiceImplTest {
         CreateUsuarioDTO dto = new CreateUsuarioDTO(
             "Carlos",
             "carlos@email.com",
-            null,
+            "empresa1",
             "123456",
             "ADMIN"
         );
 
+        when(usuarioRepository.findByCorreo(dto.correo())).thenReturn(Optional.empty());
         when(rolRepository.findByNombre("ADMIN")).thenReturn(Optional.empty());
 
         assertThrows(RuntimeException.class, () -> {
@@ -121,7 +124,7 @@ class UsuarioServiceImplTest {
         CreateUsuarioDTO dto = new CreateUsuarioDTO(
             "Carlos",
             "carlos@email.com",
-            null,
+            "empresa1",
             "123456",
             "ADMIN"
         );

@@ -1,9 +1,13 @@
 package com.Proyecto.stoq.application.services;
 
 import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -12,25 +16,35 @@ import com.Proyecto.stoq.domain.model.Usuario;
 import com.Proyecto.stoq.domain.ports.RolRepositoryPort;
 import com.Proyecto.stoq.domain.ports.UsuarioRepositoryPort;
 import com.Proyecto.stoq.dto.CreateUsuarioDTO;
+import com.Proyecto.stoq.dto.LoginResponseDTO;
 import com.Proyecto.stoq.dto.UpdateUsuarioDTO;
 import com.Proyecto.stoq.security.JwtService;
+import com.Proyecto.stoq.security.RoleCatalog;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
+
+    private static final Logger logger = LoggerFactory.getLogger(UsuarioServiceImpl.class);
+    private static final String BIZ_TAG = "[STOQ-BIZ]";
 
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final UsuarioRepositoryPort usuarioRepository;
     private final RolRepositoryPort rolRepository;
+    private final AuditService auditService;
 
     public UsuarioServiceImpl(
         UsuarioRepositoryPort usuarioRepository,
-        RolRepositoryPort rolRepository, JwtService jwtService, PasswordEncoder passwordEncoder
+        RolRepositoryPort rolRepository,
+        JwtService jwtService,
+        PasswordEncoder passwordEncoder,
+        AuditService auditService
     ){
         this.usuarioRepository = usuarioRepository;
         this.rolRepository = rolRepository;
         this.jwtService = jwtService;
         this.passwordEncoder = passwordEncoder;
+        this.auditService = auditService;
     }
 
     @Override
@@ -57,8 +71,13 @@ public class UsuarioServiceImpl implements UsuarioService {
             throw new RuntimeException("El correo ya está registrado");
         }
 
+        String nombreRol = normalizarRol(dto.rol());
+        if (!RoleCatalog.isAllowed(nombreRol)) {
+            throw new RuntimeException("Rol no permitido");
+        }
+
         Rol rol = rolRepository
-            .findByNombre(normalizarRol(dto.rol()))
+            .findByNombre(nombreRol)
                 .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
 
         String passwordHash = passwordEncoder.encode(dto.contrasena());
@@ -68,7 +87,11 @@ public class UsuarioServiceImpl implements UsuarioService {
             limpiarTexto(dto.empresa()),
             passwordHash,
             rol);
-        return usuarioRepository.save(usuario);
+
+        logger.info("{} CREATE Usuario | correo={} | rol={}", BIZ_TAG, correoNormalizado, nombreRol);
+        Usuario usuarioGuardado = usuarioRepository.save(usuario);
+        auditService.registrarAuditoria("Usuario", "CREATE", usuarioGuardado.getId(), null, snapshotUsuario(usuarioGuardado));
+        return usuarioGuardado;
     }
 
     @Override
@@ -76,6 +99,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         
         Usuario usuario = usuarioRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        Map<String, Object> estadoAnterior = snapshotUsuario(usuario);
         if (dto.nombre() != null && !dto.nombre().isBlank()) {
             usuario.setNombre(limpiarTexto(dto.nombre()));
         }
@@ -101,7 +125,12 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
 
         if (dto.rol() != null && !dto.rol().isBlank()) {
-            Rol rol = rolRepository.findByNombre(normalizarRol(dto.rol()))
+            String nombreRol = normalizarRol(dto.rol());
+            if (!RoleCatalog.isAllowed(nombreRol)) {
+                throw new RuntimeException("Rol no permitido");
+            }
+
+            Rol rol = rolRepository.findByNombre(nombreRol)
                     .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
 
             usuario.setRol(rol);
@@ -111,26 +140,41 @@ public class UsuarioServiceImpl implements UsuarioService {
             usuario.setEstado(dto.estado());
         }
 
-        return usuarioRepository.save(usuario);
+        logger.info("{} UPDATE Usuario | id={} | correo={}", BIZ_TAG, id, usuario.getCorreo());
+        Usuario usuarioActualizado = usuarioRepository.save(usuario);
+        auditService.registrarAuditoria("Usuario", "UPDATE", id, estadoAnterior, snapshotUsuario(usuarioActualizado));
+        return usuarioActualizado;
     }
 
     @Override
     public void eliminarUsuario(UUID id){
-        if (!usuarioRepository.findById(id).isPresent()) {
+        Optional<Usuario> usuario = usuarioRepository.findById(id);
+        if (!usuario.isPresent()) {
             throw new RuntimeException("Usuario no encontrado");
         }
+
+        logger.info("{} DELETE Usuario | id={} | correo={}", BIZ_TAG, id, usuario.get().getCorreo());
+        auditService.registrarAuditoria("Usuario", "DELETE", id, snapshotUsuario(usuario.get()));
         usuarioRepository.deleteById(id);
     }
 
     @Override
-    public String login(String correo, String contrasena){
+    public LoginResponseDTO login(String correo, String contrasena){
         Usuario usuario = usuarioRepository
         .findByCorreo(normalizarCorreo(correo))
         .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
         if(!passwordEncoder.matches(contrasena, usuario.getContrasenaHash())){
            throw new RuntimeException("Contraseña incorrecta");
         }
-        return jwtService.generateToken(usuario.getCorreo());
+        String rolNormalizado = RoleCatalog.normalize(usuario.getRol() != null ? usuario.getRol().getNombre() : null);
+        logger.info("{} LOGIN Usuario | correo={} | rol={}", BIZ_TAG, usuario.getCorreo(), rolNormalizado);
+        auditService.registrarAuditoria("Usuario", "LOGIN", usuario.getId(), null, snapshotSesionUsuario(usuario, rolNormalizado));
+        return new LoginResponseDTO(
+                jwtService.generateToken(usuario.getCorreo()),
+                rolNormalizado,
+                usuario.getNombre(),
+                usuario.getCorreo()
+        );
     }
 
     private String normalizarCorreo(String correo) {
@@ -145,6 +189,26 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     private String normalizarRol(String rol) {
-        return limpiarTexto(rol).toUpperCase();
+        return RoleCatalog.normalize(limpiarTexto(rol));
+    }
+
+    private Map<String, Object> snapshotUsuario(Usuario usuario) {
+        Map<String, Object> snapshot = new LinkedHashMap<>();
+        snapshot.put("id", usuario.getId());
+        snapshot.put("nombre", usuario.getNombre());
+        snapshot.put("correo", usuario.getCorreo());
+        snapshot.put("empresa", usuario.getEmpresa());
+        snapshot.put("estado", usuario.getEstado());
+        snapshot.put("rol", usuario.getRol() != null ? usuario.getRol().getNombre() : null);
+        return snapshot;
+    }
+
+    private Map<String, Object> snapshotSesionUsuario(Usuario usuario, String rolNormalizado) {
+        Map<String, Object> snapshot = new LinkedHashMap<>();
+        snapshot.put("id", usuario.getId());
+        snapshot.put("correo", usuario.getCorreo());
+        snapshot.put("nombre", usuario.getNombre());
+        snapshot.put("rol", rolNormalizado);
+        return snapshot;
     }
 }

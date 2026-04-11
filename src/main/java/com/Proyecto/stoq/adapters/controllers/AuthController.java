@@ -1,10 +1,10 @@
 package com.Proyecto.stoq.adapters.controllers;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.http.ResponseEntity;
 
 import com.Proyecto.stoq.application.services.UsuarioService;
 import com.Proyecto.stoq.domain.model.Usuario;
@@ -14,6 +14,7 @@ import com.Proyecto.stoq.dto.LoginResponseDTO;
 
 import jakarta.validation.Valid;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -25,15 +26,13 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDTO> login(@Valid @RequestBody LoginRequestDTO dto){
-        String token = usuarioService.login(dto.correo(), dto.contrasena());
-        return ResponseEntity.ok(new LoginResponseDTO(token));
+    public LoginResponseDTO login(@Valid @RequestBody LoginRequestDTO dto){
+        return usuarioService.login(dto.correo(), dto.contrasena());
     }
 
     @PostMapping("/register")
-    public ResponseEntity<LoginResponseDTO> register(@Valid @RequestBody CreateUsuarioDTO dto){
+    public LoginResponseDTO register(@Valid @RequestBody CreateUsuarioDTO dto){
         Usuario usuario = usuarioService.crearUsuario(dto);
-        String token = usuarioService.login(usuario.getCorreo(), dto.contrasena());
-        return ResponseEntity.status(201).body(new LoginResponseDTO(token));
+        return usuarioService.login(usuario.getCorreo(), dto.contrasena());
     }
 }
