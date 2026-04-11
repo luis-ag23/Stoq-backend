@@ -1,7 +1,7 @@
 package com.Proyecto.stoq.application.services;
 
-import java.util.List;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -9,15 +9,18 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.Proyecto.stoq.domain.model.Categoria;
+import com.Proyecto.stoq.domain.model.Movimiento_Inventario;
 import com.Proyecto.stoq.domain.model.Producto;
 import com.Proyecto.stoq.domain.model.Unidad;
-import com.Proyecto.stoq.dto.CreateProductDTO;
-import com.Proyecto.stoq.dto.UpdateProductDTO;
 import com.Proyecto.stoq.domain.ports.CategoriaRepositoryPort;
 import com.Proyecto.stoq.domain.ports.ProductosRepositoryPort;
 import com.Proyecto.stoq.domain.ports.UnidadRepositoryPort;
+import com.Proyecto.stoq.dto.CreateMovimientoInventarioDTO;
+import com.Proyecto.stoq.dto.CreateProductDTO;
+import com.Proyecto.stoq.dto.UpdateProductDTO;
 
 @Service
 public class ProductoServiceImpl implements ProductoService {
@@ -28,16 +31,19 @@ public class ProductoServiceImpl implements ProductoService {
     private final ProductosRepositoryPort productoRepository;
     private final CategoriaRepositoryPort categoriaRepository;
     private final UnidadRepositoryPort unidadRepository;
+    private final MovimientoInventarioService movimientoInventarioService;
     private final AuditService auditService;
 
     public ProductoServiceImpl(ProductosRepositoryPort productoRepository, 
         CategoriaRepositoryPort categoriaRepository, 
         UnidadRepositoryPort unidadRepository,
+        MovimientoInventarioService movimientoInventarioService,
         AuditService auditService) 
     {
         this.productoRepository = productoRepository;
         this.categoriaRepository = categoriaRepository;
         this.unidadRepository = unidadRepository;
+        this.movimientoInventarioService = movimientoInventarioService;
         this.auditService = auditService;
     }
 
@@ -52,7 +58,8 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
-    public Producto crearProducto(CreateProductDTO dto) {
+    @Transactional
+    public Producto crearProducto(CreateProductDTO dto, String correoUsuario) {
         if (productoRepository.findByCodigo(dto.codigo).isPresent()) {
             throw new RuntimeException("El código del producto ya está registrado");
         }
@@ -72,9 +79,24 @@ public class ProductoServiceImpl implements ProductoService {
                 dto.stock_minimo
         );
 
-        producto.setStockActual(dto.stock_inicial);
         logger.info("{} CREATE Producto | codigo={} | nombre={}", BIZ_TAG, dto.codigo, dto.nombre);
         Producto productoGuardado = productoRepository.save(producto);
+
+        if (dto.stock_inicial > 0) {
+            if (correoUsuario == null || correoUsuario.isBlank()) {
+                throw new RuntimeException("Usuario autenticado requerido para registrar el stock inicial");
+            }
+
+            CreateMovimientoInventarioDTO movimientoInicial = new CreateMovimientoInventarioDTO(
+                    productoGuardado.getId(),
+                    "ENTRADA",
+                    dto.stock_inicial,
+                    "Stock inicial del producto"
+            );
+            Movimiento_Inventario movimiento = movimientoInventarioService.registrarMovimiento(correoUsuario, movimientoInicial);
+            productoGuardado = movimiento.getProducto();
+        }
+
         auditService.registrarAuditoria("Producto", "CREATE", productoGuardado.getId(), null, snapshotProducto(productoGuardado));
         return productoGuardado;
     }
