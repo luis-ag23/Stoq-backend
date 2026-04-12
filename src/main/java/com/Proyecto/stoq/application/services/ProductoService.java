@@ -1,0 +1,20 @@
+package com.Proyecto.stoq.application.services;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+import com.Proyecto.stoq.domain.model.Producto;
+import com.Proyecto.stoq.dto.CreateProductDTO;
+import com.Proyecto.stoq.dto.UpdateProductDTO;
+
+
+public interface ProductoService {
+    
+    List<Producto> obtenerProductos();
+    Optional<Producto> obtenerProductoPorId(UUID id);
+    
+    Producto crearProducto(CreateProductDTO dto, String correoUsuario);
+    Producto actualizarProducto(UUID id, UpdateProductDTO dto);
+    
+    void eliminarProducto(UUID id);
+}
