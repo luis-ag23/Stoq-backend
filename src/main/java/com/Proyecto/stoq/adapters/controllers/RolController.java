@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Proyecto.stoq.domain.ports.RolRepositoryPort;
 import com.Proyecto.stoq.dto.RolResponseDTO;
+import com.Proyecto.stoq.security.RoleCatalog;
 
 @RestController
 @RequestMapping("/api/roles")
@@ -22,7 +23,9 @@ public class RolController {
     @GetMapping
     public List<RolResponseDTO> obtenerRoles() {
         return rolRepository.findAll().stream()
+                .filter(rol -> RoleCatalog.isAllowed(rol.getNombre()))
                 .map(RolResponseDTO::fromEntity)
+                .sorted((a, b) -> a.nombre().compareToIgnoreCase(b.nombre()))
                 .toList();
     }
 }
