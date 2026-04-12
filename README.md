@@ -86,6 +86,22 @@ Con esto, al ejecutar localmente o en Render verás logs llamativos en consola y
 
 ---
 
+## 🧩 Migración de Roles (DB)
+
+Para dejar la base de datos aceptando solo `ADMIN`, `OPERADOR` y `GERENTE`:
+
+1. Ejecutar en Supabase el script [database/migrations/2026-04-11_migracion_roles.sql](database/migrations/2026-04-11_migracion_roles.sql).
+2. Ejecutar después [database/migrations/2026-04-11_validacion_roles.sql](database/migrations/2026-04-11_validacion_roles.sql).
+
+Qué hace la migración:
+* Convierte usuarios con rol `USER` a `OPERADOR`.
+* Convierte usuarios con rol `ADMINISTRADOR` a `ADMIN`.
+* Reasigna cualquier rol no permitido a `OPERADOR`.
+* Elimina roles fuera del catálogo permitido.
+* Aplica `CHECK` y unicidad para impedir nuevos roles inválidos.
+
+---
+
 ## Equipo
 
 -Robert Ortiz

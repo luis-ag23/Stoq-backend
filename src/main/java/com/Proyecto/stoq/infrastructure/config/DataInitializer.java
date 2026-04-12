@@ -1,13 +1,18 @@
 package com.Proyecto.stoq.infrastructure.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.Proyecto.stoq.domain.model.Rol;
 import com.Proyecto.stoq.domain.ports.RolRepositoryPort;
+import com.Proyecto.stoq.security.RoleCatalog;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
+
+    private static final Logger logger = LoggerFactory.getLogger(DataInitializer.class);
 
     private final RolRepositoryPort rolRepository;
 
@@ -17,19 +22,21 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Inicializar roles básicos si no existen
-        crearRolSiNoExiste("ADMIN", "Administrador del sistema");
-        crearRolSiNoExiste("OPERADOR", "Operador de almacén");
-        crearRolSiNoExiste("GERENTE", "Gerente o supervisor");
+        // Solo roles permitidos por negocio.
+        crearOActualizarRol(RoleCatalog.ADMIN, "Administrador del sistema");
+        crearOActualizarRol(RoleCatalog.OPERADOR, "Registra entradas y salidas, consulta stock");
+        crearOActualizarRol(RoleCatalog.GERENTE, "Consulta dashboard, stock critico y reportes");
     }
 
-    private void crearRolSiNoExiste(String nombre, String descripcion) {
-        if (rolRepository.findByNombre(nombre).isEmpty()) {
-            Rol rol = new Rol();
-            rol.setNombre(nombre);
-            rol.setDescripcion(descripcion);
-            rolRepository.save(rol);
-            System.out.println("Rol " + nombre + " creado");
-        }
+    private void crearOActualizarRol(String nombre, String descripcion) {
+        Rol rol = rolRepository.findByNombre(nombre).orElseGet(() -> {
+            Rol nuevoRol = new Rol();
+            nuevoRol.setNombre(nombre);
+            return nuevoRol;
+        });
+
+        rol.setDescripcion(descripcion);
+        rolRepository.save(rol);
+        logger.info("[STOQ-SEED] Rol sincronizado: {}", nombre);
     }
 }
