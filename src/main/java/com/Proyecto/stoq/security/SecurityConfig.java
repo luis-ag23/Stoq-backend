@@ -1,5 +1,7 @@
 package com.Proyecto.stoq.security;
 
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -12,8 +14,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import java.util.List;
 
 @Configuration
 public class SecurityConfig {
@@ -36,6 +36,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers("/", "/actuator/health", "/actuator/health/**").permitAll()
                 .requestMatchers("/api/usuarios/me").authenticated()
                 .requestMatchers("/api/usuarios/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.GET, "/api/productos/**", "/api/categorias/**", "/api/unidades/**").authenticated()
@@ -44,8 +45,8 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.DELETE, "/api/productos/**", "/api/categorias/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.GET, "/api/roles/**").permitAll()
                 .requestMatchers("/api/audit-logs/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.GET, "/api/movimientos/**").hasAnyRole("ADMIN", "GERENTE")
-                .requestMatchers(HttpMethod.POST, "/api/movimientos/**").denyAll()
+                .requestMatchers(HttpMethod.GET, "/api/movimientos/**").hasAnyRole("ADMIN", "GERENTE", "OPERADOR")
+                .requestMatchers(HttpMethod.POST, "/api/movimientos/**").hasAnyRole("ADMIN", "OPERADOR")
                 .requestMatchers(HttpMethod.GET, "/api/reportes/**").hasAnyRole("ADMIN", "GERENTE")
                 .anyRequest().authenticated()
             ).addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
