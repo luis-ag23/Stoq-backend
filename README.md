@@ -10,6 +10,14 @@ Muchas organizaciones gestionan su inventario mediante hojas de cálculo, regist
 
 STOQ busca solucionar estos problemas proporcionando una plataforma moderna que mejore la eficiencia operativa y permita mantener un control confiable del inventario.
 
+## Acceso Rapido para Testing Cruzado
+
+- API base (produccion): https://stoq-backend-2.onrender.com
+- Frontend local esperado: http://localhost:4200
+- Guia general para otro equipo: ../../GUIA_TESTING_CRUZADO.md
+
+El backend permite autenticacion publica en /api/auth/login y /api/auth/register.
+
 ## 📋 Características Principales
 
 * **Autenticación y Seguridad:** Control de acceso mediante Login y Registro de usuarios.
@@ -83,6 +91,26 @@ auditService.registrarAuditoria("Producto", "UPDATE", id, estadoAnterior, estado
 ```
 
 Con esto, al ejecutar localmente o en Render verás logs llamativos en consola y también trazabilidad histórica en base de datos.
+
+---
+
+## Endpoints Clave para Pruebas Manuales
+
+- Autenticacion:
+	- POST /api/auth/login
+	- POST /api/auth/register
+- Roles:
+	- GET /api/roles
+- Usuarios:
+	- GET /api/usuarios/me (token requerido)
+- Inventario:
+	- GET /api/productos
+	- GET /api/movimientos
+
+Notas de permisos:
+- ADMIN: acceso total a gestion de usuarios y catalogos.
+- OPERADOR: registra entradas y salidas, consulta productos y movimientos.
+- GERENTE: consulta reportes y movimientos de lectura.
 
 ---
 
