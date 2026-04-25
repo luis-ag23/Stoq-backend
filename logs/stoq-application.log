@@ -8844,3 +8844,3630 @@ java.lang.RuntimeException: Contraseña incorrecta
 2026-04-25 14:02:57 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /error
 2026-04-25 14:02:57 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
 2026-04-25 14:02:57 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.s.w.a.Http403ForbiddenEntryPoint - Pre-authenticated entry point called. Rejecting access
+2026-04-25 14:05:49 [STOQ] [restartedMain] INFO  com.Proyecto.stoq.StoqApplication - Starting StoqApplication using Java 25.0.2 with PID 30796 (C:\Users\luisa\Desktop\back\Stoq-backend\build\classes\java\main started by luisa in C:\Users\luisa\Desktop\back\Stoq-backend)
+2026-04-25 14:05:49 [STOQ] [restartedMain] DEBUG com.Proyecto.stoq.StoqApplication - Running with Spring Boot v4.0.3, Spring v7.0.5
+2026-04-25 14:05:49 [STOQ] [restartedMain] INFO  com.Proyecto.stoq.StoqApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-25 14:05:49 [STOQ] [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-04-25 14:05:49 [STOQ] [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-04-25 14:05:50 [STOQ] [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-25 14:05:50 [STOQ] [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 78 ms. Found 7 JPA repository interfaces.
+2026-04-25 14:05:51 [STOQ] [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-04-25 14:05:51 [STOQ] [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-25 14:05:51 [STOQ] [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-04-25 14:05:51 [STOQ] [restartedMain] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 2122 ms
+2026-04-25 14:05:51 [STOQ] [restartedMain] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-04-25 14:05:52 [STOQ] [restartedMain] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.4.Final
+2026-04-25 14:05:52 [STOQ] [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-25 14:05:52 [STOQ] [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-04-25 14:05:56 [STOQ] [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4d6bb5bc
+2026-04-25 14:05:56 [STOQ] [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-25 14:05:56 [STOQ] [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-25 14:05:57 [STOQ] [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://aws-0-us-west-2.pooler.supabase.com:5432/postgres?sslmode=require]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 17.6
+	Default catalog/schema: postgres/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-04-25 14:05:58 [STOQ] [restartedMain] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-25 14:06:00 [STOQ] [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-25 14:06:00 [STOQ] [restartedMain] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-25 14:06:00 [STOQ] [restartedMain] DEBUG c.Proyecto.stoq.security.JwtFilter - Filter 'jwtFilter' configured for use
+2026-04-25 14:06:01 [STOQ] [restartedMain] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-25 14:06:01 [STOQ] [restartedMain] WARN  o.s.b.s.a.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: f6d525c5-6cb8-4ceb-88b4-7daf3c6d2965
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-04-25 14:06:01 [STOQ] [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-04-25 14:06:01 [STOQ] [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-04-25 14:06:02 [STOQ] [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 6 endpoints beneath base path '/actuator'
+2026-04-25 14:06:02 [STOQ] [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-04-25 14:06:02 [STOQ] [restartedMain] INFO  com.Proyecto.stoq.StoqApplication - Started StoqApplication in 13.183 seconds (process running for 13.786)
+2026-04-25 14:06:02 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.nombre=?
+2026-04-25 14:06:03 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:06:03 [STOQ] [restartedMain] INFO  c.P.s.i.config.DataInitializer - [STOQ-SEED] Rol sincronizado: ADMIN
+2026-04-25 14:06:03 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.nombre=?
+2026-04-25 14:06:03 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:06:04 [STOQ] [restartedMain] INFO  c.P.s.i.config.DataInitializer - [STOQ-SEED] Rol sincronizado: OPERADOR
+2026-04-25 14:06:04 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.nombre=?
+2026-04-25 14:06:04 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:06:05 [STOQ] [restartedMain] INFO  c.P.s.i.config.DataInitializer - [STOQ-SEED] Rol sincronizado: GERENTE
+2026-04-25 14:06:15 [STOQ] [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-25 14:06:15 [STOQ] [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-04-25 14:06:15 [STOQ] [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-04-25 14:06:15 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/unidades
+2026-04-25 14:06:15 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/categorias
+2026-04-25 14:06:15 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/productos
+2026-04-25 14:06:15 [STOQ] [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/categorias
+2026-04-25 14:06:15 [STOQ] [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/unidades
+2026-04-25 14:06:15 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/productos
+2026-04-25 14:06:15 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:06:15 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:06:15 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:06:16 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:06:16 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:06:16 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:06:16 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/productos
+2026-04-25 14:06:16 [STOQ] [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/unidades
+2026-04-25 14:06:16 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:06:16 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:06:16 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:06:16 | GET /api/unidades | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:06:16 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:06:16 | GET /api/productos | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:06:16 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0
+2026-04-25 14:06:16 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id 
+    from
+        productos p1_0
+2026-04-25 14:06:16 [STOQ] [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/categorias
+2026-04-25 14:06:16 [STOQ] [http-nio-8080-exec-5] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:06:16 [STOQ] [http-nio-8080-exec-5] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:06:16 | GET /api/categorias | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:06:16 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0
+2026-04-25 14:06:16 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:06:16 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/unidades | status=OK | time=452 ms | endpoint=UnidadController.listado_unidades()
+2026-04-25 14:06:16 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:06:16 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:06:16 [STOQ] [http-nio-8080-exec-5] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/categorias | status=OK | time=381 ms | endpoint=CategoriasController.obtenerCategorias()
+2026-04-25 14:06:16 [STOQ] [http-nio-8080-exec-5] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:06:17 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:06:17 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:06:17 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:06:17 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:06:18 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:06:18 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/productos | status=OK | time=2294 ms | endpoint=ProductosController.obtenerProductos()
+2026-04-25 14:06:18 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:06:41 [STOQ] [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/productos
+2026-04-25 14:06:41 [STOQ] [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/productos
+2026-04-25 14:06:41 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:06:42 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:06:42 [STOQ] [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/productos
+2026-04-25 14:06:42 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:06:42 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:06:42 | POST /api/productos | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:06:42 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id 
+    from
+        productos p1_0 
+    where
+        p1_0.codigo=?
+2026-04-25 14:06:42 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:06:42 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:06:43 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.services.ProductoServiceImpl - [STOQ-BIZ] CREATE Producto | codigo=gerente1 | nombre=productoge
+2026-04-25 14:06:43 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:06:43 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:06:43 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.s.MovimientoInventarioServiceImpl - [STOQ-BIZ] MOVIMIENTO ENTRADA | productoId=ec217901-ed3e-4079-91da-4073b2e329ff | cantidad=10 | stockAnterior=0 | stockResultante=10 | usuario=luchiniii@gmail.com
+2026-04-25 14:06:43 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.services.AuditService - [STOQ-AUDIT] SAVE | entity=MovimientoInventario | operation=CREATE | record=d1724f0f-3229-4202-af98-a81c55ffdeef | user=luchiniii@gmail.com | endpoint=POST /api/productos | ip=0:0:0:0:0:0:0:1
+2026-04-25 14:06:43 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.services.AuditService - [STOQ-AUDIT] SAVE | entity=Producto | operation=CREATE | record=ec217901-ed3e-4079-91da-4073b2e329ff | user=luchiniii@gmail.com | endpoint=POST /api/productos | ip=0:0:0:0:0:0:0:1
+2026-04-25 14:06:43 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        productos
+        (categoria_id, codigo, estado, fecha_actualizacion, fecha_creacion, nombre, stock_actual, stock_minimo, ubicacion, unidad_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-04-25 14:06:43 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        movimientos_inventario
+        (cantidad, fecha_movimiento, motivo, producto_id, stock_anterior, stock_resultante, tipo_movimiento, usuario_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-04-25 14:06:44 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        audit_logs
+        (cambios_anterior, cambios_nuevo, created_by, created_date, endpoint, entidad, id_registro, ip_origen, operacion, user_agent, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-04-25 14:06:44 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        audit_logs
+        (cambios_anterior, cambios_nuevo, created_by, created_date, endpoint, entidad, id_registro, ip_origen, operacion, user_agent, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-04-25 14:06:44 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    update
+        productos 
+    set
+        categoria_id=?,
+        codigo=?,
+        estado=?,
+        fecha_actualizacion=?,
+        nombre=?,
+        stock_actual=?,
+        stock_minimo=?,
+        ubicacion=?,
+        unidad_id=? 
+    where
+        id=?
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT POST /api/productos | status=OK | time=2900 ms | endpoint=ProductosController.crearProducto(..)
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/categorias
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/unidades
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/productos
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/unidades
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/categorias
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/productos
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:06:45 | GET /api/productos | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id 
+    from
+        productos p1_0
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/unidades
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/categorias
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:06:45 | GET /api/categorias | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-3] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-3] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:06:45 | GET /api/unidades | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0
+2026-04-25 14:06:45 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0
+2026-04-25 14:06:46 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:06:46 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/categorias | status=OK | time=525 ms | endpoint=CategoriasController.obtenerCategorias()
+2026-04-25 14:06:46 [STOQ] [http-nio-8080-exec-3] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/unidades | status=OK | time=524 ms | endpoint=UnidadController.listado_unidades()
+2026-04-25 14:06:46 [STOQ] [http-nio-8080-exec-3] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:06:46 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:06:46 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:06:46 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:06:46 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:06:47 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:06:47 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:06:47 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/productos | status=OK | time=1923 ms | endpoint=ProductosController.obtenerProductos()
+2026-04-25 14:06:47 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:07:33 [STOQ] [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/movimientos
+2026-04-25 14:07:33 [STOQ] [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/movimientos
+2026-04-25 14:07:33 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:07:34 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:07:34 [STOQ] [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/movimientos
+2026-04-25 14:07:34 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:07:34 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:07:34 | POST /api/movimientos | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:07:34 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id,
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        productos p1_0 
+    join
+        categorias c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    join
+        unidades u1_0 
+            on u1_0.id=p1_0.unidad_id 
+    where
+        p1_0.id=?
+2026-04-25 14:07:34 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:07:35 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:07:35 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.s.MovimientoInventarioServiceImpl - [STOQ-BIZ] MOVIMIENTO ENTRADA | productoId=ec217901-ed3e-4079-91da-4073b2e329ff | cantidad=10 | stockAnterior=10 | stockResultante=20 | usuario=luchiniii@gmail.com
+2026-04-25 14:07:35 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.services.AuditService - [STOQ-AUDIT] SAVE | entity=MovimientoInventario | operation=CREATE | record=aafca838-79b9-4f30-97bc-9497207f991b | user=luchiniii@gmail.com | endpoint=POST /api/movimientos | ip=0:0:0:0:0:0:0:1
+2026-04-25 14:07:35 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        movimientos_inventario
+        (cantidad, fecha_movimiento, motivo, producto_id, stock_anterior, stock_resultante, tipo_movimiento, usuario_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-04-25 14:07:35 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        audit_logs
+        (cambios_anterior, cambios_nuevo, created_by, created_date, endpoint, entidad, id_registro, ip_origen, operacion, user_agent, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-04-25 14:07:35 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    update
+        productos 
+    set
+        categoria_id=?,
+        codigo=?,
+        estado=?,
+        fecha_actualizacion=?,
+        nombre=?,
+        stock_actual=?,
+        stock_minimo=?,
+        ubicacion=?,
+        unidad_id=? 
+    where
+        id=?
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT POST /api/movimientos | status=OK | time=1455 ms | endpoint=MovimientoInventarioController.crearMovimiento(..)
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/productos
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/unidades
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/categorias
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/productos
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/unidades
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/categorias
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/unidades
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-10] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-10] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:07:36 | GET /api/unidades | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/categorias
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/productos
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-9] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-9] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:07:36 | GET /api/productos | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-3] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-3] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:07:36 | GET /api/categorias | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id 
+    from
+        productos p1_0
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-10] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/unidades | status=OK | time=419 ms | endpoint=UnidadController.listado_unidades()
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:07:36 [STOQ] [http-nio-8080-exec-10] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:07:37 [STOQ] [http-nio-8080-exec-3] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/categorias | status=OK | time=405 ms | endpoint=CategoriasController.obtenerCategorias()
+2026-04-25 14:07:37 [STOQ] [http-nio-8080-exec-3] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:07:37 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:07:37 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:07:37 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:07:37 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:07:38 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:07:38 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:07:38 [STOQ] [http-nio-8080-exec-9] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/productos | status=OK | time=2044 ms | endpoint=ProductosController.obtenerProductos()
+2026-04-25 14:07:38 [STOQ] [http-nio-8080-exec-9] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:10 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/movimientos
+2026-04-25 14:08:10 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/movimientos
+2026-04-25 14:08:10 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:08:10 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:08:11 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/movimientos
+2026-04-25 14:08:11 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:11 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:08:11 | POST /api/movimientos | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:08:11 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id,
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        productos p1_0 
+    join
+        categorias c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    join
+        unidades u1_0 
+            on u1_0.id=p1_0.unidad_id 
+    where
+        p1_0.id=?
+2026-04-25 14:08:11 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:08:11 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:08:11 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.s.MovimientoInventarioServiceImpl - [STOQ-BIZ] MOVIMIENTO SALIDA | productoId=ec217901-ed3e-4079-91da-4073b2e329ff | cantidad=9 | stockAnterior=20 | stockResultante=11 | usuario=luchiniii@gmail.com
+2026-04-25 14:08:11 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.services.AuditService - [STOQ-AUDIT] SAVE | entity=MovimientoInventario | operation=CREATE | record=ecf9642c-df68-4164-8159-249b42440311 | user=luchiniii@gmail.com | endpoint=POST /api/movimientos | ip=0:0:0:0:0:0:0:1
+2026-04-25 14:08:11 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        movimientos_inventario
+        (cantidad, fecha_movimiento, motivo, producto_id, stock_anterior, stock_resultante, tipo_movimiento, usuario_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-04-25 14:08:12 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        audit_logs
+        (cambios_anterior, cambios_nuevo, created_by, created_date, endpoint, entidad, id_registro, ip_origen, operacion, user_agent, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-04-25 14:08:12 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    update
+        productos 
+    set
+        categoria_id=?,
+        codigo=?,
+        estado=?,
+        fecha_actualizacion=?,
+        nombre=?,
+        stock_actual=?,
+        stock_minimo=?,
+        ubicacion=?,
+        unidad_id=? 
+    where
+        id=?
+2026-04-25 14:08:12 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT POST /api/movimientos | status=OK | time=1529 ms | endpoint=MovimientoInventarioController.crearMovimiento(..)
+2026-04-25 14:08:12 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:12 [STOQ] [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/productos
+2026-04-25 14:08:12 [STOQ] [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/categorias
+2026-04-25 14:08:12 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/unidades
+2026-04-25 14:08:12 [STOQ] [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/categorias
+2026-04-25 14:08:12 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:08:12 [STOQ] [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/productos
+2026-04-25 14:08:12 [STOQ] [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:08:12 [STOQ] [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/unidades
+2026-04-25 14:08:12 [STOQ] [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:08:13 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:08:13 [STOQ] [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:08:13 [STOQ] [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:08:13 [STOQ] [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/categorias
+2026-04-25 14:08:13 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:13 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:08:13 | GET /api/categorias | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:08:13 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0
+2026-04-25 14:08:13 [STOQ] [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/unidades
+2026-04-25 14:08:13 [STOQ] [http-nio-8080-exec-10] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:13 [STOQ] [http-nio-8080-exec-10] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:08:13 | GET /api/unidades | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:08:13 [STOQ] [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/productos
+2026-04-25 14:08:13 [STOQ] [http-nio-8080-exec-7] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:13 [STOQ] [http-nio-8080-exec-7] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:08:13 | GET /api/productos | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:08:13 [STOQ] [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0
+2026-04-25 14:08:13 [STOQ] [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id 
+    from
+        productos p1_0
+2026-04-25 14:08:13 [STOQ] [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:08:13 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/categorias | status=OK | time=409 ms | endpoint=CategoriasController.obtenerCategorias()
+2026-04-25 14:08:13 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:13 [STOQ] [http-nio-8080-exec-10] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/unidades | status=OK | time=421 ms | endpoint=UnidadController.listado_unidades()
+2026-04-25 14:08:13 [STOQ] [http-nio-8080-exec-10] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:13 [STOQ] [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:08:14 [STOQ] [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:08:14 [STOQ] [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:08:14 [STOQ] [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:08:14 [STOQ] [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:08:15 [STOQ] [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:08:15 [STOQ] [http-nio-8080-exec-7] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/productos | status=OK | time=2045 ms | endpoint=ProductosController.obtenerProductos()
+2026-04-25 14:08:15 [STOQ] [http-nio-8080-exec-7] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:24 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff
+2026-04-25 14:08:24 [STOQ] [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing PUT /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff
+2026-04-25 14:08:24 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:08:24 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:08:25 [STOQ] [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured PUT /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff
+2026-04-25 14:08:25 [STOQ] [http-nio-8080-exec-9] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:25 [STOQ] [http-nio-8080-exec-9] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:08:25 | PUT /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:08:25 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id,
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        productos p1_0 
+    join
+        categorias c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    join
+        unidades u1_0 
+            on u1_0.id=p1_0.unidad_id 
+    where
+        p1_0.id=?
+2026-04-25 14:08:25 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id 
+    from
+        productos p1_0 
+    where
+        p1_0.codigo=?
+2026-04-25 14:08:25 [STOQ] [http-nio-8080-exec-9] INFO  c.P.s.a.services.ProductoServiceImpl - [STOQ-BIZ] UPDATE Producto | id=ec217901-ed3e-4079-91da-4073b2e329ff | codigo=gerente1
+2026-04-25 14:08:25 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    update
+        productos 
+    set
+        categoria_id=?,
+        codigo=?,
+        estado=?,
+        fecha_actualizacion=?,
+        nombre=?,
+        stock_actual=?,
+        stock_minimo=?,
+        ubicacion=?,
+        unidad_id=? 
+    where
+        id=?
+2026-04-25 14:08:26 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        audit_logs
+        (cambios_anterior, cambios_nuevo, created_by, created_date, endpoint, entidad, id_registro, ip_origen, operacion, user_agent, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-04-25 14:08:26 [STOQ] [http-nio-8080-exec-9] INFO  c.P.s.a.services.AuditService - [STOQ-AUDIT] SAVE | entity=Producto | operation=UPDATE | record=ec217901-ed3e-4079-91da-4073b2e329ff | user=luchiniii@gmail.com | endpoint=PUT /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff | ip=0:0:0:0:0:0:0:1
+2026-04-25 14:08:26 [STOQ] [http-nio-8080-exec-9] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT PUT /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff | status=OK | time=1753 ms | endpoint=ProductosController.actualizarProducto(..)
+2026-04-25 14:08:26 [STOQ] [http-nio-8080-exec-9] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:26 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/productos
+2026-04-25 14:08:26 [STOQ] [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/unidades
+2026-04-25 14:08:26 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/categorias
+2026-04-25 14:08:26 [STOQ] [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/unidades
+2026-04-25 14:08:26 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:08:26 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/productos
+2026-04-25 14:08:26 [STOQ] [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/categorias
+2026-04-25 14:08:26 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:08:26 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:08:27 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:08:27 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:08:27 [STOQ] [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/categorias
+2026-04-25 14:08:27 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:08:27 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:27 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:08:27 | GET /api/categorias | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:08:27 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0
+2026-04-25 14:08:27 [STOQ] [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/unidades
+2026-04-25 14:08:27 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:27 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:08:27 | GET /api/unidades | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:08:27 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0
+2026-04-25 14:08:27 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/productos
+2026-04-25 14:08:27 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:27 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:08:27 | GET /api/productos | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:08:27 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id 
+    from
+        productos p1_0
+2026-04-25 14:08:27 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/categorias | status=OK | time=391 ms | endpoint=CategoriasController.obtenerCategorias()
+2026-04-25 14:08:27 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:27 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:08:28 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/unidades | status=OK | time=387 ms | endpoint=UnidadController.listado_unidades()
+2026-04-25 14:08:28 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:28 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:08:28 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:08:28 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:08:28 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:08:28 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:08:29 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:08:29 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/productos | status=OK | time=1929 ms | endpoint=ProductosController.obtenerProductos()
+2026-04-25 14:08:29 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:34 [STOQ] [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff
+2026-04-25 14:08:34 [STOQ] [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing PUT /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff
+2026-04-25 14:08:34 [STOQ] [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:08:34 [STOQ] [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:08:35 [STOQ] [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured PUT /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff
+2026-04-25 14:08:35 [STOQ] [http-nio-8080-exec-7] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:35 [STOQ] [http-nio-8080-exec-7] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:08:35 | PUT /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:08:35 [STOQ] [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id,
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        productos p1_0 
+    join
+        categorias c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    join
+        unidades u1_0 
+            on u1_0.id=p1_0.unidad_id 
+    where
+        p1_0.id=?
+2026-04-25 14:08:35 [STOQ] [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id 
+    from
+        productos p1_0 
+    where
+        p1_0.codigo=?
+2026-04-25 14:08:35 [STOQ] [http-nio-8080-exec-7] INFO  c.P.s.a.services.ProductoServiceImpl - [STOQ-BIZ] UPDATE Producto | id=ec217901-ed3e-4079-91da-4073b2e329ff | codigo=gerente1
+2026-04-25 14:08:35 [STOQ] [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        audit_logs
+        (cambios_anterior, cambios_nuevo, created_by, created_date, endpoint, entidad, id_registro, ip_origen, operacion, user_agent, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-04-25 14:08:36 [STOQ] [http-nio-8080-exec-7] INFO  c.P.s.a.services.AuditService - [STOQ-AUDIT] SAVE | entity=Producto | operation=UPDATE | record=ec217901-ed3e-4079-91da-4073b2e329ff | user=luchiniii@gmail.com | endpoint=PUT /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff | ip=0:0:0:0:0:0:0:1
+2026-04-25 14:08:36 [STOQ] [http-nio-8080-exec-7] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT PUT /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff | status=OK | time=1326 ms | endpoint=ProductosController.actualizarProducto(..)
+2026-04-25 14:08:36 [STOQ] [http-nio-8080-exec-7] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:36 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/productos
+2026-04-25 14:08:36 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/unidades
+2026-04-25 14:08:36 [STOQ] [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/categorias
+2026-04-25 14:08:36 [STOQ] [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/productos
+2026-04-25 14:08:36 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:08:36 [STOQ] [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/categorias
+2026-04-25 14:08:36 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/unidades
+2026-04-25 14:08:36 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:08:36 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:08:36 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:08:36 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:08:36 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:08:36 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/unidades
+2026-04-25 14:08:36 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:36 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:08:36 | GET /api/unidades | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:08:36 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0
+2026-04-25 14:08:37 [STOQ] [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/productos
+2026-04-25 14:08:37 [STOQ] [http-nio-8080-exec-5] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:37 [STOQ] [http-nio-8080-exec-5] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:08:37 | GET /api/productos | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:08:37 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id 
+    from
+        productos p1_0
+2026-04-25 14:08:37 [STOQ] [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/categorias
+2026-04-25 14:08:37 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:37 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:08:37 | GET /api/categorias | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:08:37 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0
+2026-04-25 14:08:37 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/unidades | status=OK | time=450 ms | endpoint=UnidadController.listado_unidades()
+2026-04-25 14:08:37 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:37 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:08:37 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:08:37 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/categorias | status=OK | time=497 ms | endpoint=CategoriasController.obtenerCategorias()
+2026-04-25 14:08:37 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:08:37 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:08:38 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:08:38 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:08:38 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:08:38 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:08:39 [STOQ] [http-nio-8080-exec-5] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/productos | status=OK | time=1945 ms | endpoint=ProductosController.obtenerProductos()
+2026-04-25 14:08:39 [STOQ] [http-nio-8080-exec-5] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/productos
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/categorias
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/unidades
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/categorias
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/productos
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/unidades
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/categorias
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/productos
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:11:04 | GET /api/productos | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:11:04 | GET /api/categorias | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id 
+    from
+        productos p1_0
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/unidades
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:11:04 | GET /api/unidades | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:11:04 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0
+2026-04-25 14:11:05 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:11:05 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/categorias | status=OK | time=505 ms | endpoint=CategoriasController.obtenerCategorias()
+2026-04-25 14:11:05 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:05 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/unidades | status=OK | time=502 ms | endpoint=UnidadController.listado_unidades()
+2026-04-25 14:11:05 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:05 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:11:05 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:11:05 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:11:06 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:11:06 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:11:06 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:11:06 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/productos | status=OK | time=1944 ms | endpoint=ProductosController.obtenerProductos()
+2026-04-25 14:11:06 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:07 [STOQ] [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/productos
+2026-04-25 14:11:07 [STOQ] [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/categorias
+2026-04-25 14:11:07 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/unidades
+2026-04-25 14:11:07 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:11:07 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:11:07 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:11:08 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:11:08 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:11:08 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:11:08 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/unidades
+2026-04-25 14:11:08 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:08 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:11:08 | GET /api/unidades | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:11:08 [STOQ] [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/categorias
+2026-04-25 14:11:08 [STOQ] [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/productos
+2026-04-25 14:11:08 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:08 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:11:08 | GET /api/categorias | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:11:08 [STOQ] [http-nio-8080-exec-5] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:08 [STOQ] [http-nio-8080-exec-5] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:11:08 | GET /api/productos | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:11:08 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0
+2026-04-25 14:11:08 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id 
+    from
+        productos p1_0
+2026-04-25 14:11:08 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0
+2026-04-25 14:11:08 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:11:08 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/unidades | status=OK | time=408 ms | endpoint=UnidadController.listado_unidades()
+2026-04-25 14:11:08 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:08 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/categorias | status=OK | time=407 ms | endpoint=CategoriasController.obtenerCategorias()
+2026-04-25 14:11:08 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:08 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:11:09 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:11:09 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:11:09 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:11:09 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:11:09 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:11:10 [STOQ] [http-nio-8080-exec-5] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/productos | status=OK | time=2048 ms | endpoint=ProductosController.obtenerProductos()
+2026-04-25 14:11:10 [STOQ] [http-nio-8080-exec-5] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:21 [STOQ] [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/productos
+2026-04-25 14:11:21 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/productos
+2026-04-25 14:11:21 [STOQ] [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/categorias
+2026-04-25 14:11:21 [STOQ] [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/unidades
+2026-04-25 14:11:21 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:11:21 [STOQ] [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/categorias
+2026-04-25 14:11:21 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:11:21 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/unidades
+2026-04-25 14:11:21 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:11:21 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:11:21 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:11:21 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:11:22 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/productos
+2026-04-25 14:11:22 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/unidades
+2026-04-25 14:11:22 [STOQ] [http-nio-8080-exec-3] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:22 [STOQ] [http-nio-8080-exec-3] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:11:22 | GET /api/productos | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:11:22 [STOQ] [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/categorias
+2026-04-25 14:11:22 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:22 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:11:22 | GET /api/unidades | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:11:22 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:22 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:11:22 | GET /api/categorias | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:11:22 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0
+2026-04-25 14:11:22 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id 
+    from
+        productos p1_0
+2026-04-25 14:11:22 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0
+2026-04-25 14:11:22 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:11:22 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/unidades | status=OK | time=411 ms | endpoint=UnidadController.listado_unidades()
+2026-04-25 14:11:22 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:22 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/categorias | status=OK | time=413 ms | endpoint=CategoriasController.obtenerCategorias()
+2026-04-25 14:11:22 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:22 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:11:22 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:11:22 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:11:23 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:11:23 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:11:23 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:11:23 [STOQ] [http-nio-8080-exec-3] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/productos | status=OK | time=1847 ms | endpoint=ProductosController.obtenerProductos()
+2026-04-25 14:11:23 [STOQ] [http-nio-8080-exec-3] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:41 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/productos/165f780d-1e65-44a3-9295-ee52122b6efe
+2026-04-25 14:11:41 [STOQ] [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing DELETE /api/productos/165f780d-1e65-44a3-9295-ee52122b6efe
+2026-04-25 14:11:41 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:11:41 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:11:41 [STOQ] [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured DELETE /api/productos/165f780d-1e65-44a3-9295-ee52122b6efe
+2026-04-25 14:11:41 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:41 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:11:41 | DELETE /api/productos/165f780d-1e65-44a3-9295-ee52122b6efe | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:11:41 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id,
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        productos p1_0 
+    join
+        categorias c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    join
+        unidades u1_0 
+            on u1_0.id=p1_0.unidad_id 
+    where
+        p1_0.id=?
+2026-04-25 14:11:42 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.services.ProductoServiceImpl - [STOQ-BIZ] DELETE Producto | id=165f780d-1e65-44a3-9295-ee52122b6efe
+2026-04-25 14:11:42 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        audit_logs
+        (cambios_anterior, cambios_nuevo, created_by, created_date, endpoint, entidad, id_registro, ip_origen, operacion, user_agent, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-04-25 14:11:42 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.services.AuditService - [STOQ-AUDIT] SAVE | entity=Producto | operation=DELETE | record=165f780d-1e65-44a3-9295-ee52122b6efe | user=luchiniii@gmail.com | endpoint=DELETE /api/productos/165f780d-1e65-44a3-9295-ee52122b6efe | ip=0:0:0:0:0:0:0:1
+2026-04-25 14:11:42 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    delete 
+    from
+        productos 
+    where
+        id=?
+2026-04-25 14:11:42 [STOQ] [http-nio-8080-exec-6] WARN  org.hibernate.orm.jdbc.error - HHH000247: ErrorCode: 0, SQLState: 23503
+2026-04-25 14:11:42 [STOQ] [http-nio-8080-exec-6] WARN  org.hibernate.orm.jdbc.error - ERROR: update or delete on table "productos" violates foreign key constraint "fk36oqksnam23hjdna6ny4oimsm" on table "movimientos_inventario"
+  Detail: Key (id)=(165f780d-1e65-44a3-9295-ee52122b6efe) is still referenced from table "movimientos_inventario".
+2026-04-25 14:11:43 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT DELETE /api/productos/165f780d-1e65-44a3-9295-ee52122b6efe | status=OK | time=1570 ms | endpoint=ProductosController.eliminarProducto(..)
+2026-04-25 14:11:43 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:51 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/productos
+2026-04-25 14:11:51 [STOQ] [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/categorias
+2026-04-25 14:11:51 [STOQ] [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/unidades
+2026-04-25 14:11:51 [STOQ] [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/productos
+2026-04-25 14:11:51 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:11:51 [STOQ] [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/unidades
+2026-04-25 14:11:51 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/categorias
+2026-04-25 14:11:51 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:11:51 [STOQ] [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:11:52 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:11:52 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:11:52 [STOQ] [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:11:52 [STOQ] [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/unidades
+2026-04-25 14:11:52 [STOQ] [http-nio-8080-exec-7] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:52 [STOQ] [http-nio-8080-exec-7] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:11:52 | GET /api/unidades | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:11:52 [STOQ] [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0
+2026-04-25 14:11:52 [STOQ] [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/productos
+2026-04-25 14:11:52 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/categorias
+2026-04-25 14:11:52 [STOQ] [http-nio-8080-exec-9] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:52 [STOQ] [http-nio-8080-exec-9] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:11:52 | GET /api/productos | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:11:52 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:52 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:11:52 | GET /api/categorias | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:11:52 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id 
+    from
+        productos p1_0
+2026-04-25 14:11:52 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0
+2026-04-25 14:11:52 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:11:52 [STOQ] [http-nio-8080-exec-7] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/unidades | status=OK | time=392 ms | endpoint=UnidadController.listado_unidades()
+2026-04-25 14:11:52 [STOQ] [http-nio-8080-exec-7] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:52 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/categorias | status=OK | time=396 ms | endpoint=CategoriasController.obtenerCategorias()
+2026-04-25 14:11:52 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:11:52 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:11:53 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:11:53 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:11:53 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:11:53 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:11:54 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:11:54 [STOQ] [http-nio-8080-exec-9] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/productos | status=OK | time=1942 ms | endpoint=ProductosController.obtenerProductos()
+2026-04-25 14:11:54 [STOQ] [http-nio-8080-exec-9] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:13:11 [STOQ] [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff
+2026-04-25 14:13:11 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing DELETE /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff
+2026-04-25 14:13:11 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:13:11 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:13:11 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured DELETE /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff
+2026-04-25 14:13:11 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:13:11 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:13:11 | DELETE /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:13:11 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id,
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        productos p1_0 
+    join
+        categorias c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    join
+        unidades u1_0 
+            on u1_0.id=p1_0.unidad_id 
+    where
+        p1_0.id=?
+2026-04-25 14:13:12 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.services.ProductoServiceImpl - [STOQ-BIZ] DELETE Producto | id=ec217901-ed3e-4079-91da-4073b2e329ff
+2026-04-25 14:13:12 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        audit_logs
+        (cambios_anterior, cambios_nuevo, created_by, created_date, endpoint, entidad, id_registro, ip_origen, operacion, user_agent, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-04-25 14:13:12 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.services.AuditService - [STOQ-AUDIT] SAVE | entity=Producto | operation=DELETE | record=ec217901-ed3e-4079-91da-4073b2e329ff | user=luchiniii@gmail.com | endpoint=DELETE /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff | ip=0:0:0:0:0:0:0:1
+2026-04-25 14:13:12 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    delete 
+    from
+        productos 
+    where
+        id=?
+2026-04-25 14:13:13 [STOQ] [http-nio-8080-exec-4] WARN  org.hibernate.orm.jdbc.error - HHH000247: ErrorCode: 0, SQLState: 23503
+2026-04-25 14:13:13 [STOQ] [http-nio-8080-exec-4] WARN  org.hibernate.orm.jdbc.error - ERROR: update or delete on table "productos" violates foreign key constraint "fk36oqksnam23hjdna6ny4oimsm" on table "movimientos_inventario"
+  Detail: Key (id)=(ec217901-ed3e-4079-91da-4073b2e329ff) is still referenced from table "movimientos_inventario".
+2026-04-25 14:13:13 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT DELETE /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff | status=OK | time=1431 ms | endpoint=ProductosController.eliminarProducto(..)
+2026-04-25 14:13:13 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/productos
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/categorias
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/unidades
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/productos
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/categorias
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/unidades
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/productos
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/unidades
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/categorias
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-3] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-3] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:13:52 | GET /api/unidades | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-9] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-9] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:13:52 | GET /api/categorias | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:13:52 | GET /api/productos | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0
+2026-04-25 14:13:52 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id 
+    from
+        productos p1_0
+2026-04-25 14:13:53 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:13:53 [STOQ] [http-nio-8080-exec-9] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/categorias | status=OK | time=429 ms | endpoint=CategoriasController.obtenerCategorias()
+2026-04-25 14:13:53 [STOQ] [http-nio-8080-exec-9] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:13:53 [STOQ] [http-nio-8080-exec-3] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/unidades | status=OK | time=430 ms | endpoint=UnidadController.listado_unidades()
+2026-04-25 14:13:53 [STOQ] [http-nio-8080-exec-3] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:13:53 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:13:53 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:13:53 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/productos
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/categorias
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/unidades
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/categorias
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/productos
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:13:54 | GET /api/categorias | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:13:54 | GET /api/productos | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id 
+    from
+        productos p1_0
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/unidades
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:13:54 | GET /api/unidades | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0
+2026-04-25 14:13:54 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:13:55 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/categorias | status=OK | time=404 ms | endpoint=CategoriasController.obtenerCategorias()
+2026-04-25 14:13:55 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:13:55 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:13:55 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/unidades | status=OK | time=385 ms | endpoint=UnidadController.listado_unidades()
+2026-04-25 14:13:55 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:13:55 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/productos | status=OK | time=2240 ms | endpoint=ProductosController.obtenerProductos()
+2026-04-25 14:13:55 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:13:55 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:13:55 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:13:55 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:13:55 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:13:56 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:13:56 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/productos | status=OK | time=1869 ms | endpoint=ProductosController.obtenerProductos()
+2026-04-25 14:13:56 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:14:02 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff
+2026-04-25 14:14:02 [STOQ] [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing DELETE /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff
+2026-04-25 14:14:02 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:14:03 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:14:03 [STOQ] [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured DELETE /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff
+2026-04-25 14:14:03 [STOQ] [http-nio-8080-exec-5] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:14:03 [STOQ] [http-nio-8080-exec-5] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:14:03 | DELETE /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:14:03 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id,
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        productos p1_0 
+    join
+        categorias c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    join
+        unidades u1_0 
+            on u1_0.id=p1_0.unidad_id 
+    where
+        p1_0.id=?
+2026-04-25 14:14:03 [STOQ] [http-nio-8080-exec-5] INFO  c.P.s.a.services.ProductoServiceImpl - [STOQ-BIZ] DELETE Producto | id=ec217901-ed3e-4079-91da-4073b2e329ff
+2026-04-25 14:14:03 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        audit_logs
+        (cambios_anterior, cambios_nuevo, created_by, created_date, endpoint, entidad, id_registro, ip_origen, operacion, user_agent, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-04-25 14:14:04 [STOQ] [http-nio-8080-exec-5] INFO  c.P.s.a.services.AuditService - [STOQ-AUDIT] SAVE | entity=Producto | operation=DELETE | record=ec217901-ed3e-4079-91da-4073b2e329ff | user=luchiniii@gmail.com | endpoint=DELETE /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff | ip=0:0:0:0:0:0:0:1
+2026-04-25 14:14:04 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    delete 
+    from
+        productos 
+    where
+        id=?
+2026-04-25 14:14:04 [STOQ] [http-nio-8080-exec-5] WARN  org.hibernate.orm.jdbc.error - HHH000247: ErrorCode: 0, SQLState: 23503
+2026-04-25 14:14:04 [STOQ] [http-nio-8080-exec-5] WARN  org.hibernate.orm.jdbc.error - ERROR: update or delete on table "productos" violates foreign key constraint "fk36oqksnam23hjdna6ny4oimsm" on table "movimientos_inventario"
+  Detail: Key (id)=(ec217901-ed3e-4079-91da-4073b2e329ff) is still referenced from table "movimientos_inventario".
+2026-04-25 14:14:04 [STOQ] [http-nio-8080-exec-5] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT DELETE /api/productos/ec217901-ed3e-4079-91da-4073b2e329ff | status=OK | time=1334 ms | endpoint=ProductosController.eliminarProducto(..)
+2026-04-25 14:14:04 [STOQ] [http-nio-8080-exec-5] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/productos
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/categorias
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/unidades
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/productos
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/categorias
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/unidades
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/productos
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:19:49 | GET /api/productos | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/categorias
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/unidades
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:19:49 | GET /api/unidades | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-04-25 14:19:49 | GET /api/categorias | user=luchiniii@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id 
+    from
+        productos p1_0
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0
+2026-04-25 14:19:49 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0
+2026-04-25 14:19:50 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:19:50 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/categorias | status=OK | time=619 ms | endpoint=CategoriasController.obtenerCategorias()
+2026-04-25 14:19:50 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:19:50 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/unidades | status=OK | time=620 ms | endpoint=UnidadController.listado_unidades()
+2026-04-25 14:19:50 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:19:50 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:19:50 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:19:50 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:19:50 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:19:51 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-04-25 14:19:51 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-04-25 14:19:51 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/productos | status=OK | time=2050 ms | endpoint=ProductosController.obtenerProductos()
+2026-04-25 14:19:51 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-04-25 14:19:52 [STOQ] [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 69 class path changes (0 additions, 69 deletions, 0 modifications)
+2026-04-25 14:19:52 [STOQ] [Thread-1] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-25 14:19:52 [STOQ] [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-04-25 14:19:52 [STOQ] [Thread-1] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-25 14:19:52 [STOQ] [Thread-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-04-25 14:19:53 [STOQ] [Thread-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-04-25 14:19:57 [STOQ] [restartedMain] INFO  com.Proyecto.stoq.StoqApplication - Starting StoqApplication using Java 25.0.2 with PID 5588 (C:\Users\luisa\Desktop\back\Stoq-backend\build\classes\java\main started by luisa in C:\Users\luisa\Desktop\back\Stoq-backend)
+2026-04-25 14:19:57 [STOQ] [restartedMain] DEBUG com.Proyecto.stoq.StoqApplication - Running with Spring Boot v4.0.3, Spring v7.0.5
+2026-04-25 14:19:57 [STOQ] [restartedMain] INFO  com.Proyecto.stoq.StoqApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-25 14:19:57 [STOQ] [restartedMain] INFO  com.Proyecto.stoq.StoqApplication - Starting StoqApplication using Java 25.0.2 with PID 30796 (C:\Users\luisa\Desktop\back\Stoq-backend\build\classes\java\main started by luisa in C:\Users\luisa\Desktop\back\Stoq-backend)
+2026-04-25 14:19:57 [STOQ] [restartedMain] DEBUG com.Proyecto.stoq.StoqApplication - Running with Spring Boot v4.0.3, Spring v7.0.5
+2026-04-25 14:19:57 [STOQ] [restartedMain] INFO  com.Proyecto.stoq.StoqApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-25 14:19:57 [STOQ] [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-04-25 14:19:57 [STOQ] [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-04-25 14:19:57 [STOQ] [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-25 14:19:57 [STOQ] [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 55 ms. Found 7 JPA repository interfaces.
+2026-04-25 14:19:57 [STOQ] [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-04-25 14:19:57 [STOQ] [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-25 14:19:57 [STOQ] [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-04-25 14:19:57 [STOQ] [restartedMain] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 820 ms
+2026-04-25 14:19:58 [STOQ] [restartedMain] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-04-25 14:19:58 [STOQ] [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-25 14:19:58 [STOQ] [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Starting...
+2026-04-25 14:19:58 [STOQ] [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-25 14:19:58 [STOQ] [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 88 ms. Found 7 JPA repository interfaces.
+2026-04-25 14:19:59 [STOQ] [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-04-25 14:19:59 [STOQ] [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-25 14:19:59 [STOQ] [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-04-25 14:19:59 [STOQ] [restartedMain] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 2404 ms
+2026-04-25 14:19:59 [STOQ] [restartedMain] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-04-25 14:19:59 [STOQ] [restartedMain] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.4.Final
+2026-04-25 14:20:00 [STOQ] [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-3 - Added connection org.postgresql.jdbc.PgConnection@53bbf432
+2026-04-25 14:20:00 [STOQ] [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Start completed.
+2026-04-25 14:20:00 [STOQ] [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-25 14:20:00 [STOQ] [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-04-25 14:20:00 [STOQ] [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-25 14:20:01 [STOQ] [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://aws-0-us-west-2.pooler.supabase.com:5432/postgres?sslmode=require]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 17.6
+	Default catalog/schema: postgres/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-04-25 14:20:01 [STOQ] [restartedMain] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-25 14:20:02 [STOQ] [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-25 14:20:03 [STOQ] [restartedMain] DEBUG c.Proyecto.stoq.security.JwtFilter - Filter 'jwtFilter' configured for use
+2026-04-25 14:20:03 [STOQ] [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@77147b59
+2026-04-25 14:20:03 [STOQ] [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-25 14:20:03 [STOQ] [restartedMain] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-25 14:20:03 [STOQ] [restartedMain] WARN  o.s.b.s.a.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: cff25fd9-bda4-419e-b2b4-fd5a26ef1f1f
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-04-25 14:20:03 [STOQ] [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-04-25 14:20:03 [STOQ] [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-04-25 14:20:03 [STOQ] [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-25 14:20:03 [STOQ] [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 6 endpoints beneath base path '/actuator'
+2026-04-25 14:20:03 [STOQ] [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-04-25 14:20:03 [STOQ] [restartedMain] INFO  com.Proyecto.stoq.StoqApplication - Started StoqApplication in 6.4 seconds (process running for 855.095)
+2026-04-25 14:20:03 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.nombre=?
+2026-04-25 14:20:03 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:20:03 [STOQ] [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://aws-0-us-west-2.pooler.supabase.com:5432/postgres?sslmode=require]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 17.6
+	Default catalog/schema: postgres/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-04-25 14:20:04 [STOQ] [restartedMain] INFO  c.P.s.i.config.DataInitializer - [STOQ-SEED] Rol sincronizado: ADMIN
+2026-04-25 14:20:04 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.nombre=?
+2026-04-25 14:20:04 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:20:04 [STOQ] [restartedMain] INFO  c.P.s.i.config.DataInitializer - [STOQ-SEED] Rol sincronizado: OPERADOR
+2026-04-25 14:20:04 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.nombre=?
+2026-04-25 14:20:05 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-04-25 14:20:05 [STOQ] [restartedMain] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-25 14:20:05 [STOQ] [restartedMain] INFO  c.P.s.i.config.DataInitializer - [STOQ-SEED] Rol sincronizado: GERENTE
+2026-04-25 14:20:05 [STOQ] [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation delta:
+
+
+==========================
+CONDITION EVALUATION DELTA
+==========================
+
+
+Positive matches:
+-----------------
+
+   BeansEndpointAutoConfiguration matched:
+      - @ConditionalOnAvailableEndpoint marked as exposed by a 'management.endpoints.web.exposure' property (OnAvailableEndpointCondition)
+
+   BeansEndpointAutoConfiguration#beansEndpoint matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.actuate.beans.BeansEndpoint; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   EnvironmentEndpointAutoConfiguration matched:
+      - @ConditionalOnAvailableEndpoint marked as exposed by a 'management.endpoints.web.exposure' property (OnAvailableEndpointCondition)
+
+   EnvironmentEndpointAutoConfiguration#environmentEndpoint matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.actuate.env.EnvironmentEndpoint; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   EnvironmentEndpointAutoConfiguration#environmentEndpointWebExtension matched:
+      - @ConditionalOnAvailableEndpoint marked as exposed by a 'management.endpoints.web.exposure' property (OnAvailableEndpointCondition)
+      - @ConditionalOnBean (types: org.springframework.boot.actuate.env.EnvironmentEndpoint; SearchStrategy: all) found bean 'environmentEndpoint'; @ConditionalOnMissingBean (types: org.springframework.boot.actuate.env.EnvironmentEndpointWebExtension; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   LoggersEndpointAutoConfiguration matched:
+      - @ConditionalOnAvailableEndpoint marked as exposed by a 'management.endpoints.web.exposure' property (OnAvailableEndpointCondition)
+
+   LoggersEndpointAutoConfiguration#loggersEndpoint matched:
+      - Logging System enabled (LoggersEndpointAutoConfiguration.OnEnabledLoggingSystemCondition)
+      - @ConditionalOnBean (types: org.springframework.boot.logging.LoggingSystem; SearchStrategy: all) found bean 'springBootLoggingSystem'; @ConditionalOnMissingBean (types: org.springframework.boot.actuate.logging.LoggersEndpoint; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   MetricsEndpointAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'org.springframework.boot.actuate.autoconfigure.endpoint.condition.ConditionalOnAvailableEndpoint', 'io.micrometer.core.annotation.Timed' (OnClassCondition)
+      - @ConditionalOnAvailableEndpoint marked as exposed by a 'management.endpoints.web.exposure' property (OnAvailableEndpointCondition)
+
+   MetricsEndpointAutoConfiguration#metricsEndpoint matched:
+      - @ConditionalOnBean (types: io.micrometer.core.instrument.MeterRegistry; SearchStrategy: all) found bean 'simpleMeterRegistry'; @ConditionalOnMissingBean (types: org.springframework.boot.micrometer.metrics.actuate.endpoint.MetricsEndpoint; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   ThreadDumpEndpointAutoConfiguration matched:
+      - @ConditionalOnAvailableEndpoint marked as exposed by a 'management.endpoints.web.exposure' property (OnAvailableEndpointCondition)
+
+   ThreadDumpEndpointAutoConfiguration#dumpEndpoint matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.actuate.management.ThreadDumpEndpoint; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+
+Negative matches:
+-----------------
+
+   ManagementWebSecurityAutoConfiguration:
+      Did not match:
+         - AllNestedConditions 1 matched 1 did not; NestedCondition on DefaultWebSecurityCondition.Beans @ConditionalOnMissingBean (types: org.springframework.security.web.SecurityFilterChain; SearchStrategy: all) found beans of type 'org.springframework.security.web.SecurityFilterChain' filterChain; NestedCondition on DefaultWebSecurityCondition.Classes @ConditionalOnClass found required classes 'org.springframework.security.web.SecurityFilterChain', 'org.springframework.security.config.annotation.web.builders.HttpSecurity' (DefaultWebSecurityCondition)
+      Matched:
+         - @ConditionalOnClass found required classes 'org.springframework.security.web.util.matcher.RequestMatcher', 'org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointAutoConfiguration' (OnClassCondition)
+         - found 'session' scope (OnWebApplicationCondition)
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    None
+
+
+
+2026-04-25 14:20:07 [STOQ] [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-25 14:20:07 [STOQ] [restartedMain] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-25 14:20:07 [STOQ] [restartedMain] DEBUG c.Proyecto.stoq.security.JwtFilter - Filter 'jwtFilter' configured for use
+2026-04-25 14:20:07 [STOQ] [restartedMain] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-25 14:20:07 [STOQ] [restartedMain] WARN  o.s.b.s.a.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 46816bb7-bfe4-4b8e-a746-f32f397d15f9
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-04-25 14:20:07 [STOQ] [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-04-25 14:20:08 [STOQ] [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-04-25 14:20:08 [STOQ] [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 6 endpoints beneath base path '/actuator'
+2026-04-25 14:20:08 [STOQ] [restartedMain] WARN  o.s.b.w.s.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-04-25 14:20:08 [STOQ] [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-25 14:20:08 [STOQ] [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-04-25 14:20:10 [STOQ] [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-04-25 14:20:10 [STOQ] [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-04-25 14:20:10 [STOQ] [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
