@@ -1,9 +1,14 @@
 package com.Proyecto.stoq.dto;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public record UpdateUsuarioDTO(
+        @Pattern(
+                regexp = "^[\\p{L}\\p{N} ]+$",
+                message = "El nombre solo puede contener letras, números y espacios"
+        )
         @Size(max = 120, message = "El nombre no puede superar 120 caracteres")
         String nombre,
 

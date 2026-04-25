@@ -1,6 +1,7 @@
 package com.Proyecto.stoq.domain.model;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.UUID;
 
 import jakarta.persistence.*;
@@ -42,7 +43,7 @@ public class Movimiento_Inventario {
 
     @PrePersist
     protected void onCreate() {
-        this.fechaMovimiento = LocalDateTime.now();
+        this.fechaMovimiento = LocalDateTime.now(ZoneOffset.UTC);
     }
 
     public UUID getId() {

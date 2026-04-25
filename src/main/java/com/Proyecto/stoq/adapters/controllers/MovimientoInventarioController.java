@@ -1,6 +1,8 @@
 package com.Proyecto.stoq.adapters.controllers;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -41,12 +43,20 @@ public class MovimientoInventarioController {
             @RequestParam String inicio,
             @RequestParam String fin
     ) {
-        LocalDateTime fechaInicio = LocalDateTime.parse(inicio);
-        LocalDateTime fechaFin = LocalDateTime.parse(fin);
+        LocalDateTime fechaInicio = parseDateTimeParam(inicio);
+        LocalDateTime fechaFin = parseDateTimeParam(fin);
 
         return movimientoService.obtenerMovimientosPorRango(fechaInicio, fechaFin).stream()
                 .map(MovimientoInventarioResponseDTO::fromEntity)
                 .toList();
+    }
+
+    private LocalDateTime parseDateTimeParam(String value) {
+        try {
+            return OffsetDateTime.parse(value).withOffsetSameInstant(ZoneOffset.UTC).toLocalDateTime();
+        } catch (Exception ignored) {
+            return LocalDateTime.parse(value);
+        }
     }
 
     @PostMapping

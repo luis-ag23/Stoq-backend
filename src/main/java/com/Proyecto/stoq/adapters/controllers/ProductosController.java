@@ -21,6 +21,8 @@ import com.Proyecto.stoq.domain.model.Producto;
 import com.Proyecto.stoq.dto.CreateProductDTO;
 import com.Proyecto.stoq.dto.UpdateProductDTO;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/productos")
 public class ProductosController {
@@ -47,14 +49,14 @@ public class ProductosController {
     }
 
     @PostMapping
-    public ResponseEntity<Producto> crearProducto(Authentication authentication, @RequestBody CreateProductDTO dto) {
+    public ResponseEntity<Producto> crearProducto(Authentication authentication, @Valid @RequestBody CreateProductDTO dto) {
         String correo = authentication != null ? authentication.getName() : null;
         Producto producto = productoService.crearProducto(dto, correo);
         return ResponseEntity.status(HttpStatus.CREATED).body(producto);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Producto> actualizarProducto(@PathVariable UUID id, @RequestBody UpdateProductDTO dto) {
+    public ResponseEntity<Producto> actualizarProducto(@PathVariable UUID id, @Valid @RequestBody UpdateProductDTO dto) {
         try {
             Producto producto = productoService.actualizarProducto(id, dto);
             return ResponseEntity.ok(producto);
