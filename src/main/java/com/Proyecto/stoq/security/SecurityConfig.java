@@ -51,13 +51,13 @@ public class SecurityConfig {
                 ).authenticated()
 
                 .requestMatchers(HttpMethod.POST, "/api/productos/**")
-                    .hasAnyRole("ADMIN", "OPERADOR")
+                    .hasAnyRole("ADMIN", "OPERADOR","GERENTE")
 
                 .requestMatchers(HttpMethod.PUT, "/api/productos/**")
-                    .hasAnyRole("ADMIN", "OPERADOR")
+                    .hasAnyRole("ADMIN", "OPERADOR","GERENTE")
 
                 .requestMatchers(HttpMethod.DELETE, "/api/productos/**")
-                    .hasRole("ADMIN")
+                    .hasRole("GERENTE")
 
                 .requestMatchers(HttpMethod.POST,
                         "/api/categorias/**",
@@ -82,7 +82,7 @@ public class SecurityConfig {
                     .hasAnyRole("ADMIN", "GERENTE")
 
                 .requestMatchers(HttpMethod.POST, "/api/movimientos/**")
-                    .hasAnyRole("ADMIN", "OPERADOR")
+                    .hasAnyRole("ADMIN", "OPERADOR", "GERENTE")
 
                 .requestMatchers(HttpMethod.GET, "/api/reportes/**")
                     .hasAnyRole("ADMIN", "GERENTE")
