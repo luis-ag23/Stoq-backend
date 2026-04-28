@@ -12,4 +12,6 @@ public interface MovimientoInventarioService {
     List<Movimiento_Inventario> obtenerMovimientosPorRango(LocalDateTime inicio, LocalDateTime fin);
 
     Movimiento_Inventario registrarMovimiento(String correoUsuario, CreateMovimientoInventarioDTO dto);
+
+    
 }

@@ -151,14 +151,25 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
+    @Transactional
     public void eliminarProducto(UUID id) {
-        Optional<Producto> producto = productoRepository.findById(id);
-        if (!producto.isPresent()) {
-            throw new RuntimeException("Producto no encontrado");
-        }
-        logger.info("{} DELETE Producto | id={}", BIZ_TAG, id);
-        auditService.registrarAuditoria("Producto", "DELETE", id, snapshotProducto(producto.get()));
-        productoRepository.deleteById(id);
+        Producto producto = productoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+
+        Map<String, Object> estadoAnterior = snapshotProducto(producto);
+
+        producto.setEstado(false);
+
+        Producto productoActualizado = productoRepository.save(producto);
+
+        logger.info("{} DISABLE Producto | id={}", BIZ_TAG, id);
+        auditService.registrarAuditoria(
+                "Producto",
+                "DELETE",
+                id,
+                estadoAnterior,
+                snapshotProducto(productoActualizado)
+        );
     }
 
     private String limpiarTexto(String texto) {

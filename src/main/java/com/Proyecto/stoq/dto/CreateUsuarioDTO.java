@@ -2,11 +2,16 @@ package com.Proyecto.stoq.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public record CreateUsuarioDTO(
         @NotBlank(message = "El nombre es obligatorio")
         @Size(max = 120, message = "El nombre no puede superar 120 caracteres")
+        @Pattern(
+                regexp = "^[\\p{L}\\p{N} ]+$",
+                message = "El nombre solo puede contener letras, números y espacios"
+        )
         String nombre,
 
         @NotBlank(message = "El correo es obligatorio")
