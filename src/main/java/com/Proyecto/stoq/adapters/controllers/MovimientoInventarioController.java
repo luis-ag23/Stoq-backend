@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.Proyecto.stoq.application.services.MovimientoInventarioService;
 import com.Proyecto.stoq.dto.CreateMovimientoInventarioDTO;
 import com.Proyecto.stoq.dto.MovimientoInventarioResponseDTO;
-import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.Authentication;
 
 import jakarta.validation.Valid;
 
-import jakarta.validation.Valid;
+//import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/movimientos")
@@ -72,7 +72,7 @@ public class MovimientoInventarioController {
         }
     }
 
-    @PostMapping
+    /*@PostMapping
     public ResponseEntity<MovimientoInventarioResponseDTO> crearMovimiento(
             @Valid @RequestBody CreateMovimientoInventarioDTO dto,
             Authentication authentication
@@ -84,5 +84,5 @@ public class MovimientoInventarioController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(MovimientoInventarioResponseDTO.fromEntity(movimiento));
-    }
+    }*/
 }
