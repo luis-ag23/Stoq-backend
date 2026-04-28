@@ -67,11 +67,7 @@ public class ProductosController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarProducto(@PathVariable UUID id) {
-        try {
-            productoService.eliminarProducto(id);
-            return ResponseEntity.noContent().build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        productoService.eliminarProducto(id);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -51,21 +51,13 @@ public class CategoriasController {
     
     @PutMapping("/{id}")
     public ResponseEntity<Categoria> actualizarCategoria(@PathVariable UUID id, @RequestBody CreateCategoriaDTO dto) {
-        try {
-            Categoria categoria = categoriaService.actualizarCategoria(id, dto);
-            return ResponseEntity.ok(categoria);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        Categoria categoria = categoriaService.actualizarCategoria(id, dto);
+        return ResponseEntity.ok(categoria);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarCategoria(@PathVariable UUID id) {
-        try {
-            categoriaService.eliminarCategoria(id);
-            return ResponseEntity.noContent().build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        categoriaService.eliminarCategoria(id);
+        return ResponseEntity.noContent().build();
     }
 }
