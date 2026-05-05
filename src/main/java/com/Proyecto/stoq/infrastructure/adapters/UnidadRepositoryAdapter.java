@@ -40,6 +40,11 @@ public class UnidadRepositoryAdapter implements UnidadRepositoryPort {
     }
 
     @Override
+    public void deleteById(UUID id) {
+        repository.deleteById(id);
+    }
+
+    @Override
     public Optional<Unidad> findById(UUID id) {
         return repository.findById(id);
     }

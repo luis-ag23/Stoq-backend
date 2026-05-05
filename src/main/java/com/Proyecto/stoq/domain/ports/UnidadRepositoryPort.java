@@ -15,4 +15,6 @@ public interface UnidadRepositoryPort {
     Optional<Unidad> findByNombre(String nombre);
 
     Unidad save(Unidad unidad);
+
+    void deleteById(UUID id);
 }

@@ -16,6 +16,10 @@ public record CreateUsuarioDTO(
 
         @NotBlank(message = "El correo es obligatorio")
         @Email(message = "El correo no tiene un formato valido")
+        @Pattern(
+                regexp = "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",
+                message = "El correo no tiene un formato valido"
+        )
         String correo,
 
         @Size(max = 120, message = "La empresa no puede superar 120 caracteres")
