@@ -134,7 +134,7 @@ Qué hace la migración:
 
 -Robert Ortiz
 -Harold Sejas
--Osthin Colque
+-Ostin Colque
 -Luis Aguilar
 
 ## Compilación del Proyecto
