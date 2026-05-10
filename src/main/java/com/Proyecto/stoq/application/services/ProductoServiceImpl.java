@@ -11,36 +11,42 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.Proyecto.stoq.application.usecases.ObtenerProductosCriticosUseCase;
 import com.Proyecto.stoq.domain.model.Categoria;
 import com.Proyecto.stoq.domain.model.Movimiento_Inventario;
 import com.Proyecto.stoq.domain.model.Producto;
 import com.Proyecto.stoq.domain.model.Unidad;
 import com.Proyecto.stoq.domain.ports.CategoriaRepositoryPort;
+import com.Proyecto.stoq.domain.ports.ProductosCriticosRepositoryPort;
 import com.Proyecto.stoq.domain.ports.ProductosRepositoryPort;
 import com.Proyecto.stoq.domain.ports.UnidadRepositoryPort;
 import com.Proyecto.stoq.dto.CreateMovimientoInventarioDTO;
 import com.Proyecto.stoq.dto.CreateProductDTO;
+import com.Proyecto.stoq.dto.ProductoCriticoResponse;
 import com.Proyecto.stoq.dto.UpdateProductDTO;
 
 @Service
-public class ProductoServiceImpl implements ProductoService {
+public class ProductoServiceImpl implements ProductoService, ObtenerProductosCriticosUseCase {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductoServiceImpl.class);
     private static final String BIZ_TAG = "[STOQ-BIZ]";
 
     private final ProductosRepositoryPort productoRepository;
+    private final ProductosCriticosRepositoryPort productosCriticosRepository;
     private final CategoriaRepositoryPort categoriaRepository;
     private final UnidadRepositoryPort unidadRepository;
     private final MovimientoInventarioService movimientoInventarioService;
     private final AuditService auditService;
 
     public ProductoServiceImpl(ProductosRepositoryPort productoRepository, 
+        ProductosCriticosRepositoryPort productosCriticosRepository,
         CategoriaRepositoryPort categoriaRepository, 
         UnidadRepositoryPort unidadRepository,
         MovimientoInventarioService movimientoInventarioService,
         AuditService auditService) 
     {
         this.productoRepository = productoRepository;
+        this.productosCriticosRepository = productosCriticosRepository;
         this.categoriaRepository = categoriaRepository;
         this.unidadRepository = unidadRepository;
         this.movimientoInventarioService = movimientoInventarioService;
@@ -50,6 +56,13 @@ public class ProductoServiceImpl implements ProductoService {
     @Override
     public List<Producto> obtenerProductos() {
         return productoRepository.findAll();
+    }
+
+    @Override
+    public List<ProductoCriticoResponse> obtenerProductosCriticos() {
+        return productosCriticosRepository.findAll().stream()
+                .map(ProductoCriticoResponse::fromEntity)
+                .toList();
     }
 
     @Override

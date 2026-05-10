@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Proyecto.stoq.application.services.ProductoService;
+import com.Proyecto.stoq.application.usecases.ObtenerProductosCriticosUseCase;
 import com.Proyecto.stoq.domain.model.Producto;
 import com.Proyecto.stoq.dto.CreateProductDTO;
+import com.Proyecto.stoq.dto.ProductoCriticoResponse;
 import com.Proyecto.stoq.dto.UpdateProductDTO;
 
 import jakarta.validation.Valid;
@@ -28,9 +31,12 @@ import jakarta.validation.Valid;
 public class ProductosController {
 
     private final ProductoService productoService;
+    private final ObtenerProductosCriticosUseCase obtenerProductosCriticosUseCase;
 
-    public ProductosController(ProductoService productoService) {
+    public ProductosController(ProductoService productoService,
+            ObtenerProductosCriticosUseCase obtenerProductosCriticosUseCase) {
         this.productoService = productoService;
+        this.obtenerProductosCriticosUseCase = obtenerProductosCriticosUseCase;
     }
 
     @GetMapping
@@ -46,6 +52,12 @@ public class ProductosController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/criticos")
+    @PreAuthorize("hasAnyRole('ADMIN','GERENTE')")
+    public List<ProductoCriticoResponse> obtenerProductosCriticos() {
+        return obtenerProductosCriticosUseCase.obtenerProductosCriticos();
     }
 
     @PostMapping

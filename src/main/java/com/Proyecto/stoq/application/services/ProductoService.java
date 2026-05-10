@@ -5,12 +5,14 @@ import java.util.UUID;
 
 import com.Proyecto.stoq.domain.model.Producto;
 import com.Proyecto.stoq.dto.CreateProductDTO;
+import com.Proyecto.stoq.dto.ProductoCriticoResponse;
 import com.Proyecto.stoq.dto.UpdateProductDTO;
 
 
 public interface ProductoService {
     
     List<Producto> obtenerProductos();
+    List<ProductoCriticoResponse> obtenerProductosCriticos();
     Optional<Producto> obtenerProductoPorId(UUID id);
     
     Producto crearProducto(CreateProductDTO dto, String correoUsuario);
