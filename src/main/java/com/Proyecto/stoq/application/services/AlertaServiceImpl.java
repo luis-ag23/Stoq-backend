@@ -101,12 +101,13 @@ public class AlertaServiceImpl implements AlertaService {
         List<Producto> productos = productoRepository.findAll();
 
         long productosCriticos = productos.stream()
-                .filter(producto -> {
-                    Integer stockActual = producto.getStockActual() != null ? producto.getStockActual() : 0;
-                    Integer stockMinimo = producto.getStockMinimo() != null ? producto.getStockMinimo() : 0;
-                    return stockActual < stockMinimo;
-                })
-                .count();
+        .filter(producto -> Boolean.TRUE.equals(producto.getEstado()))
+        .filter(producto -> {
+            Integer stockActual = producto.getStockActual() != null ? producto.getStockActual() : 0;
+            Integer stockMinimo = producto.getStockMinimo() != null ? producto.getStockMinimo() : 0;
+            return stockActual < stockMinimo;
+        })
+        .count();
 
         long notificacionesSinLeer = alertaRepository.countByLeidaFalse();
         long totalAlertas = alertaRepository.findAll().size();

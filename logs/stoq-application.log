@@ -13011,3 +13011,1430 @@ com.Proyecto.stoq.adapters.controllers.MovimientoInventarioController#crearMovim
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
 	... 21 common frames omitted
+2026-05-10 14:10:44 [STOQ] [restartedMain] INFO  com.Proyecto.stoq.StoqApplication - Starting StoqApplication using Java 25.0.2 with PID 20852 (C:\Users\luisa\Desktop\back\Stoq-backend\build\classes\java\main started by luisa in C:\Users\luisa\Desktop\back\Stoq-backend)
+2026-05-10 14:10:44 [STOQ] [restartedMain] DEBUG com.Proyecto.stoq.StoqApplication - Running with Spring Boot v4.0.3, Spring v7.0.5
+2026-05-10 14:10:44 [STOQ] [restartedMain] INFO  com.Proyecto.stoq.StoqApplication - No active profile set, falling back to 1 default profile: "default"
+2026-05-10 14:10:44 [STOQ] [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-05-10 14:10:44 [STOQ] [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-05-10 14:10:45 [STOQ] [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-10 14:10:45 [STOQ] [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 67 ms. Found 8 JPA repository interfaces.
+2026-05-10 14:10:46 [STOQ] [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-05-10 14:10:46 [STOQ] [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-05-10 14:10:46 [STOQ] [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-05-10 14:10:46 [STOQ] [restartedMain] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1716 ms
+2026-05-10 14:10:46 [STOQ] [restartedMain] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-10 14:10:46 [STOQ] [restartedMain] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.4.Final
+2026-05-10 14:10:47 [STOQ] [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-10 14:10:47 [STOQ] [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-10 14:10:49 [STOQ] [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@38cd507b
+2026-05-10 14:10:49 [STOQ] [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-10 14:10:49 [STOQ] [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-10 14:10:50 [STOQ] [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://aws-0-us-west-2.pooler.supabase.com:5432/postgres?sslmode=require]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 17.6
+	Default catalog/schema: postgres/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-10 14:10:51 [STOQ] [restartedMain] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-10 14:10:52 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    alter table if exists alertas 
+       alter column tipo set data type varchar(50)
+2026-05-10 14:10:53 [STOQ] [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-10 14:10:53 [STOQ] [restartedMain] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-10 14:10:54 [STOQ] [restartedMain] DEBUG c.Proyecto.stoq.security.JwtFilter - Filter 'jwtFilter' configured for use
+2026-05-10 14:10:54 [STOQ] [restartedMain] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-10 14:10:54 [STOQ] [restartedMain] WARN  o.s.b.s.a.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: d800eaac-f5b1-4b58-b5ec-b98f83b74ed0
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-05-10 14:10:54 [STOQ] [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-05-10 14:10:54 [STOQ] [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-05-10 14:10:54 [STOQ] [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 6 endpoints beneath base path '/actuator'
+2026-05-10 14:10:54 [STOQ] [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-05-10 14:10:54 [STOQ] [restartedMain] INFO  com.Proyecto.stoq.StoqApplication - Started StoqApplication in 10.959 seconds (process running for 11.667)
+2026-05-10 14:10:55 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.nombre=?
+2026-05-10 14:10:55 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-05-10 14:10:56 [STOQ] [restartedMain] INFO  c.P.s.i.config.DataInitializer - [STOQ-SEED] Rol sincronizado: ADMIN
+2026-05-10 14:10:56 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.nombre=?
+2026-05-10 14:10:56 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-05-10 14:10:56 [STOQ] [restartedMain] INFO  c.P.s.i.config.DataInitializer - [STOQ-SEED] Rol sincronizado: OPERADOR
+2026-05-10 14:10:56 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.nombre=?
+2026-05-10 14:10:56 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-05-10 14:10:57 [STOQ] [restartedMain] INFO  c.P.s.i.config.DataInitializer - [STOQ-SEED] Rol sincronizado: GERENTE
+2026-05-10 14:11:41 [STOQ] [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-10 14:11:41 [STOQ] [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-05-10 14:11:41 [STOQ] [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-05-10 14:11:41 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/login
+2026-05-10 14:11:41 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/login
+2026-05-10 14:11:41 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-10 14:11:41 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-05-10 14:11:41 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-05-10 14:11:41 | POST /api/auth/login | user=ANONYMOUS | ip=0:0:0:0:0:0:0:1 | ua=PostmanRuntime/7.51.1
+2026-05-10 14:11:41 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-05-10 14:11:41 [STOQ] [http-nio-8080-exec-2] ERROR c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT POST /api/auth/login | status=ERROR | time=394 ms | error=Usuario no encontrado | user=ANONYMOUS | ip=0:0:0:0:0:0:0:1
+java.lang.RuntimeException: Usuario no encontrado
+	at com.Proyecto.stoq.application.services.UsuarioServiceImpl.lambda$login$0(UsuarioServiceImpl.java:165)
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at com.Proyecto.stoq.application.services.UsuarioServiceImpl.login(UsuarioServiceImpl.java:165)
+	at com.Proyecto.stoq.adapters.controllers.AuthController.login(AuthController.java:28)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:158)
+	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:82)
+	at com.Proyecto.stoq.application.aspects.ApiLoggingAspect.logApiCall(ApiLoggingAspect.java:51)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:648)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:630)
+	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:70)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:719)
+	at com.Proyecto.stoq.adapters.controllers.AuthController$$SpringCGLIB$$0.login(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:649)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:235)
+	at org.springframework.security.web.ObservationFilterChainDecorator$FilterObservation$SimpleFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:493)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:354)
+	at org.springframework.security.web.ObservationFilterChainDecorator.lambda$wrapSecured$0(ObservationFilterChainDecorator.java:86)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:132)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:244)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:231)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:141)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:244)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:231)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:141)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:244)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:231)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:141)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:181)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:244)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:231)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:141)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:244)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:231)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:141)
+	at com.Proyecto.stoq.security.JwtFilter.doFilterInternal(JwtFilter.java:40)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:244)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:231)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:141)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:244)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:231)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:141)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:244)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:231)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:141)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:244)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:231)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:141)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:244)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:231)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:141)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:244)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:231)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:141)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:244)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$0(ObservationFilterChainDecorator.java:337)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:228)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:141)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:110)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+2026-05-10 14:11:41 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-05-10 14:11:42 [STOQ] [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.RuntimeException: Usuario no encontrado]
+2026-05-10 14:12:14 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/login
+2026-05-10 14:12:14 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/login
+2026-05-10 14:12:14 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-10 14:12:14 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-05-10 14:12:14 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-05-10 14:12:14 | POST /api/auth/login | user=ANONYMOUS | ip=0:0:0:0:0:0:0:1 | ua=PostmanRuntime/7.51.1
+2026-05-10 14:12:14 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-05-10 14:12:15 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-05-10 14:12:15 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.services.UsuarioServiceImpl - [STOQ-BIZ] LOGIN Usuario | correo=gerente@gmail.com | rol=GERENTE
+2026-05-10 14:12:15 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        audit_logs
+        (cambios_anterior, cambios_nuevo, created_by, created_date, endpoint, entidad, id_registro, ip_origen, operacion, user_agent, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-05-10 14:12:16 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.services.AuditService - [STOQ-AUDIT] SAVE | entity=Usuario | operation=LOGIN | record=05faf721-dbef-4f23-803b-8b3df1f17acf | user=SYSTEM | endpoint=POST /api/auth/login | ip=0:0:0:0:0:0:0:1
+2026-05-10 14:12:16 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT POST /api/auth/login | status=OK | time=1374 ms | endpoint=AuthController.login(..)
+2026-05-10 14:12:16 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-05-10 14:13:14 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/productos
+2026-05-10 14:13:14 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-10 14:13:14 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.s.w.s.HttpSessionRequestCache - Saved request http://localhost:8080/api/productos?continue to session
+2026-05-10 14:13:14 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.s.w.a.Http403ForbiddenEntryPoint - Pre-authenticated entry point called. Rejecting access
+2026-05-10 14:13:14 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /error
+2026-05-10 14:13:14 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-10 14:13:14 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.s.w.s.HttpSessionRequestCache - Saved request http://localhost:8080/error?continue to session
+2026-05-10 14:13:14 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.s.w.a.Http403ForbiddenEntryPoint - Pre-authenticated entry point called. Rejecting access
+2026-05-10 14:13:25 [STOQ] [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/productos
+2026-05-10 14:13:25 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-05-10 14:13:25 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-05-10 14:13:25 [STOQ] [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/productos
+2026-05-10 14:13:25 [STOQ] [http-nio-8080-exec-5] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-05-10 14:13:25 [STOQ] [http-nio-8080-exec-5] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-05-10 14:13:25 | GET /api/productos | user=gerente@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=PostmanRuntime/7.51.1
+2026-05-10 14:13:25 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id 
+    from
+        productos p1_0
+2026-05-10 14:13:25 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-05-10 14:13:26 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-05-10 14:13:26 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-05-10 14:13:26 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-05-10 14:13:26 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-05-10 14:13:26 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-05-10 14:13:27 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-05-10 14:13:27 [STOQ] [http-nio-8080-exec-5] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/productos | status=OK | time=1721 ms | endpoint=ProductosController.obtenerProductos()
+2026-05-10 14:13:27 [STOQ] [http-nio-8080-exec-5] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-05-10 14:16:39 [STOQ] [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/movimientos
+2026-05-10 14:16:39 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-05-10 14:16:40 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-05-10 14:16:40 [STOQ] [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/movimientos
+2026-05-10 14:16:40 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-05-10 14:16:40 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-05-10 14:16:40 | POST /api/movimientos | user=gerente@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=PostmanRuntime/7.51.1
+2026-05-10 14:16:40 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id,
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        productos p1_0 
+    join
+        categorias c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    join
+        unidades u1_0 
+            on u1_0.id=p1_0.unidad_id 
+    where
+        p1_0.id=?
+2026-05-10 14:16:40 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-05-10 14:16:41 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-05-10 14:16:41 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.s.MovimientoInventarioServiceImpl - [STOQ-BIZ] MOVIMIENTO SALIDA | productoId=a0434f3b-bfee-4374-8dfe-1e1831f4f8f8 | cantidad=28 | stockAnterior=32 | stockResultante=4 | usuario=gerente@gmail.com
+2026-05-10 14:16:41 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id 
+    from
+        alertas a1_0 
+    where
+        a1_0.producto_id=? 
+        and a1_0.tipo=? 
+        and a1_0.leida=false 
+    fetch
+        first ? rows only
+2026-05-10 14:16:41 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.services.AlertaServiceImpl - [STOQ-BIZ] ALERTA STOCK_BAJO creada | productoId=a0434f3b-bfee-4374-8dfe-1e1831f4f8f8 | codigo=DA!22 | stockActual=4 | stockMinimo=5
+2026-05-10 14:16:41 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.services.AuditService - [STOQ-AUDIT] SAVE | entity=MovimientoInventario | operation=CREATE | record=aa071d71-69bd-4e84-a76b-cf5018989d0f | user=gerente@gmail.com | endpoint=POST /api/movimientos | ip=0:0:0:0:0:0:0:1
+2026-05-10 14:16:41 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        alertas
+        (fecha, leida, mensaje, producto_id, tipo, id) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2026-05-10 14:16:41 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        movimientos_inventario
+        (cantidad, fecha_movimiento, motivo, producto_id, stock_anterior, stock_resultante, tipo_movimiento, usuario_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-05-10 14:16:41 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        audit_logs
+        (cambios_anterior, cambios_nuevo, created_by, created_date, endpoint, entidad, id_registro, ip_origen, operacion, user_agent, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-05-10 14:16:42 [STOQ] [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    update
+        productos 
+    set
+        categoria_id=?,
+        codigo=?,
+        estado=?,
+        fecha_actualizacion=?,
+        nombre=?,
+        stock_actual=?,
+        stock_minimo=?,
+        ubicacion=?,
+        unidad_id=? 
+    where
+        id=?
+2026-05-10 14:16:42 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT POST /api/movimientos | status=OK | time=1912 ms | endpoint=MovimientoInventarioController.crearMovimiento(..)
+2026-05-10 14:16:42 [STOQ] [http-nio-8080-exec-8] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-05-10 14:18:07 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/alertas
+2026-05-10 14:18:07 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-05-10 14:18:07 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-05-10 14:18:07 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AccessDeniedHandlerImpl - Responding with 403 status code
+2026-05-10 14:18:07 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /error
+2026-05-10 14:18:07 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-10 14:18:07 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.s.w.s.HttpSessionRequestCache - Saved request http://localhost:8080/error?continue to session
+2026-05-10 14:18:07 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.s.w.a.Http403ForbiddenEntryPoint - Pre-authenticated entry point called. Rejecting access
+2026-05-10 14:18:15 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/alertas
+2026-05-10 14:18:15 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-05-10 14:18:15 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-05-10 14:18:16 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AccessDeniedHandlerImpl - Responding with 403 status code
+2026-05-10 14:18:16 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /error
+2026-05-10 14:18:16 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-10 14:18:16 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.s.w.s.HttpSessionRequestCache - Saved request http://localhost:8080/error?continue to session
+2026-05-10 14:18:16 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.s.w.a.Http403ForbiddenEntryPoint - Pre-authenticated entry point called. Rejecting access
+2026-05-10 14:19:14 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/alertas
+2026-05-10 14:19:14 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-05-10 14:19:14 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-05-10 14:19:14 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AccessDeniedHandlerImpl - Responding with 403 status code
+2026-05-10 14:19:14 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /error
+2026-05-10 14:19:14 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-10 14:19:14 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.s.w.s.HttpSessionRequestCache - Saved request http://localhost:8080/error?continue to session
+2026-05-10 14:19:14 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.s.w.a.Http403ForbiddenEntryPoint - Pre-authenticated entry point called. Rejecting access
+2026-05-10 14:19:23 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/alertas/resumen
+2026-05-10 14:19:23 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-05-10 14:19:23 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-05-10 14:19:23 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AccessDeniedHandlerImpl - Responding with 403 status code
+2026-05-10 14:19:23 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /error
+2026-05-10 14:19:23 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-10 14:19:23 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.s.w.s.HttpSessionRequestCache - Saved request http://localhost:8080/error?continue to session
+2026-05-10 14:19:23 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.s.w.a.Http403ForbiddenEntryPoint - Pre-authenticated entry point called. Rejecting access
+2026-05-10 14:20:00 [STOQ] [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/alertas/resumen
+2026-05-10 14:20:00 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-05-10 14:20:00 [STOQ] [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-05-10 14:20:00 [STOQ] [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AccessDeniedHandlerImpl - Responding with 403 status code
+2026-05-10 14:20:00 [STOQ] [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /error
+2026-05-10 14:20:00 [STOQ] [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-10 14:20:00 [STOQ] [http-nio-8080-exec-5] DEBUG o.s.s.w.s.HttpSessionRequestCache - Saved request http://localhost:8080/error?continue to session
+2026-05-10 14:20:00 [STOQ] [http-nio-8080-exec-5] DEBUG o.s.s.w.a.Http403ForbiddenEntryPoint - Pre-authenticated entry point called. Rejecting access
+2026-05-10 14:21:05 [STOQ] [restartedMain] INFO  com.Proyecto.stoq.StoqApplication - Starting StoqApplication using Java 25.0.2 with PID 3688 (C:\Users\luisa\Desktop\back\Stoq-backend\build\classes\java\main started by luisa in C:\Users\luisa\Desktop\back\Stoq-backend)
+2026-05-10 14:21:05 [STOQ] [restartedMain] DEBUG com.Proyecto.stoq.StoqApplication - Running with Spring Boot v4.0.3, Spring v7.0.5
+2026-05-10 14:21:05 [STOQ] [restartedMain] INFO  com.Proyecto.stoq.StoqApplication - No active profile set, falling back to 1 default profile: "default"
+2026-05-10 14:21:05 [STOQ] [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-05-10 14:21:05 [STOQ] [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-05-10 14:21:06 [STOQ] [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-10 14:21:06 [STOQ] [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 67 ms. Found 8 JPA repository interfaces.
+2026-05-10 14:21:07 [STOQ] [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-05-10 14:21:07 [STOQ] [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-05-10 14:21:07 [STOQ] [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-05-10 14:21:07 [STOQ] [restartedMain] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1539 ms
+2026-05-10 14:21:07 [STOQ] [restartedMain] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-10 14:21:07 [STOQ] [restartedMain] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.4.Final
+2026-05-10 14:21:08 [STOQ] [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-10 14:21:08 [STOQ] [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-10 14:21:10 [STOQ] [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@78b62bec
+2026-05-10 14:21:10 [STOQ] [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-10 14:21:10 [STOQ] [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-10 14:21:11 [STOQ] [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://aws-0-us-west-2.pooler.supabase.com:5432/postgres?sslmode=require]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 17.6
+	Default catalog/schema: postgres/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-10 14:21:12 [STOQ] [restartedMain] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-10 14:21:14 [STOQ] [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-10 14:21:14 [STOQ] [restartedMain] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-10 14:21:14 [STOQ] [restartedMain] DEBUG c.Proyecto.stoq.security.JwtFilter - Filter 'jwtFilter' configured for use
+2026-05-10 14:21:14 [STOQ] [restartedMain] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-10 14:21:14 [STOQ] [restartedMain] WARN  o.s.b.s.a.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 43fe8b44-def1-46eb-b8a5-6bf08c5500d2
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-05-10 14:21:14 [STOQ] [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-05-10 14:21:15 [STOQ] [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-05-10 14:21:15 [STOQ] [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 6 endpoints beneath base path '/actuator'
+2026-05-10 14:21:15 [STOQ] [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-05-10 14:21:15 [STOQ] [restartedMain] INFO  com.Proyecto.stoq.StoqApplication - Started StoqApplication in 10.057 seconds (process running for 10.501)
+2026-05-10 14:21:15 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.nombre=?
+2026-05-10 14:21:16 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-05-10 14:21:16 [STOQ] [restartedMain] INFO  c.P.s.i.config.DataInitializer - [STOQ-SEED] Rol sincronizado: ADMIN
+2026-05-10 14:21:16 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.nombre=?
+2026-05-10 14:21:17 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-05-10 14:21:17 [STOQ] [restartedMain] INFO  c.P.s.i.config.DataInitializer - [STOQ-SEED] Rol sincronizado: OPERADOR
+2026-05-10 14:21:17 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.nombre=?
+2026-05-10 14:21:17 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-05-10 14:21:17 [STOQ] [restartedMain] INFO  c.P.s.i.config.DataInitializer - [STOQ-SEED] Rol sincronizado: GERENTE
+2026-05-10 14:21:22 [STOQ] [http-nio-8080-exec-3] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-10 14:21:22 [STOQ] [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-05-10 14:21:22 [STOQ] [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-05-10 14:21:22 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/login
+2026-05-10 14:21:22 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/login
+2026-05-10 14:21:23 [STOQ] [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-10 14:21:23 [STOQ] [http-nio-8080-exec-3] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-05-10 14:21:23 [STOQ] [http-nio-8080-exec-3] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-05-10 14:21:23 | POST /api/auth/login | user=ANONYMOUS | ip=0:0:0:0:0:0:0:1 | ua=PostmanRuntime/7.51.1
+2026-05-10 14:21:23 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-05-10 14:21:23 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-05-10 14:21:23 [STOQ] [http-nio-8080-exec-3] INFO  c.P.s.a.services.UsuarioServiceImpl - [STOQ-BIZ] LOGIN Usuario | correo=gerente@gmail.com | rol=GERENTE
+2026-05-10 14:21:23 [STOQ] [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        audit_logs
+        (cambios_anterior, cambios_nuevo, created_by, created_date, endpoint, entidad, id_registro, ip_origen, operacion, user_agent, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-05-10 14:21:24 [STOQ] [http-nio-8080-exec-3] INFO  c.P.s.a.services.AuditService - [STOQ-AUDIT] SAVE | entity=Usuario | operation=LOGIN | record=05faf721-dbef-4f23-803b-8b3df1f17acf | user=SYSTEM | endpoint=POST /api/auth/login | ip=0:0:0:0:0:0:0:1
+2026-05-10 14:21:24 [STOQ] [http-nio-8080-exec-3] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT POST /api/auth/login | status=OK | time=1134 ms | endpoint=AuthController.login(..)
+2026-05-10 14:21:24 [STOQ] [http-nio-8080-exec-3] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-05-10 14:21:39 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/alertas/resumen
+2026-05-10 14:21:39 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-05-10 14:21:39 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-05-10 14:21:39 [STOQ] [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/alertas/resumen
+2026-05-10 14:21:39 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-05-10 14:21:39 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-05-10 14:21:39 | GET /api/alertas/resumen | user=gerente@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=PostmanRuntime/7.51.1
+2026-05-10 14:21:39 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id 
+    from
+        productos p1_0
+2026-05-10 14:21:39 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-05-10 14:21:40 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-05-10 14:21:40 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-05-10 14:21:40 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-05-10 14:21:40 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-05-10 14:21:40 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-05-10 14:21:40 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-05-10 14:21:41 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count(a1_0.id) 
+    from
+        alertas a1_0 
+    where
+        a1_0.leida=false
+2026-05-10 14:21:41 [STOQ] [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.fecha,
+        a1_0.leida,
+        a1_0.mensaje,
+        a1_0.producto_id,
+        a1_0.tipo 
+    from
+        alertas a1_0
+2026-05-10 14:21:41 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/alertas/resumen | status=OK | time=2272 ms | endpoint=AlertaController.obtenerResumen()
+2026-05-10 14:21:41 [STOQ] [http-nio-8080-exec-2] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-05-10 14:21:49 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/alertas
+2026-05-10 14:21:49 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-05-10 14:21:50 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-05-10 14:21:50 [STOQ] [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/alertas
+2026-05-10 14:21:50 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-05-10 14:21:50 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-05-10 14:21:50 | GET /api/alertas | user=gerente@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=PostmanRuntime/7.51.1
+2026-05-10 14:21:50 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.fecha,
+        a1_0.leida,
+        a1_0.mensaje,
+        a1_0.producto_id,
+        a1_0.tipo 
+    from
+        alertas a1_0
+2026-05-10 14:21:50 [STOQ] [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id,
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        productos p1_0 
+    join
+        categorias c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    join
+        unidades u1_0 
+            on u1_0.id=p1_0.unidad_id 
+    where
+        p1_0.id=?
+2026-05-10 14:21:50 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/alertas | status=OK | time=562 ms | endpoint=AlertaController.obtenerAlertas()
+2026-05-10 14:21:50 [STOQ] [http-nio-8080-exec-4] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-05-10 14:22:05 [STOQ] [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/alertas/resumen
+2026-05-10 14:22:05 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-05-10 14:22:06 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-05-10 14:22:06 [STOQ] [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/alertas/resumen
+2026-05-10 14:22:06 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-05-10 14:22:06 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-05-10 14:22:06 | GET /api/alertas/resumen | user=gerente@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=PostmanRuntime/7.51.1
+2026-05-10 14:22:06 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id 
+    from
+        productos p1_0
+2026-05-10 14:22:06 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-05-10 14:22:06 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-05-10 14:22:06 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-05-10 14:22:07 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-05-10 14:22:07 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-05-10 14:22:07 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-05-10 14:22:07 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-05-10 14:22:08 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        count(a1_0.id) 
+    from
+        alertas a1_0 
+    where
+        a1_0.leida=false
+2026-05-10 14:22:08 [STOQ] [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.fecha,
+        a1_0.leida,
+        a1_0.mensaje,
+        a1_0.producto_id,
+        a1_0.tipo 
+    from
+        alertas a1_0
+2026-05-10 14:22:08 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/alertas/resumen | status=OK | time=2304 ms | endpoint=AlertaController.obtenerResumen()
+2026-05-10 14:22:08 [STOQ] [http-nio-8080-exec-6] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-05-10 14:24:47 [STOQ] [restartedMain] INFO  com.Proyecto.stoq.StoqApplication - Starting StoqApplication using Java 25.0.2 with PID 30184 (C:\Users\luisa\Desktop\back\Stoq-backend\build\classes\java\main started by luisa in C:\Users\luisa\Desktop\back\Stoq-backend)
+2026-05-10 14:24:47 [STOQ] [restartedMain] DEBUG com.Proyecto.stoq.StoqApplication - Running with Spring Boot v4.0.3, Spring v7.0.5
+2026-05-10 14:24:47 [STOQ] [restartedMain] INFO  com.Proyecto.stoq.StoqApplication - No active profile set, falling back to 1 default profile: "default"
+2026-05-10 14:24:47 [STOQ] [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-05-10 14:24:47 [STOQ] [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-05-10 14:24:48 [STOQ] [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-10 14:24:48 [STOQ] [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 64 ms. Found 8 JPA repository interfaces.
+2026-05-10 14:24:48 [STOQ] [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-05-10 14:24:48 [STOQ] [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-05-10 14:24:48 [STOQ] [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-05-10 14:24:48 [STOQ] [restartedMain] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1659 ms
+2026-05-10 14:24:49 [STOQ] [restartedMain] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-10 14:24:49 [STOQ] [restartedMain] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.4.Final
+2026-05-10 14:24:49 [STOQ] [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-10 14:24:49 [STOQ] [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-10 14:24:51 [STOQ] [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2db14080
+2026-05-10 14:24:51 [STOQ] [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-10 14:24:52 [STOQ] [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-10 14:24:52 [STOQ] [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://aws-0-us-west-2.pooler.supabase.com:5432/postgres?sslmode=require]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 17.6
+	Default catalog/schema: postgres/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-10 14:24:53 [STOQ] [restartedMain] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-10 14:24:55 [STOQ] [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-10 14:24:55 [STOQ] [restartedMain] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-10 14:24:55 [STOQ] [restartedMain] DEBUG c.Proyecto.stoq.security.JwtFilter - Filter 'jwtFilter' configured for use
+2026-05-10 14:24:55 [STOQ] [restartedMain] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-10 14:24:56 [STOQ] [restartedMain] WARN  o.s.b.s.a.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: eb293eb9-d80f-42dc-9e56-7d17fa13bb28
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-05-10 14:24:56 [STOQ] [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-05-10 14:24:56 [STOQ] [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-05-10 14:24:56 [STOQ] [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 6 endpoints beneath base path '/actuator'
+2026-05-10 14:24:56 [STOQ] [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-05-10 14:24:56 [STOQ] [restartedMain] INFO  com.Proyecto.stoq.StoqApplication - Started StoqApplication in 9.894 seconds (process running for 10.355)
+2026-05-10 14:24:57 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.nombre=?
+2026-05-10 14:24:57 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-05-10 14:24:57 [STOQ] [restartedMain] INFO  c.P.s.i.config.DataInitializer - [STOQ-SEED] Rol sincronizado: ADMIN
+2026-05-10 14:24:57 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.nombre=?
+2026-05-10 14:24:58 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-05-10 14:24:58 [STOQ] [restartedMain] INFO  c.P.s.i.config.DataInitializer - [STOQ-SEED] Rol sincronizado: OPERADOR
+2026-05-10 14:24:58 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.nombre=?
+2026-05-10 14:24:58 [STOQ] [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-05-10 14:24:58 [STOQ] [restartedMain] INFO  c.P.s.i.config.DataInitializer - [STOQ-SEED] Rol sincronizado: GERENTE
+2026-05-10 14:24:59 [STOQ] [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-10 14:24:59 [STOQ] [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-05-10 14:24:59 [STOQ] [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-05-10 14:24:59 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/alertas/resumen
+2026-05-10 14:24:59 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.contrasena_hash,
+        u1_0.correo,
+        u1_0.empresa,
+        u1_0.estado,
+        u1_0.nombre,
+        u1_0.rol_id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo=?
+2026-05-10 14:24:59 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.id,
+        r1_0.descripcion,
+        r1_0.nombre 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+2026-05-10 14:24:59 [STOQ] [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/alertas/resumen
+2026-05-10 14:24:59 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
+2026-05-10 14:24:59 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] IN  2026-05-10 14:24:59 | GET /api/alertas/resumen | user=gerente@gmail.com | ip=0:0:0:0:0:0:0:1 | ua=PostmanRuntime/7.51.1
+2026-05-10 14:24:59 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.categoria_id,
+        p1_0.codigo,
+        p1_0.estado,
+        p1_0.fecha_actualizacion,
+        p1_0.fecha_creacion,
+        p1_0.nombre,
+        p1_0.stock_actual,
+        p1_0.stock_minimo,
+        p1_0.ubicacion,
+        p1_0.unidad_id 
+    from
+        productos p1_0
+2026-05-10 14:25:00 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-05-10 14:25:00 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-05-10 14:25:00 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-05-10 14:25:00 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-05-10 14:25:00 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-05-10 14:25:00 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.abreviatura,
+        u1_0.estado,
+        u1_0.nombre 
+    from
+        unidades u1_0 
+    where
+        u1_0.id=?
+2026-05-10 14:25:01 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.descripcion,
+        c1_0.estado,
+        c1_0.fecha_creacion,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        c1_0.id=?
+2026-05-10 14:25:01 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count(a1_0.id) 
+    from
+        alertas a1_0 
+    where
+        a1_0.leida=false
+2026-05-10 14:25:01 [STOQ] [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.fecha,
+        a1_0.leida,
+        a1_0.mensaje,
+        a1_0.producto_id,
+        a1_0.tipo 
+    from
+        alertas a1_0
+2026-05-10 14:25:02 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] OUT GET /api/alertas/resumen | status=OK | time=2314 ms | endpoint=AlertaController.obtenerResumen()
+2026-05-10 14:25:02 [STOQ] [http-nio-8080-exec-1] INFO  c.P.s.a.aspects.ApiLoggingAspect - [STOQ-MONITOR] ============================================================
