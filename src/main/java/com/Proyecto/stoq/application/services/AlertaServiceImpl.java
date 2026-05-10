@@ -3,6 +3,8 @@ package com.Proyecto.stoq.application.services;
 import java.util.List;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +17,8 @@ import com.Proyecto.stoq.dto.AlertasResumenDTO;
 @Service
 public class AlertaServiceImpl implements AlertaService {
 
+    private static final Logger logger = LoggerFactory.getLogger(AlertaServiceImpl.class);
+    private static final String BIZ_TAG = "[STOQ-BIZ]";
     private static final String TIPO_STOCK_BAJO = "STOCK_BAJO";
 
     private final AlertaRepositoryPort alertaRepository;
@@ -32,10 +36,22 @@ public class AlertaServiceImpl implements AlertaService {
     @Transactional
     public void verificarStockBajo(Producto producto) {
         if (producto == null || producto.getId() == null) {
+            logger.warn("{} ALERTA omitida | producto nulo o sin id", BIZ_TAG);
             return;
         }
 
-        if (producto.getStockActual() >= producto.getStockMinimo()) {
+        Integer stockActual = producto.getStockActual() != null ? producto.getStockActual() : 0;
+        Integer stockMinimo = producto.getStockMinimo() != null ? producto.getStockMinimo() : 0;
+
+        if (stockActual >= stockMinimo) {
+            logger.debug(
+                    "{} ALERTA omitida | productoId={} | codigo={} | stockActual={} | stockMinimo={}",
+                    BIZ_TAG,
+                    producto.getId(),
+                    producto.getCodigo(),
+                    stockActual,
+                    stockMinimo
+            );
             return;
         }
 
@@ -45,6 +61,12 @@ public class AlertaServiceImpl implements AlertaService {
         );
 
         if (yaExiste) {
+            logger.info(
+                    "{} ALERTA STOCK_BAJO ya existente | productoId={} | codigo={}",
+                    BIZ_TAG,
+                    producto.getId(),
+                    producto.getCodigo()
+            );
             return;
         }
 
@@ -58,6 +80,15 @@ public class AlertaServiceImpl implements AlertaService {
         );
 
         alertaRepository.save(alerta);
+
+        logger.info(
+                "{} ALERTA STOCK_BAJO creada | productoId={} | codigo={} | stockActual={} | stockMinimo={}",
+                BIZ_TAG,
+                producto.getId(),
+                producto.getCodigo(),
+                stockActual,
+                stockMinimo
+        );
     }
 
     @Override
@@ -70,7 +101,11 @@ public class AlertaServiceImpl implements AlertaService {
         List<Producto> productos = productoRepository.findAll();
 
         long productosCriticos = productos.stream()
-                .filter(producto -> producto.getStockActual() < producto.getStockMinimo())
+                .filter(producto -> {
+                    Integer stockActual = producto.getStockActual() != null ? producto.getStockActual() : 0;
+                    Integer stockMinimo = producto.getStockMinimo() != null ? producto.getStockMinimo() : 0;
+                    return stockActual < stockMinimo;
+                })
                 .count();
 
         long notificacionesSinLeer = alertaRepository.countByLeidaFalse();
@@ -90,7 +125,11 @@ public class AlertaServiceImpl implements AlertaService {
                 .orElseThrow(() -> new RuntimeException("Alerta no encontrada"));
 
         alerta.setLeida(true);
-        return alertaRepository.save(alerta);
+        Alerta alertaActualizada = alertaRepository.save(alerta);
+
+        logger.info("{} ALERTA marcada como leída | alertaId={}", BIZ_TAG, id);
+
+        return alertaActualizada;
     }
 
     @Override
@@ -102,5 +141,7 @@ public class AlertaServiceImpl implements AlertaService {
             alerta.setLeida(true);
             alertaRepository.save(alerta);
         }
+
+        logger.info("{} ALERTAS marcadas como leídas | total={}", BIZ_TAG, alertas.size());
     }
 }

@@ -18,6 +18,7 @@ import com.Proyecto.stoq.domain.ports.UsuarioRepositoryPort;
 import com.Proyecto.stoq.dto.CreateMovimientoInventarioDTO;
 import com.Proyecto.stoq.infrastructure.persistence.repositories.MovimientoInventarioRepository;
 import com.Proyecto.stoq.security.RoleCatalog;
+import com.Proyecto.stoq.application.services.AlertaService;
 
 @Service
 public class MovimientoInventarioServiceImpl implements MovimientoInventarioService {
@@ -28,17 +29,20 @@ public class MovimientoInventarioServiceImpl implements MovimientoInventarioServ
     private final MovimientoInventarioRepository movimientoRepository;
     private final ProductosRepositoryPort productoRepository;
     private final UsuarioRepositoryPort usuarioRepository;
+    private final AlertaService alertaService;
     private final AuditService auditService;
 
     public MovimientoInventarioServiceImpl(
             MovimientoInventarioRepository movimientoRepository,
             ProductosRepositoryPort productoRepository,
             UsuarioRepositoryPort usuarioRepository,
+            AlertaService alertaService,
             AuditService auditService
     ) {
         this.movimientoRepository = movimientoRepository;
         this.productoRepository = productoRepository;
         this.usuarioRepository = usuarioRepository;
+        this.alertaService = alertaService;
         this.auditService = auditService;
     }
 
@@ -86,6 +90,7 @@ public class MovimientoInventarioServiceImpl implements MovimientoInventarioServ
 
         producto.setStockActual(stockResultante);
         productoRepository.save(producto);
+        alertaService.verificarStockBajo(producto);
 
         Movimiento_Inventario movimiento = new Movimiento_Inventario();
         movimiento.setProducto(producto);
