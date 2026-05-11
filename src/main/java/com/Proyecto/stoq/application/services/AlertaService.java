@@ -11,6 +11,8 @@ public interface AlertaService {
 
     void verificarStockBajo(Producto producto);
 
+    void verificarCambioStock(Producto producto, Integer stockAnterior, Integer stockResultante);
+
     List<Alerta> obtenerAlertas();
 
     AlertasResumenDTO obtenerResumen();

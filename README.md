@@ -107,6 +107,83 @@ Con esto, al ejecutar localmente o en Render verás logs llamativos en consola y
 	- GET /api/productos
 	- GET /api/movimientos
 
+---
+
+## 🛎️ Alertas (nuevo comportamiento)
+
+Se añadió detección y registro de alertas en el momento exacto en que una salida provoca que un producto
+cruce el `stockMinimo` o llegue a `0`. Reglas resumidas:
+
+- `STOCK_CERO`: se crea cuando el `stockResultante == 0`.
+- `STOCK_BAJO`: se crea cuando el `stockResultante <= stockMinimo` y el `stockAnterior` estaba por encima del mínimo.
+- No se crean duplicados si ya existe una alerta no leída del mismo tipo para el producto.
+- Si el producto ya estaba en estado crítico (stockAnterior <= stockMinimo) no se genera una nueva alerta al quedar igualmente crítico.
+
+### Endpoints de alertas
+
+- `GET /api/alertas` — lista alertas (DTOs).
+- `GET /api/alertas/resumen` — resumen rápido: productos críticos, notificaciones sin leer, total.
+- `PUT /api/alertas/{id}/marcar-leida` — marca una alerta como leída.
+- `PUT /api/alertas/marcar-todas-leidas` — marca todas las alertas como leídas (204 No Content).
+
+### Pasos rápidos para probar el flujo (local)
+
+1. Levantar la aplicación backend:
+
+```powershell
+cd "d:\Documentos\Taller\Stoq-backend"
+setx JAVA_HOME "C:\Program Files\Java\jdk-<version>"
+# Abrir nueva terminal después de setx o configurar JAVA_HOME en variables de entorno
+.\gradlew.bat bootRun
+```
+
+2. Registrar un usuario/obtener token (si tu instancia requiere auth):
+
+```http
+POST /api/auth/login
+{
+	"correo": "operador@example.com",
+	"password": "password"
+}
+```
+
+3. Simular una salida que cruce el umbral (ejemplo con curl):
+
+```bash
+# Supongamos que el movimiento de salida se registra en POST /api/movimientos (revisa tu controlador local si es distinto)
+curl -X POST http://localhost:8080/api/movimientos \
+	-H "Authorization: Bearer <TOKEN>" \
+	-H "Content-Type: application/json" \
+	-d '{ "productoId": "<PRODUCT_ID>", "cantidad": 3, "tipoMovimiento": "SALIDA", "motivo": "Prueba" }'
+```
+
+4. Verificar las alertas recién creadas:
+
+```bash
+curl http://localhost:8080/api/alertas -H "Authorization: Bearer <TOKEN>"
+curl http://localhost:8080/api/alertas/resumen -H "Authorization: Bearer <TOKEN>"
+```
+
+5. Marcar como leída o limpiar:
+
+```bash
+curl -X PUT http://localhost:8080/api/alertas/<ALERTA_ID>/marcar-leida -H "Authorization: Bearer <TOKEN>"
+curl -X PUT http://localhost:8080/api/alertas/marcar-todas-leidas -H "Authorization: Bearer <TOKEN>"
+```
+
+### Pruebas unitarias
+
+Se añadieron tests unitarios para los casos clave (`AlertaServiceImplTest`). Ejecutar:
+
+```powershell
+cd "d:\Documentos\Taller\Stoq-backend"
+.\gradlew.bat test
+```
+
+> Nota: en este entorno de trabajo no hay Java configurado, por eso los tests no pudieron ejecutarse automáticamente aquí.
+
+---
+
 Notas de permisos:
 - ADMIN: acceso total a gestion de usuarios y catalogos.
 - OPERADOR: registra entradas y salidas, consulta productos y movimientos.

@@ -92,6 +92,61 @@ public class AlertaServiceImpl implements AlertaService {
     }
 
     @Override
+    @Transactional
+    public void verificarCambioStock(Producto producto, Integer stockAnterior, Integer stockResultante) {
+        if (producto == null || producto.getId() == null) {
+            logger.warn("{} ALERTA omitida | producto nulo o sin id", BIZ_TAG);
+            return;
+        }
+
+        int actual = stockResultante != null ? stockResultante : 0;
+        int minimo = producto.getStockMinimo() != null ? producto.getStockMinimo() : 0;
+
+        // Si antes ya estaba por debajo o en mínimo y sigue así, evitar duplicados
+        if (stockAnterior != null && stockAnterior <= minimo && actual <= minimo) {
+            logger.info("{} ALERTA omitida | productoId={} | codigo={} | ya crítico", BIZ_TAG, producto.getId(), producto.getCodigo());
+            return;
+        }
+
+        // Priorizar alerta STOCK_CERO cuando el stock llega a 0
+        if (actual == 0) {
+            boolean existeCero = alertaRepository.existsByProductoIdAndTipoAndLeidaFalse(producto.getId(), "STOCK_CERO");
+            if (existeCero) {
+                logger.info("{} ALERTA STOCK_CERO ya existente | productoId={} | codigo={}", BIZ_TAG, producto.getId(), producto.getCodigo());
+                return;
+            }
+
+            String mensaje = producto.getCodigo() + " - " + producto.getNombre() + " alcanzó stock cero";
+            Alerta alerta = new Alerta("STOCK_CERO", mensaje, producto);
+            alertaRepository.save(alerta);
+
+            logger.info("{} ALERTA STOCK_CERO creada | productoId={} | codigo={} | stockActual=0", BIZ_TAG, producto.getId(), producto.getCodigo());
+            return;
+        }
+
+        // Si llega al mínimo (o por debajo) desde encima del mínimo -> STOCK_BAJO
+        if ((stockAnterior == null || stockAnterior > minimo) && actual <= minimo) {
+            boolean existe = alertaRepository.existsByProductoIdAndTipoAndLeidaFalse(producto.getId(), TIPO_STOCK_BAJO);
+            if (existe) {
+                logger.info("{} ALERTA STOCK_BAJO ya existente | productoId={} | codigo={}", BIZ_TAG, producto.getId(), producto.getCodigo());
+                return;
+            }
+
+            String mensaje = producto.getCodigo() + " - " + producto.getNombre() + " está por debajo del stock mínimo";
+            Alerta alerta = new Alerta(TIPO_STOCK_BAJO, mensaje, producto);
+            alertaRepository.save(alerta);
+
+            logger.info("{} ALERTA STOCK_BAJO creada | productoId={} | codigo={} | stockActual={} | stockMinimo={}",
+                    BIZ_TAG,
+                    producto.getId(),
+                    producto.getCodigo(),
+                    actual,
+                    minimo
+            );
+        }
+    }
+
+    @Override
     public List<Alerta> obtenerAlertas() {
         return alertaRepository.findAll();
     }
