@@ -1,5 +1,6 @@
 package com.Proyecto.stoq.application.services;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -102,12 +103,6 @@ public class AlertaServiceImpl implements AlertaService {
         int actual = stockResultante != null ? stockResultante : 0;
         int minimo = producto.getStockMinimo() != null ? producto.getStockMinimo() : 0;
 
-        // Si antes ya estaba por debajo o en mínimo y sigue así, evitar duplicados
-        if (stockAnterior != null && stockAnterior <= minimo && actual <= minimo) {
-            logger.info("{} ALERTA omitida | productoId={} | codigo={} | ya crítico", BIZ_TAG, producto.getId(), producto.getCodigo());
-            return;
-        }
-
         // Priorizar alerta STOCK_CERO cuando el stock llega a 0
         if (actual == 0) {
             boolean existeCero = alertaRepository.existsByProductoIdAndTipoAndLeidaFalse(producto.getId(), "STOCK_CERO");
@@ -121,6 +116,12 @@ public class AlertaServiceImpl implements AlertaService {
             alertaRepository.save(alerta);
 
             logger.info("{} ALERTA STOCK_CERO creada | productoId={} | codigo={} | stockActual=0", BIZ_TAG, producto.getId(), producto.getCodigo());
+            return;
+        }
+
+        // Si antes ya estaba por debajo o en mínimo y sigue así, evitar duplicados
+        if (stockAnterior != null && stockAnterior <= minimo && actual <= minimo) {
+            logger.info("{} ALERTA omitida | productoId={} | codigo={} | ya crítico", BIZ_TAG, producto.getId(), producto.getCodigo());
             return;
         }
 
@@ -154,6 +155,9 @@ public class AlertaServiceImpl implements AlertaService {
     @Override
     public AlertasResumenDTO obtenerResumen() {
         List<Producto> productos = productoRepository.findAll();
+        if (productos == null) {
+            productos = Collections.emptyList();
+        }
 
         long productosCriticos = productos.stream()
         .filter(producto -> Boolean.TRUE.equals(producto.getEstado()))
@@ -165,7 +169,8 @@ public class AlertaServiceImpl implements AlertaService {
         .count();
 
         long notificacionesSinLeer = alertaRepository.countByLeidaFalse();
-        long totalAlertas = alertaRepository.findAll().size();
+        List<Alerta> alertas = alertaRepository.findAll();
+        long totalAlertas = alertas != null ? alertas.size() : 0L;
 
         return new AlertasResumenDTO(
                 productosCriticos,

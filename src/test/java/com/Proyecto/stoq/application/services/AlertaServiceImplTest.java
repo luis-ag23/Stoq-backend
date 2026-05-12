@@ -5,13 +5,16 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.UUID;
+import java.util.List;
 
 import com.Proyecto.stoq.domain.model.Alerta;
 import com.Proyecto.stoq.domain.model.Producto;
 import com.Proyecto.stoq.domain.ports.AlertaRepositoryPort;
 import com.Proyecto.stoq.domain.ports.ProductosRepositoryPort;
+import com.Proyecto.stoq.dto.AlertasResumenDTO;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -102,5 +105,18 @@ public class AlertaServiceImplTest {
         alertaService.verificarCambioStock(p, 6, 4);
 
         verify(alertaRepository, never()).save(any());
+    }
+
+    @Test
+    public void resumenDevuelveCerosCuandoNoHayDatos() {
+        doReturn(List.of()).when(productoRepository).findAll();
+        doReturn(List.of()).when(alertaRepository).findAll();
+        doReturn(0L).when(alertaRepository).countByLeidaFalse();
+
+        AlertasResumenDTO resumen = alertaService.obtenerResumen();
+
+        assertEquals(0L, resumen.productosCriticos());
+        assertEquals(0L, resumen.notificacionesSinLeer());
+        assertEquals(0L, resumen.totalAlertas());
     }
 }
