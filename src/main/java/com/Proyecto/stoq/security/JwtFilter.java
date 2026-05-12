@@ -8,6 +8,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.Proyecto.stoq.security.RoleCatalog;
 import com.Proyecto.stoq.infrastructure.persistence.repositories.UsuarioRepository;
@@ -22,6 +24,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
     private final UsuarioRepository usuarioRepository;
+    private static final Logger logger = LoggerFactory.getLogger(JwtFilter.class);
 
     public JwtFilter(JwtService jwtService, UsuarioRepository usuarioRepository){
         this.jwtService = jwtService;
@@ -36,15 +39,17 @@ public class JwtFilter extends OncePerRequestFilter {
 
         String authHeader = request.getHeader("Authorization");
 
-        if(authHeader == null || !authHeader.startsWith("Bearer ")){
-            filterChain.doFilter(request,response);
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            logger.debug("No Authorization header present or not Bearer - path={}", request.getRequestURI());
+            filterChain.doFilter(request, response);
             return;
         }
 
         String token = authHeader.substring(7);
 
-        if(!jwtService.isTokenValid(token)){
-            filterChain.doFilter(request,response);
+        if (!jwtService.isTokenValid(token)) {
+            logger.warn("Invalid JWT token for request {}", request.getRequestURI());
+            filterChain.doFilter(request, response);
             return;
         }
 
@@ -53,6 +58,8 @@ public class JwtFilter extends OncePerRequestFilter {
             .map(usuario -> usuario.getRol() != null ? usuario.getRol().getNombre() : null)
             .map(RoleCatalog::normalize)
             .orElse(null);
+
+        logger.info("Authenticated request for email={} role={} path={}", email, rol, request.getRequestURI());
 
         List<SimpleGrantedAuthority> authorities = rol == null
             ? List.of()

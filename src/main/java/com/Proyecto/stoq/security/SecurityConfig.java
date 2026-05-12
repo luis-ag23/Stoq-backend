@@ -45,10 +45,13 @@ public class SecurityConfig {
                 .requestMatchers("/api/usuarios/**").hasRole("ADMIN")
 
                 .requestMatchers(HttpMethod.GET,
-                        "/api/productos/**",
+                        "/api/productos/**"
+                ).authenticated()
+
+                .requestMatchers(HttpMethod.GET,
                         "/api/categorias/**",
                         "/api/unidades/**"
-                ).authenticated()
+                ).permitAll()
 
                 .requestMatchers(HttpMethod.POST, "/api/productos/**")
                     .hasAnyRole("ADMIN", "OPERADOR","GERENTE")
@@ -122,7 +125,8 @@ public class SecurityConfig {
 
         config.setAllowedHeaders(List.of("*"));
         config.setExposedHeaders(List.of("Authorization"));
-        config.setAllowCredentials(false);
+        // Allow credentials so browsers can send Authorization header reliably
+        config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
