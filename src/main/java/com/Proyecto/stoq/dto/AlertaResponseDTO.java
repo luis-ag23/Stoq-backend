@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import com.Proyecto.stoq.domain.model.Alerta;
+import com.Proyecto.stoq.domain.model.Producto;
 
 public record AlertaResponseDTO(
         UUID id,
@@ -20,7 +21,29 @@ public record AlertaResponseDTO(
         Integer diferencia
 ) {
     public static AlertaResponseDTO fromEntity(Alerta alerta) {
-        var producto = alerta.getProducto();
+        if (alerta == null) {
+            return new AlertaResponseDTO(
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            );
+        }
+
+        Producto producto = alerta.getProducto();
+        Integer stockActual = producto != null ? producto.getStockActual() : null;
+        Integer stockMinimo = producto != null ? producto.getStockMinimo() : null;
+        Integer diferencia = (stockActual != null && stockMinimo != null)
+            ? stockActual - stockMinimo
+            : null;
 
         return new AlertaResponseDTO(
                 alerta.getId(),
@@ -28,13 +51,13 @@ public record AlertaResponseDTO(
                 alerta.getMensaje(),
                 alerta.getFecha(),
                 alerta.getLeida(),
-                producto.getId(),
-                producto.getCodigo(),
-                producto.getNombre(),
-                producto.getCategoria() != null ? producto.getCategoria().getNombre() : null,
-                producto.getStockActual(),
-                producto.getStockMinimo(),
-                producto.getStockActual() - producto.getStockMinimo()
+            producto != null ? producto.getId() : null,
+            producto != null ? producto.getCodigo() : null,
+            producto != null ? producto.getNombre() : null,
+            producto != null && producto.getCategoria() != null ? producto.getCategoria().getNombre() : null,
+            stockActual,
+            stockMinimo,
+            diferencia
         );
     }
 }
