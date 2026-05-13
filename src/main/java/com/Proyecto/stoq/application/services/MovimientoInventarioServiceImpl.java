@@ -65,6 +65,12 @@ public class MovimientoInventarioServiceImpl implements MovimientoInventarioServ
         Usuario usuario = usuarioRepository.findByCorreo(correoUsuario)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
+        String empresaUsuario = usuario.getEmpresa() != null ? usuario.getEmpresa().trim() : null;
+        String empresaProducto = producto.getEmpresa() != null ? producto.getEmpresa().trim() : null;
+        if (empresaUsuario == null || empresaProducto == null || !empresaUsuario.equalsIgnoreCase(empresaProducto)) {
+            throw new RuntimeException("Producto no encontrado");
+        }
+
         String tipoMovimiento = RoleCatalog.normalize(dto.tipoMovimiento());
         if (!"ENTRADA".equals(tipoMovimiento) && !"SALIDA".equals(tipoMovimiento)) {
             throw new RuntimeException("Tipo de movimiento no valido");

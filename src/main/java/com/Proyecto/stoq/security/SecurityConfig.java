@@ -91,10 +91,10 @@ public class SecurityConfig {
                     .hasAnyRole("ADMIN", "GERENTE")
 
                 .requestMatchers(HttpMethod.GET, "/api/alertas/**")
-                    .hasRole("GERENTE")
+                    .hasAnyRole("ADMIN", "GERENTE")
 
                 .requestMatchers(HttpMethod.PUT, "/api/alertas/**")
-                    .hasRole("GERENTE")
+                    .hasAnyRole("ADMIN", "GERENTE")
     
 
                 .anyRequest().authenticated()

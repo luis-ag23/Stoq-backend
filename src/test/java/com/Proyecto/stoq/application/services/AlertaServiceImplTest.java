@@ -10,8 +10,14 @@ import java.util.UUID;
 
 import com.Proyecto.stoq.domain.model.Alerta;
 import com.Proyecto.stoq.domain.model.Producto;
+import com.Proyecto.stoq.domain.model.Usuario;
 import com.Proyecto.stoq.domain.ports.AlertaRepositoryPort;
 import com.Proyecto.stoq.domain.ports.ProductosRepositoryPort;
+<<<<<<< Updated upstream
+=======
+import com.Proyecto.stoq.domain.ports.UsuarioRepositoryPort;
+import com.Proyecto.stoq.dto.AlertasResumenDTO;
+>>>>>>> Stashed changes
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,12 +33,15 @@ public class AlertaServiceImplTest {
     @Mock
     private ProductosRepositoryPort productoRepository;
 
+    @Mock
+    private UsuarioRepositoryPort usuarioRepository;
+
     private AlertaServiceImpl alertaService;
 
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
-        alertaService = new AlertaServiceImpl(alertaRepository, productoRepository);
+        alertaService = new AlertaServiceImpl(alertaRepository, productoRepository, usuarioRepository);
     }
 
     @Test
