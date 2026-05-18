@@ -43,6 +43,8 @@ dependencies {
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	runtimeOnly("org.postgresql:postgresql:42.7.3")
 	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.apache.poi:poi-ooxml:5.4.1")
+	implementation("org.apache.pdfbox:pdfbox:3.0.3")
 
 	implementation("io.jsonwebtoken:jjwt-api:0.12.5")
 	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.5")

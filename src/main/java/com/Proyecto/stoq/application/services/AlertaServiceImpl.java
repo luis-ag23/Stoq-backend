@@ -1,5 +1,6 @@
 package com.Proyecto.stoq.application.services;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -109,8 +110,9 @@ public class AlertaServiceImpl implements AlertaService {
         int actual = stockResultante != null ? stockResultante : 0;
         int minimo = producto.getStockMinimo() != null ? producto.getStockMinimo() : 0;
 
-        // Si antes ya estaba por debajo o en mínimo y sigue así, evitar duplicados
-        if (stockAnterior != null && stockAnterior <= minimo && actual <= minimo) {
+        // Si antes ya estaba por debajo o en mínimo y sigue así, evitar duplicados,
+        // pero permitir el salto a stock cero para generar la alerta prioritaria.
+        if (actual != 0 && stockAnterior != null && stockAnterior <= minimo && actual <= minimo) {
             logger.info("{} ALERTA omitida | productoId={} | codigo={} | ya crítico", BIZ_TAG, producto.getId(), producto.getCodigo());
             return;
         }
@@ -184,10 +186,6 @@ public class AlertaServiceImpl implements AlertaService {
         })
         .count();
 
-<<<<<<< Updated upstream
-        long notificacionesSinLeer = alertaRepository.countByLeidaFalse();
-        long totalAlertas = alertaRepository.findAll().size();
-=======
         long notificacionesSinLeer = alertaRepository.findAll().stream()
                 .filter(alerta -> perteneceAEmpresa(alerta, empresa))
                 .filter(alerta -> Boolean.FALSE.equals(alerta.getLeida()))
@@ -196,7 +194,6 @@ public class AlertaServiceImpl implements AlertaService {
                 .filter(alerta -> perteneceAEmpresa(alerta, empresa))
                 .toList();
         long totalAlertas = alertas != null ? alertas.size() : 0L;
->>>>>>> Stashed changes
 
         return new AlertasResumenDTO(
                 productosCriticos,

@@ -13,11 +13,8 @@ import com.Proyecto.stoq.domain.model.Producto;
 import com.Proyecto.stoq.domain.model.Usuario;
 import com.Proyecto.stoq.domain.ports.AlertaRepositoryPort;
 import com.Proyecto.stoq.domain.ports.ProductosRepositoryPort;
-<<<<<<< Updated upstream
-=======
 import com.Proyecto.stoq.domain.ports.UsuarioRepositoryPort;
 import com.Proyecto.stoq.dto.AlertasResumenDTO;
->>>>>>> Stashed changes
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
