@@ -34,6 +34,19 @@ public interface MovimientoInventarioRepository extends JpaRepository<Movimiento
         );
 
         @Query("""
+            select count(m)
+            from Movimiento_Inventario m
+            join m.producto p
+            where p.empresa = :empresa
+                and m.fechaMovimiento between :inicio and :fin
+        """)
+        Long contarMovimientosPorEmpresa(
+                @Param("empresa") String empresa,
+                @Param("inicio") LocalDateTime inicio,
+                @Param("fin") LocalDateTime fin
+        );
+
+        @Query("""
                 select new com.Proyecto.stoq.dto.ReporteMovimientoTotalesDTO(
                         coalesce(sum(case when upper(m.tipoMovimiento) = 'ENTRADA' then 1 else 0 end), cast(0 as long)),
                         coalesce(sum(case when upper(m.tipoMovimiento) = 'SALIDA' then 1 else 0 end), cast(0 as long)),

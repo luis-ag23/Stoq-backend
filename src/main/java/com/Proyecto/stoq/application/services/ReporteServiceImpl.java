@@ -169,6 +169,11 @@ public class ReporteServiceImpl implements ReporteService {
                 .map(MovimientoInventarioResponseDTO::fromEntity)
                 .toList();
 
+        long movimientosTotales = safeLong(movimientoInventarioRepository.contarMovimientosPorEmpresa(
+            contexto.empresa(),
+            contexto.inicioDateTime(),
+            contexto.finDateTime()
+        ));
         long entradasMovimientos = safeLong(totalesMovimientos.entradasMovimientos());
         long salidasMovimientos = safeLong(totalesMovimientos.salidasMovimientos());
         long entradasCantidad = safeLong(totalesMovimientos.entradasCantidad());
@@ -181,7 +186,7 @@ public class ReporteServiceImpl implements ReporteService {
                 productosRepository.countByEmpresaAndEstadoTrue(contexto.empresa()),
                 productosRepository.contarProductosBajoStock(contexto.empresa()),
                 resultado.totalCategorias(),
-                entradasMovimientos + salidasMovimientos,
+                movimientosTotales,
                 entradasCantidad + salidasCantidad,
                 entradasMovimientos,
                 salidasMovimientos,
