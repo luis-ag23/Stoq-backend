@@ -78,12 +78,13 @@ public class ReporteServiceImpl implements ReporteService {
         LocalDateTime inicioDateTime = fechaInicio.atStartOfDay();
         LocalDateTime finDateTime = fechaFin.atTime(LocalTime.MAX);
 
-        List<ReporteCategoriaResumenDTO> resumenProductos = productosRepository.obtenerResumenCategorias(empresa);
-        List<ReporteCategoriaResumenDTO> resumenMovimientos = movimientoInventarioRepository.obtenerResumenMovimientosPorCategoria(
+        List<ReporteCategoriaResumenDTO> resumenProductos = java.util.Optional.ofNullable(productosRepository.obtenerResumenCategorias(empresa))
+            .orElse(List.of());
+        List<ReporteCategoriaResumenDTO> resumenMovimientos = java.util.Optional.ofNullable(movimientoInventarioRepository.obtenerResumenMovimientosPorCategoria(
                 empresa,
                 inicioDateTime,
                 finDateTime
-        );
+        )).orElse(List.of());
 
         Map<UUID, CategoriaReporteBuilder> resumenPorCategoria = new LinkedHashMap<>();
 
@@ -395,12 +396,13 @@ public class ReporteServiceImpl implements ReporteService {
         LocalDateTime inicioDateTime = contexto.inicioDateTime();
         LocalDateTime finDateTime = contexto.finDateTime();
 
-        List<ReporteCategoriaResumenDTO> resumenProductos = productosRepository.obtenerResumenCategorias(contexto.empresa());
-        List<ReporteCategoriaResumenDTO> resumenMovimientos = movimientoInventarioRepository.obtenerResumenMovimientosPorCategoria(
+        List<ReporteCategoriaResumenDTO> resumenProductos = java.util.Optional.ofNullable(productosRepository.obtenerResumenCategorias(contexto.empresa()))
+            .orElse(List.of());
+        List<ReporteCategoriaResumenDTO> resumenMovimientos = java.util.Optional.ofNullable(movimientoInventarioRepository.obtenerResumenMovimientosPorCategoria(
                 contexto.empresa(),
                 inicioDateTime,
                 finDateTime
-        );
+        )).orElse(List.of());
 
         Map<UUID, CategoriaReporteBuilder> resumenPorCategoria = new LinkedHashMap<>();
 

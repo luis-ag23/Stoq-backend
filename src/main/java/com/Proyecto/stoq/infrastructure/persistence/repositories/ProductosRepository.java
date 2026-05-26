@@ -31,14 +31,14 @@ public interface ProductosRepository extends JpaRepository<Producto, UUID> {
             c.id,
             c.nombre,
             count(p),
-            coalesce(sum(coalesce(p.stockActual, 0)), cast(0 as long)),
-            coalesce(sum(coalesce(p.stockMinimo, 0)), cast(0 as long)),
-            cast(0 as long),
-            cast(0 as long),
-            cast(0 as long),
-            cast(0 as long),
-            cast(0 as long),
-            cast(0 as long)
+            coalesce(sum(p.stockActual), 0),
+            coalesce(sum(p.stockMinimo), 0),
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
         )
         from Producto p
         join p.categoria c

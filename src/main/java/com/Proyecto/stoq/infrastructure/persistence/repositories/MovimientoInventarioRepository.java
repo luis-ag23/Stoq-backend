@@ -48,10 +48,10 @@ public interface MovimientoInventarioRepository extends JpaRepository<Movimiento
 
         @Query("""
                 select new com.Proyecto.stoq.dto.ReporteMovimientoTotalesDTO(
-                        coalesce(sum(case when upper(m.tipoMovimiento) = 'ENTRADA' then 1 else 0 end), cast(0 as long)),
-                        coalesce(sum(case when upper(m.tipoMovimiento) = 'SALIDA' then 1 else 0 end), cast(0 as long)),
-                        coalesce(sum(case when upper(m.tipoMovimiento) = 'ENTRADA' then m.cantidad else 0 end), cast(0 as long)),
-                        coalesce(sum(case when upper(m.tipoMovimiento) = 'SALIDA' then m.cantidad else 0 end), cast(0 as long))
+                    coalesce(sum(case when upper(m.tipoMovimiento) = 'ENTRADA' then 1 else 0 end), 0),
+                    coalesce(sum(case when upper(m.tipoMovimiento) = 'SALIDA' then 1 else 0 end), 0),
+                    coalesce(sum(case when upper(m.tipoMovimiento) = 'ENTRADA' then m.cantidad else 0 end), 0),
+                    coalesce(sum(case when upper(m.tipoMovimiento) = 'SALIDA' then m.cantidad else 0 end), 0)
                 )
                 from Movimiento_Inventario m
                 join m.producto p
@@ -68,15 +68,15 @@ public interface MovimientoInventarioRepository extends JpaRepository<Movimiento
         select new com.Proyecto.stoq.dto.ReporteCategoriaResumenDTO(
             c.id,
             c.nombre,
-            cast(0 as long),
-            cast(0 as long),
-            cast(0 as long),
+            0,
+            0,
+            0,
             count(m),
-            coalesce(sum(m.cantidad), cast(0 as long)),
-            coalesce(sum(case when upper(m.tipoMovimiento) = 'ENTRADA' then 1 else 0 end), cast(0 as long)),
-            coalesce(sum(case when upper(m.tipoMovimiento) = 'SALIDA' then 1 else 0 end), cast(0 as long)),
-            coalesce(sum(case when upper(m.tipoMovimiento) = 'ENTRADA' then m.cantidad else 0 end), cast(0 as long)),
-            coalesce(sum(case when upper(m.tipoMovimiento) = 'SALIDA' then m.cantidad else 0 end), cast(0 as long))
+            coalesce(sum(m.cantidad), 0),
+            coalesce(sum(case when upper(m.tipoMovimiento) = 'ENTRADA' then 1 else 0 end), 0),
+            coalesce(sum(case when upper(m.tipoMovimiento) = 'SALIDA' then 1 else 0 end), 0),
+            coalesce(sum(case when upper(m.tipoMovimiento) = 'ENTRADA' then m.cantidad else 0 end), 0),
+            coalesce(sum(case when upper(m.tipoMovimiento) = 'SALIDA' then m.cantidad else 0 end), 0)
         )
         from Movimiento_Inventario m
         join m.producto p

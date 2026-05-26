@@ -218,6 +218,15 @@ Qué hace la migración:
 
 ./gradlew build
 
+## Variables de entorno para despliegue
+
+En Render conviene definir estas variables para no dejar credenciales ni el secreto JWT embebidos en el build:
+
+- `STOQ_DB_URL`
+- `STOQ_DB_USERNAME`
+- `STOQ_DB_PASSWORD`
+- `STOQ_JWT_SECRET`
+
 ## Pruebas unitarias
 
 ./gradlew test

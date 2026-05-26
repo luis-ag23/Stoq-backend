@@ -58,11 +58,15 @@ public class JwtFilter extends OncePerRequestFilter {
             .map(RoleCatalog::normalize)
             .orElse(null);
 
+        if (rol == null) {
+            logger.warn("JWT valido sin usuario o rol resoluble - path={} email={}", request.getRequestURI(), email);
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         logger.info("Authenticated request for email={} role={} path={}", email, rol, request.getRequestURI());
 
-        List<SimpleGrantedAuthority> authorities = rol == null
-            ? List.of()
-            : List.of(new SimpleGrantedAuthority("ROLE_" + rol));
+        List<SimpleGrantedAuthority> authorities = List.of(new SimpleGrantedAuthority("ROLE_" + rol));
 
         UsernamePasswordAuthenticationToken auth =
             new UsernamePasswordAuthenticationToken(
