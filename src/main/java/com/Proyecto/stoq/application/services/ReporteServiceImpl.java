@@ -201,22 +201,58 @@ public class ReporteServiceImpl implements ReporteService {
     @Transactional(readOnly = true)
     public byte[] exportarReportePdf(LocalDate inicio, LocalDate fin) {
         ReporteDashboardResponseDTO dashboard = obtenerDashboard(inicio, fin);
-
+        // Improved PDF layout: centered title, metadata block, KPI section and top categories list.
         try (PDDocument document = new PDDocument(); ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
             PDPage page = new PDPage();
             document.addPage(page);
 
+            float margin = 50f;
+            float yStart = page.getMediaBox().getHeight() - margin;
+            float width = page.getMediaBox().getWidth();
+
             try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
+                // obtain fonts compatible with PDFBox 3 by constructing PDType1Font instances
+                org.apache.pdfbox.pdmodel.font.PDFont fontBold = new PDType1Font(Standard14Fonts.FontName.HELVETICA_BOLD);
+                org.apache.pdfbox.pdmodel.font.PDFont fontRegular = new PDType1Font(Standard14Fonts.FontName.HELVETICA);
+
+                // Title
+                String title = "Reporte estadístico";
+                int titleFontSize = 18;
+                float titleWidth = fontBold.getStringWidth(title) / 1000 * titleFontSize;
+                float titleX = (width - titleWidth) / 2f;
                 contentStream.beginText();
-                contentStream.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA_BOLD), 16);
-                contentStream.newLineAtOffset(50, 750);
-                contentStream.showText("Reporte estadistico");
-                contentStream.newLineAtOffset(0, -22);
-                contentStream.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA), 10);
-                contentStream.showText("Rango: " + dashboard.inicio() + " al " + dashboard.fin());
-                contentStream.newLineAtOffset(0, -16);
+                contentStream.setFont(fontBold, titleFontSize);
+                contentStream.newLineAtOffset(titleX, yStart);
+                contentStream.showText(title);
+                contentStream.endText();
+
+                float cursorY = yStart - titleFontSize - 12;
+
+                // Metadata
+                contentStream.beginText();
+                contentStream.setFont(fontRegular, 11);
+                contentStream.newLineAtOffset(margin, cursorY);
+                contentStream.showText("Rango: " + dashboard.inicio() + " — " + dashboard.fin());
+                contentStream.newLineAtOffset(0, -14);
                 contentStream.showText("Empresa: " + valorOpcion(dashboard.empresa()));
-                contentStream.newLineAtOffset(0, -16);
+                contentStream.newLineAtOffset(0, -14);
+                contentStream.showText("Generado: " + LocalDateTime.now().toString());
+                contentStream.endText();
+
+                cursorY -= 14 * 3 + 8;
+
+                // KPIs box
+                contentStream.beginText();
+                contentStream.setFont(fontBold, 12);
+                contentStream.newLineAtOffset(margin, cursorY);
+                contentStream.showText("Resumen");
+                contentStream.endText();
+
+                cursorY -= 16;
+
+                contentStream.beginText();
+                contentStream.setFont(fontRegular, 11);
+                contentStream.newLineAtOffset(margin, cursorY);
                 contentStream.showText("Total productos: " + dashboard.totalProductos());
                 contentStream.newLineAtOffset(0, -14);
                 contentStream.showText("Productos bajo stock: " + dashboard.productosBajoStock());
@@ -224,21 +260,51 @@ public class ReporteServiceImpl implements ReporteService {
                 contentStream.showText("Movimientos totales: " + dashboard.movimientosTotales());
                 contentStream.newLineAtOffset(0, -14);
                 contentStream.showText("Cantidad movida: " + dashboard.cantidadMovidaTotal());
-                contentStream.newLineAtOffset(0, -22);
-                contentStream.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA_BOLD), 12);
-                contentStream.showText("Top categorias por movimientos");
-                contentStream.newLineAtOffset(0, -16);
-                contentStream.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA), 10);
+                contentStream.endText();
 
-                for (ReporteCategoriaResumenDTO categoria : dashboard.categorias().stream().limit(8).toList()) {
+                cursorY -= 14 * 5 + 8;
+
+                // Top categories header
+                contentStream.beginText();
+                contentStream.setFont(fontBold, 12);
+                contentStream.newLineAtOffset(margin, cursorY);
+                contentStream.showText("Top categorías por movimientos");
+                contentStream.endText();
+
+                cursorY -= 16;
+
+                // List top categories as table-like lines
+                contentStream.setFont(fontRegular, 11);
+                for (ReporteCategoriaResumenDTO categoria : dashboard.categorias().stream().limit(20).toList()) {
+                    if (cursorY < margin + 60) {
+                        // new page
+                        contentStream.close();
+                        page = new PDPage();
+                        document.addPage(page);
+                        cursorY = page.getMediaBox().getHeight() - margin;
+                        try (PDPageContentStream cs2 = new PDPageContentStream(document, page)) {
+                            cs2.beginText();
+                            cs2.setFont(fontRegular, 11);
+                            cs2.newLineAtOffset(margin, cursorY);
+                            cs2.showText(String.format("- %s | movimientos: %d | cantidad: %d",
+                                    valorOpcion(categoria.categoriaNombre()),
+                                    safeLong(categoria.movimientosTotales()),
+                                    safeLong(categoria.cantidadMovidaTotal())));
+                            cs2.endText();
+                        }
+                        cursorY -= 14;
+                        continue;
+                    }
+
+                    contentStream.beginText();
+                    contentStream.newLineAtOffset(margin, cursorY);
                     contentStream.showText(String.format("- %s | movimientos: %d | cantidad: %d",
                             valorOpcion(categoria.categoriaNombre()),
                             safeLong(categoria.movimientosTotales()),
                             safeLong(categoria.cantidadMovidaTotal())));
-                    contentStream.newLineAtOffset(0, -12);
+                    contentStream.endText();
+                    cursorY -= 14;
                 }
-
-                contentStream.endText();
             }
 
             document.save(outputStream);
@@ -255,14 +321,42 @@ public class ReporteServiceImpl implements ReporteService {
 
         try (Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
             CellStyle encabezado = crearEstiloEncabezado(workbook);
+            CellStyle headerTextStyle = crearHeaderTextStyle(workbook);
             crearHojaResumen(workbook, dashboard, encabezado);
-            crearHojaCategorias(workbook, dashboard, encabezado);
-            crearHojaMovimientos(workbook, dashboard, encabezado);
+            crearHojaCategorias(workbook, dashboard, encabezado, headerTextStyle);
+            crearHojaMovimientos(workbook, dashboard, encabezado, headerTextStyle);
             workbook.write(outputStream);
             return outputStream.toByteArray();
         } catch (IOException exception) {
             throw new IllegalStateException("No fue posible generar el Excel del reporte", exception);
         }
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public byte[] exportarReporteCsv(LocalDate inicio, LocalDate fin) {
+        ReporteDashboardResponseDTO dashboard = obtenerDashboard(inicio, fin);
+        StringBuilder sb = new StringBuilder();
+        // Header info
+        sb.append("Reporte estadistico\n");
+        sb.append(String.format("Rango:, %s — %s\n", dashboard.inicio(), dashboard.fin()));
+        sb.append(String.format("Empresa:, %s\n", valorOpcion(dashboard.empresa())));
+        sb.append(String.format("Total productos:, %d\n", dashboard.totalProductos()));
+        sb.append(String.format("Productos bajo stock:, %d\n", dashboard.productosBajoStock()));
+        sb.append(String.format("Movimientos totales:, %d\n", dashboard.movimientosTotales()));
+        sb.append(String.format("Cantidad movida:, %d\n", dashboard.cantidadMovidaTotal()));
+        sb.append("\n");
+
+        sb.append("Top categorias por movimientos\n");
+        sb.append("Categoria,Movimientos,Cantidad\n");
+        for (ReporteCategoriaResumenDTO categoria : dashboard.categorias()) {
+            sb.append(String.format("%s,%d,%d\n",
+                    csvSafe(valorOpcion(categoria.categoriaNombre())),
+                    safeLong(categoria.movimientosTotales()),
+                    safeLong(categoria.cantidadMovidaTotal())));
+        }
+
+        return sb.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8);
     }
 
     private String obtenerEmpresaAutenticada() {
@@ -377,7 +471,7 @@ public class ReporteServiceImpl implements ReporteService {
         ajustarEncabezados(sheet, 2);
     }
 
-    private void crearHojaCategorias(Workbook workbook, ReporteDashboardResponseDTO dashboard, CellStyle encabezado) {
+    private void crearHojaCategorias(Workbook workbook, ReporteDashboardResponseDTO dashboard, CellStyle encabezado, CellStyle headerTextStyle) {
         Sheet sheet = workbook.createSheet("Categorias");
         Row header = sheet.createRow(0);
         crearCelda(header, 0, "Categoria", encabezado);
@@ -396,10 +490,15 @@ public class ReporteServiceImpl implements ReporteService {
             row.createCell(4).setCellValue(safeLong(categoria.cantidadMovidaTotal()));
         }
 
+        // apply header text style to header row cells
+        for (Cell cell : header) {
+            cell.setCellStyle(headerTextStyle);
+        }
+
         ajustarEncabezados(sheet, 5);
     }
 
-    private void crearHojaMovimientos(Workbook workbook, ReporteDashboardResponseDTO dashboard, CellStyle encabezado) {
+    private void crearHojaMovimientos(Workbook workbook, ReporteDashboardResponseDTO dashboard, CellStyle encabezado, CellStyle headerTextStyle) {
         Sheet sheet = workbook.createSheet("Movimientos");
         Row header = sheet.createRow(0);
         crearCelda(header, 0, "Fecha", encabezado);
@@ -418,7 +517,32 @@ public class ReporteServiceImpl implements ReporteService {
             row.createCell(4).setCellValue(valorOpcion(movimiento.motivo()));
         }
 
+        for (Cell cell : header) {
+            cell.setCellStyle(headerTextStyle);
+        }
+
         ajustarEncabezados(sheet, 5);
+    }
+
+    private CellStyle crearHeaderTextStyle(Workbook workbook) {
+        CellStyle estilo = workbook.createCellStyle();
+        org.apache.poi.ss.usermodel.Font font = workbook.createFont();
+        font.setBold(true);
+        font.setColor(IndexedColors.WHITE.getIndex());
+        estilo.setFont(font);
+        estilo.setFillForegroundColor(IndexedColors.DARK_TEAL.getIndex());
+        estilo.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        estilo.setAlignment(HorizontalAlignment.CENTER);
+        return estilo;
+    }
+
+    private String csvSafe(String value) {
+        if (value == null) return "";
+        String escaped = value.replace("\"", "\"\"");
+        if (escaped.contains(",") || escaped.contains("\n") || escaped.contains("\"")) {
+            return "\"" + escaped + "\"";
+        }
+        return escaped;
     }
 
     private int escribirFila(Sheet sheet, int rowIndex, String etiqueta, String valor) {

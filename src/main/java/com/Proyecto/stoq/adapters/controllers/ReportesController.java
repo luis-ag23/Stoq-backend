@@ -76,4 +76,19 @@ public class ReportesController {
             .contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
             .body(contenido);
         }
+
+        @GetMapping(value = "/export/csv", produces = "text/csv")
+        public ResponseEntity<byte[]> exportarCsv(
+            @RequestParam(required = false)
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate inicio,
+            @RequestParam(required = false)
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fin
+        ) {
+        byte[] contenido = reporteService.exportarReporteCsv(inicio, fin);
+
+        return ResponseEntity.ok()
+            .header(HttpHeaders.CONTENT_DISPOSITION, ContentDisposition.attachment().filename("reporte-estadisticas.csv").build().toString())
+            .contentType(MediaType.parseMediaType("text/csv; charset=utf-8"))
+            .body(contenido);
+        }
 }

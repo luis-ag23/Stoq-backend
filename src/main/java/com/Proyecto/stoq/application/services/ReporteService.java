@@ -14,4 +14,6 @@ public interface ReporteService {
     byte[] exportarReportePdf(LocalDate inicio, LocalDate fin);
 
     byte[] exportarReporteExcel(LocalDate inicio, LocalDate fin);
+    
+    byte[] exportarReporteCsv(LocalDate inicio, LocalDate fin);
 }
