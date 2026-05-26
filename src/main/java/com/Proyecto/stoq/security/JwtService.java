@@ -1,7 +1,9 @@
 package com.Proyecto.stoq.security;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Claims;
@@ -11,8 +13,14 @@ import io.jsonwebtoken.security.Keys;
 @Service
 public class JwtService {
 
-    private static final String SECRET =
-            "mi_clave_super_secreta_muy_larga_para_jwt_123456";
+    private final byte[] secretKey;
+
+    public JwtService(@Value("${STOQ_JWT_SECRET}") String secret) {
+        if (secret == null || secret.trim().length() < 32) {
+            throw new IllegalStateException("STOQ_JWT_SECRET must be at least 32 characters long");
+        }
+        this.secretKey = secret.getBytes(StandardCharsets.UTF_8);
+    }
 
     public String generateToken(String email){
 
@@ -20,7 +28,7 @@ public class JwtService {
                 .subject(email)
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + 86400000))
-                .signWith(Keys.hmacShaKeyFor(SECRET.getBytes()))
+            .signWith(Keys.hmacShaKeyFor(secretKey))
                 .compact();
     }
 
@@ -41,7 +49,7 @@ public class JwtService {
     private Claims extractClaims(String token){
 
         return Jwts.parser()
-                .verifyWith(Keys.hmacShaKeyFor(SECRET.getBytes()))
+            .verifyWith(Keys.hmacShaKeyFor(secretKey))
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();
