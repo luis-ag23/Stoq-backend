@@ -1,14 +1,14 @@
 package com.Proyecto.stoq.infrastructure.persistence.repositories;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.Proyecto.stoq.domain.model.Producto;
 import com.Proyecto.stoq.dto.ReporteCategoriaResumenDTO;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 public interface ProductosRepository extends JpaRepository<Producto, UUID> {
     Optional<Producto> findByNombre(String nombre);
@@ -31,14 +31,14 @@ public interface ProductosRepository extends JpaRepository<Producto, UUID> {
             c.id,
             c.nombre,
             count(p),
-            coalesce(sum(p.stockActual), 0),
-            coalesce(sum(p.stockMinimo), 0),
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
+            coalesce(sum(p.stockActual), 0L),
+            coalesce(sum(p.stockMinimo), 0L),
+            0L,
+            0L,
+            0L,
+            0L,
+            0L,
+            0L
         )
         from Producto p
         join p.categoria c

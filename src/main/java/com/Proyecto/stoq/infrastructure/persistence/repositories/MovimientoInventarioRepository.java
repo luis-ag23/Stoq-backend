@@ -68,15 +68,15 @@ public interface MovimientoInventarioRepository extends JpaRepository<Movimiento
         select new com.Proyecto.stoq.dto.ReporteCategoriaResumenDTO(
             c.id,
             c.nombre,
-            0,
-            0,
-            0,
+            0L,
+            0L,
+            0L,
             count(m),
-            coalesce(sum(m.cantidad), 0),
-            coalesce(sum(case when upper(m.tipoMovimiento) = 'ENTRADA' then 1 else 0 end), 0),
-            coalesce(sum(case when upper(m.tipoMovimiento) = 'SALIDA' then 1 else 0 end), 0),
-            coalesce(sum(case when upper(m.tipoMovimiento) = 'ENTRADA' then m.cantidad else 0 end), 0),
-            coalesce(sum(case when upper(m.tipoMovimiento) = 'SALIDA' then m.cantidad else 0 end), 0)
+            coalesce(sum(m.cantidad), 0L),
+            coalesce(sum(case when upper(m.tipoMovimiento) = 'ENTRADA' then 1L else 0L end), 0L),
+            coalesce(sum(case when upper(m.tipoMovimiento) = 'SALIDA' then 1L else 0L end), 0L),
+            coalesce(sum(case when upper(m.tipoMovimiento) = 'ENTRADA' then m.cantidad else 0L end), 0L),
+            coalesce(sum(case when upper(m.tipoMovimiento) = 'SALIDA' then m.cantidad else 0L end), 0L)
         )
         from Movimiento_Inventario m
         join m.producto p
