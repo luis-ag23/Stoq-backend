@@ -15,6 +15,7 @@ import com.Proyecto.stoq.domain.model.Producto;
 import com.Proyecto.stoq.domain.ports.AlertaRepositoryPort;
 import com.Proyecto.stoq.domain.ports.ProductosRepositoryPort;
 import com.Proyecto.stoq.dto.AlertasResumenDTO;
+import com.Proyecto.stoq.domain.ports.UsuarioRepositoryPort;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,12 +31,15 @@ public class AlertaServiceImplTest {
     @Mock
     private ProductosRepositoryPort productoRepository;
 
+    @Mock
+    private UsuarioRepositoryPort usuarioRepository;
+
     private AlertaServiceImpl alertaService;
 
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
-        alertaService = new AlertaServiceImpl(alertaRepository, productoRepository);
+        alertaService = new AlertaServiceImpl(alertaRepository, productoRepository, usuarioRepository);
     }
 
     @Test

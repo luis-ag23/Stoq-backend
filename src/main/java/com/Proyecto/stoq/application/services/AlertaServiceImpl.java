@@ -6,13 +6,17 @@ import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.Proyecto.stoq.domain.model.Alerta;
 import com.Proyecto.stoq.domain.model.Producto;
+import com.Proyecto.stoq.domain.model.Usuario;
 import com.Proyecto.stoq.domain.ports.AlertaRepositoryPort;
 import com.Proyecto.stoq.domain.ports.ProductosRepositoryPort;
+import com.Proyecto.stoq.domain.ports.UsuarioRepositoryPort;
 import com.Proyecto.stoq.dto.AlertasResumenDTO;
 
 @Service
@@ -24,13 +28,16 @@ public class AlertaServiceImpl implements AlertaService {
 
     private final AlertaRepositoryPort alertaRepository;
     private final ProductosRepositoryPort productoRepository;
+    private final UsuarioRepositoryPort usuarioRepository;
 
     public AlertaServiceImpl(
             AlertaRepositoryPort alertaRepository,
-            ProductosRepositoryPort productoRepository
+            ProductosRepositoryPort productoRepository,
+            UsuarioRepositoryPort usuarioRepository
     ) {
         this.alertaRepository = alertaRepository;
         this.productoRepository = productoRepository;
+        this.usuarioRepository = usuarioRepository;
     }
 
     @Override
@@ -103,6 +110,13 @@ public class AlertaServiceImpl implements AlertaService {
         int actual = stockResultante != null ? stockResultante : 0;
         int minimo = producto.getStockMinimo() != null ? producto.getStockMinimo() : 0;
 
+        // Si antes ya estaba por debajo o en mínimo y sigue así, evitar duplicados,
+        // pero permitir el salto a stock cero para generar la alerta prioritaria.
+        if (actual != 0 && stockAnterior != null && stockAnterior <= minimo && actual <= minimo) {
+            logger.info("{} ALERTA omitida | productoId={} | codigo={} | ya crítico", BIZ_TAG, producto.getId(), producto.getCodigo());
+            return;
+        }
+
         // Priorizar alerta STOCK_CERO cuando el stock llega a 0
         if (actual == 0) {
             boolean existeCero = alertaRepository.existsByProductoIdAndTipoAndLeidaFalse(producto.getId(), "STOCK_CERO");
@@ -116,12 +130,6 @@ public class AlertaServiceImpl implements AlertaService {
             alertaRepository.save(alerta);
 
             logger.info("{} ALERTA STOCK_CERO creada | productoId={} | codigo={} | stockActual=0", BIZ_TAG, producto.getId(), producto.getCodigo());
-            return;
-        }
-
-        // Si antes ya estaba por debajo o en mínimo y sigue así, evitar duplicados
-        if (stockAnterior != null && stockAnterior <= minimo && actual <= minimo) {
-            logger.info("{} ALERTA omitida | productoId={} | codigo={} | ya crítico", BIZ_TAG, producto.getId(), producto.getCodigo());
             return;
         }
 
@@ -149,17 +157,30 @@ public class AlertaServiceImpl implements AlertaService {
 
     @Override
     public List<Alerta> obtenerAlertas() {
-        return alertaRepository.findAll();
+        String empresa = obtenerEmpresaAutenticada();
+        if (empresa == null) {
+            return Collections.emptyList();
+        }
+
+        return alertaRepository.findAll().stream()
+                .filter(alerta -> perteneceAEmpresa(alerta, empresa))
+                .toList();
     }
 
     @Override
     public AlertasResumenDTO obtenerResumen() {
+        String empresa = obtenerEmpresaAutenticada();
+        if (empresa == null) {
+            return new AlertasResumenDTO(0, 0, 0);
+        }
+
         List<Producto> productos = productoRepository.findAll();
         if (productos == null) {
             productos = Collections.emptyList();
         }
 
         long productosCriticos = productos.stream()
+        .filter(producto -> perteneceAEmpresa(producto, empresa))
         .filter(producto -> Boolean.TRUE.equals(producto.getEstado()))
         .filter(producto -> {
             Integer stockActual = producto.getStockActual() != null ? producto.getStockActual() : 0;
@@ -168,8 +189,13 @@ public class AlertaServiceImpl implements AlertaService {
         })
         .count();
 
-        long notificacionesSinLeer = alertaRepository.countByLeidaFalse();
-        List<Alerta> alertas = alertaRepository.findAll();
+        long notificacionesSinLeer = alertaRepository.findAll().stream()
+                .filter(alerta -> perteneceAEmpresa(alerta, empresa))
+                .filter(alerta -> Boolean.FALSE.equals(alerta.getLeida()))
+                .count();
+        List<Alerta> alertas = alertaRepository.findAll().stream()
+                .filter(alerta -> perteneceAEmpresa(alerta, empresa))
+                .toList();
         long totalAlertas = alertas != null ? alertas.size() : 0L;
 
         return new AlertasResumenDTO(
@@ -185,6 +211,11 @@ public class AlertaServiceImpl implements AlertaService {
         Alerta alerta = alertaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Alerta no encontrada"));
 
+        String empresa = obtenerEmpresaAutenticada();
+        if (empresa == null || !perteneceAEmpresa(alerta, empresa)) {
+            throw new RuntimeException("Alerta no encontrada");
+        }
+
         alerta.setLeida(true);
         Alerta alertaActualizada = alertaRepository.save(alerta);
 
@@ -196,7 +227,14 @@ public class AlertaServiceImpl implements AlertaService {
     @Override
     @Transactional
     public void marcarTodasComoLeidas() {
-        List<Alerta> alertas = alertaRepository.findAll();
+        String empresa = obtenerEmpresaAutenticada();
+        if (empresa == null) {
+            return;
+        }
+
+        List<Alerta> alertas = alertaRepository.findAll().stream()
+                .filter(alerta -> perteneceAEmpresa(alerta, empresa))
+                .toList();
 
         for (Alerta alerta : alertas) {
             alerta.setLeida(true);
@@ -204,5 +242,30 @@ public class AlertaServiceImpl implements AlertaService {
         }
 
         logger.info("{} ALERTAS marcadas como leídas | total={}", BIZ_TAG, alertas.size());
+    }
+
+    private boolean perteneceAEmpresa(Producto producto, String empresa) {
+        if (producto == null || empresa == null || producto.getEmpresa() == null) {
+            return false;
+        }
+
+        return empresa.equalsIgnoreCase(producto.getEmpresa().trim());
+    }
+
+    private boolean perteneceAEmpresa(Alerta alerta, String empresa) {
+        return alerta != null && perteneceAEmpresa(alerta.getProducto(), empresa);
+    }
+
+    private String obtenerEmpresaAutenticada() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || authentication.getName() == null || authentication.getName().isBlank()) {
+            return null;
+        }
+
+        return usuarioRepository.findByCorreo(authentication.getName())
+                .map(Usuario::getEmpresa)
+                .map(empresa -> empresa != null ? empresa.trim() : null)
+                .filter(empresa -> empresa != null && !empresa.isBlank())
+                .orElse(null);
     }
 }

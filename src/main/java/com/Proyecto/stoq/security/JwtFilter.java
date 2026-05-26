@@ -11,7 +11,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.Proyecto.stoq.security.RoleCatalog;
 import com.Proyecto.stoq.infrastructure.persistence.repositories.UsuarioRepository;
 
 import jakarta.servlet.FilterChain;

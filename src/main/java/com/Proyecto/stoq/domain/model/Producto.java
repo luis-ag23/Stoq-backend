@@ -21,7 +21,7 @@ public class Producto {
     @GeneratedValue
     private UUID id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String codigo;
 
     @Column(nullable = false)
@@ -43,6 +43,9 @@ public class Producto {
 
     @Column(name = "stock_minimo")
     private Integer stockMinimo;
+
+    @Column(name = "empresa", nullable = true, length = 120)
+    private String empresa;
 
     @Column(nullable = false)
     private boolean estado = true;
@@ -111,6 +114,10 @@ public class Producto {
         return stockMinimo;
     }
 
+    public String getEmpresa() {
+        return empresa;
+    }
+
     public Boolean getEstado() {
         return estado;
     }
@@ -153,5 +160,9 @@ public class Producto {
 
     public void setEstado(Boolean estado) {
         this.estado = estado;
+    }
+
+    public void setEmpresa(String empresa) {
+        this.empresa = empresa;
     }
 }
