@@ -16,6 +16,7 @@ import com.Proyecto.stoq.domain.ports.AlertaRepositoryPort;
 import com.Proyecto.stoq.domain.ports.ProductosRepositoryPort;
 import com.Proyecto.stoq.dto.AlertasResumenDTO;
 import com.Proyecto.stoq.domain.ports.UsuarioRepositoryPort;
+import com.Proyecto.stoq.infrastructure.persistence.repositories.MovimientoInventarioRepository;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,12 +35,15 @@ public class AlertaServiceImplTest {
     @Mock
     private UsuarioRepositoryPort usuarioRepository;
 
+    @Mock
+    private MovimientoInventarioRepository movimientoInventarioRepository;
+
     private AlertaServiceImpl alertaService;
 
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
-        alertaService = new AlertaServiceImpl(alertaRepository, productoRepository, usuarioRepository);
+        alertaService = new AlertaServiceImpl(alertaRepository, productoRepository, movimientoInventarioRepository, usuarioRepository);
     }
 
     @Test
@@ -122,5 +126,26 @@ public class AlertaServiceImplTest {
         assertEquals(0L, resumen.productosCriticos());
         assertEquals(0L, resumen.notificacionesSinLeer());
         assertEquals(0L, resumen.totalAlertas());
+    }
+
+    @Test
+    public void creaAlertaRiesgoAgotamientoCuandoLaCoberturaEsBaja() {
+        Producto producto = new Producto();
+        UUID id = UUID.randomUUID();
+        producto.setId(id);
+        producto.setCodigo("SKU-5");
+        producto.setNombre("Producto 5");
+        producto.setStockActual(1);
+        producto.setStockMinimo(5);
+
+        doReturn(0L).when(movimientoInventarioRepository).sumarCantidadSalidasPorProductoEntre(any(), any(), any());
+        doReturn(0L).when(movimientoInventarioRepository).contarSalidasPorProductoEntre(any(), any(), any());
+        doReturn(false).when(alertaRepository).existsByProductoIdAndTipoAndLeidaFalse(eq(id), eq("RIESGO_AGOTAMIENTO"));
+
+        alertaService.verificarRiesgosInventario(producto);
+
+        ArgumentCaptor<Alerta> captor = ArgumentCaptor.forClass(Alerta.class);
+        verify(alertaRepository).save(captor.capture());
+        assertEquals("RIESGO_AGOTAMIENTO", captor.getValue().getTipo());
     }
 }

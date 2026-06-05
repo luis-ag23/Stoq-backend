@@ -1,5 +1,8 @@
 package com.Proyecto.stoq.application.services;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
@@ -18,6 +21,7 @@ import com.Proyecto.stoq.domain.ports.AlertaRepositoryPort;
 import com.Proyecto.stoq.domain.ports.ProductosRepositoryPort;
 import com.Proyecto.stoq.domain.ports.UsuarioRepositoryPort;
 import com.Proyecto.stoq.dto.AlertasResumenDTO;
+import com.Proyecto.stoq.infrastructure.persistence.repositories.MovimientoInventarioRepository;
 
 @Service
 public class AlertaServiceImpl implements AlertaService {
@@ -25,18 +29,30 @@ public class AlertaServiceImpl implements AlertaService {
     private static final Logger logger = LoggerFactory.getLogger(AlertaServiceImpl.class);
     private static final String BIZ_TAG = "[STOQ-BIZ]";
     private static final String TIPO_STOCK_BAJO = "STOCK_BAJO";
+    private static final String TIPO_STOCK_CERO = "STOCK_CERO";
+    private static final String TIPO_RIESGO_AGOTAMIENTO = "RIESGO_AGOTAMIENTO";
+    private static final String TIPO_CONSUMO_ANORMAL = "CONSUMO_ANORMAL";
+    private static final String TIPO_BAJA_ROTACION = "BAJA_ROTACION_PROLONGADA";
+    private static final int VENTANA_RIESGO_DIAS = 30;
+    private static final int VENTANA_CONSUMO_DIAS = 7;
+    private static final int VENTANA_ROTACION_DIAS = 60;
+    private static final int DIAS_COBERTURA_RIESGO = 7;
+    private static final double FACTOR_CONSUMO_ANORMAL = 1.75d;
 
     private final AlertaRepositoryPort alertaRepository;
     private final ProductosRepositoryPort productoRepository;
+    private final MovimientoInventarioRepository movimientoInventarioRepository;
     private final UsuarioRepositoryPort usuarioRepository;
 
     public AlertaServiceImpl(
             AlertaRepositoryPort alertaRepository,
             ProductosRepositoryPort productoRepository,
+            MovimientoInventarioRepository movimientoInventarioRepository,
             UsuarioRepositoryPort usuarioRepository
     ) {
         this.alertaRepository = alertaRepository;
         this.productoRepository = productoRepository;
+        this.movimientoInventarioRepository = movimientoInventarioRepository;
         this.usuarioRepository = usuarioRepository;
     }
 
@@ -119,14 +135,14 @@ public class AlertaServiceImpl implements AlertaService {
 
         // Priorizar alerta STOCK_CERO cuando el stock llega a 0
         if (actual == 0) {
-            boolean existeCero = alertaRepository.existsByProductoIdAndTipoAndLeidaFalse(producto.getId(), "STOCK_CERO");
+            boolean existeCero = alertaRepository.existsByProductoIdAndTipoAndLeidaFalse(producto.getId(), TIPO_STOCK_CERO);
             if (existeCero) {
                 logger.info("{} ALERTA STOCK_CERO ya existente | productoId={} | codigo={}", BIZ_TAG, producto.getId(), producto.getCodigo());
                 return;
             }
 
             String mensaje = producto.getCodigo() + " - " + producto.getNombre() + " alcanzó stock cero";
-            Alerta alerta = new Alerta("STOCK_CERO", mensaje, producto);
+            Alerta alerta = new Alerta(TIPO_STOCK_CERO, mensaje, producto);
             alertaRepository.save(alerta);
 
             logger.info("{} ALERTA STOCK_CERO creada | productoId={} | codigo={} | stockActual=0", BIZ_TAG, producto.getId(), producto.getCodigo());
@@ -153,6 +169,71 @@ public class AlertaServiceImpl implements AlertaService {
                     minimo
             );
         }
+    }
+
+    @Override
+    @Transactional
+    public void verificarRiesgosInventario(Producto producto) {
+        if (producto == null || producto.getId() == null) {
+            logger.warn("{} RIESGO omitido | producto nulo o sin id", BIZ_TAG);
+            return;
+        }
+
+        Integer stockActual = producto.getStockActual() != null ? producto.getStockActual() : 0;
+        Integer stockMinimo = producto.getStockMinimo() != null ? producto.getStockMinimo() : 0;
+        if (stockActual <= 0) {
+            return;
+        }
+
+        LocalDateTime ahora = LocalDateTime.now(ZoneOffset.UTC);
+        LocalDateTime inicioRiesgo = ahora.minusDays(VENTANA_RIESGO_DIAS);
+        LocalDateTime inicioConsumo = ahora.minusDays(VENTANA_CONSUMO_DIAS);
+        LocalDateTime inicioRotacion = ahora.minusDays(VENTANA_ROTACION_DIAS);
+
+        long cantidadSalidas30 = safeLong(movimientoInventarioRepository.sumarCantidadSalidasPorProductoEntre(producto.getId(), inicioRiesgo, ahora));
+        long salidas7 = safeLong(movimientoInventarioRepository.contarSalidasPorProductoEntre(producto.getId(), inicioConsumo, ahora));
+        long cantidadSalidas7 = safeLong(movimientoInventarioRepository.sumarCantidadSalidasPorProductoEntre(producto.getId(), inicioConsumo, ahora));
+        long salidas60 = safeLong(movimientoInventarioRepository.contarSalidasPorProductoEntre(producto.getId(), inicioRotacion, ahora));
+
+        double promedioSalidaDiaria = cantidadSalidas30 > 0 ? (double) cantidadSalidas30 / VENTANA_RIESGO_DIAS : 0d;
+        double diasCobertura = promedioSalidaDiaria > 0 ? stockActual / promedioSalidaDiaria : Double.POSITIVE_INFINITY;
+
+        if ((promedioSalidaDiaria > 0 && diasCobertura <= DIAS_COBERTURA_RIESGO) || (stockMinimo > 0 && stockActual <= stockMinimo * 2)) {
+            crearAlertaCriticaSiNoExiste(
+                    producto,
+                    TIPO_RIESGO_AGOTAMIENTO,
+                    producto.getCodigo() + " - " + producto.getNombre() + " presenta riesgo próximo de agotamiento"
+            );
+        }
+
+        double consumoEsperado7Dias = promedioSalidaDiaria * VENTANA_CONSUMO_DIAS;
+        long umbralAnormal = Math.max(Math.round(consumoEsperado7Dias * FACTOR_CONSUMO_ANORMAL), Math.max(stockMinimo.longValue(), 1L));
+        if (salidas7 >= 3 && cantidadSalidas7 >= umbralAnormal) {
+            crearAlertaCriticaSiNoExiste(
+                    producto,
+                    TIPO_CONSUMO_ANORMAL,
+                    producto.getCodigo() + " - " + producto.getNombre() + " muestra incremento anormal de consumo"
+            );
+        }
+
+        if (salidas60 == 0 && stockActual > stockMinimo) {
+            crearAlertaCriticaSiNoExiste(
+                    producto,
+                    TIPO_BAJA_ROTACION,
+                    producto.getCodigo() + " - " + producto.getNombre() + " tiene baja rotación prolongada"
+            );
+        }
+
+        logger.debug(
+                "{} RIESGO evaluado | productoId={} | codigo={} | salidas30={} | salidas7={} | salidas60={} | diasCobertura={}",
+                BIZ_TAG,
+                producto.getId(),
+                producto.getCodigo(),
+                cantidadSalidas30,
+                salidas7,
+                salidas60,
+                diasCobertura
+        );
     }
 
     @Override
@@ -185,7 +266,7 @@ public class AlertaServiceImpl implements AlertaService {
         .filter(producto -> {
             Integer stockActual = producto.getStockActual() != null ? producto.getStockActual() : 0;
             Integer stockMinimo = producto.getStockMinimo() != null ? producto.getStockMinimo() : 0;
-            return stockActual < stockMinimo;
+            return stockActual <= stockMinimo;
         })
         .count();
 
@@ -267,5 +348,20 @@ public class AlertaServiceImpl implements AlertaService {
                 .map(empresa -> empresa != null ? empresa.trim() : null)
                 .filter(empresa -> empresa != null && !empresa.isBlank())
                 .orElse(null);
+    }
+
+    private void crearAlertaCriticaSiNoExiste(Producto producto, String tipo, String mensaje) {
+        boolean existe = alertaRepository.existsByProductoIdAndTipoAndLeidaFalse(producto.getId(), tipo);
+        if (existe) {
+            logger.info("{} ALERTA {} ya existente | productoId={} | codigo={}", BIZ_TAG, tipo, producto.getId(), producto.getCodigo());
+            return;
+        }
+
+        alertaRepository.save(new Alerta(tipo, mensaje, producto));
+        logger.info("{} ALERTA {} creada | productoId={} | codigo={}", BIZ_TAG, tipo, producto.getId(), producto.getCodigo());
+    }
+
+    private long safeLong(Long value) {
+        return value != null ? value : 0L;
     }
 }

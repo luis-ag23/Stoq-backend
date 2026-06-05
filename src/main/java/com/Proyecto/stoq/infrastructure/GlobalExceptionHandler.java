@@ -2,6 +2,8 @@ package com.Proyecto.stoq.infrastructure;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -16,9 +18,12 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<Map<String, Object>> handleRuntimeException(RuntimeException ex, HttpServletRequest request) {
         HttpStatus status = resolveStatus(ex.getMessage());
+        logger.warn("Error de negocio | status={} | path={} | message={}", status.value(), request.getRequestURI(), ex.getMessage(), ex);
         return buildResponse(status, ex.getMessage(), request.getRequestURI(), null);
     }
 
@@ -29,6 +34,8 @@ public class GlobalExceptionHandler {
         for (FieldError error : ex.getBindingResult().getFieldErrors()) {
             validationErrors.put(error.getField(), error.getDefaultMessage());
         }
+
+        logger.warn("Error de validación | path={} | details={}", request.getRequestURI(), validationErrors, ex);
 
         return buildResponse(
                 HttpStatus.BAD_REQUEST,
@@ -41,6 +48,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<Map<String, Object>> handleConstraintViolation(ConstraintViolationException ex,
                                                                           HttpServletRequest request) {
+        logger.warn("Violación de restricción | path={} | message={}", request.getRequestURI(), ex.getMessage(), ex);
         return buildResponse(
                 HttpStatus.BAD_REQUEST,
                 ex.getMessage(),
@@ -51,6 +59,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleGenericException(Exception ex, HttpServletRequest request) {
+        logger.error("Error interno no controlado | path={}", request.getRequestURI(), ex);
         return buildResponse(
                 HttpStatus.INTERNAL_SERVER_ERROR,
                 "Error interno del servidor",

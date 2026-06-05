@@ -97,6 +97,7 @@ public class MovimientoInventarioServiceImpl implements MovimientoInventarioServ
         producto.setStockActual(stockResultante);
         productoRepository.save(producto);
         alertaService.verificarCambioStock(producto, stockAnterior, stockResultante);
+    alertaService.verificarRiesgosInventario(producto);
 
         Movimiento_Inventario movimiento = new Movimiento_Inventario();
         movimiento.setProducto(producto);

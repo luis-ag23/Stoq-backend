@@ -16,6 +16,8 @@ public interface ProductosRepository extends JpaRepository<Producto, UUID> {
 
     long countByEmpresaAndEstadoTrue(String empresa);
 
+    List<Producto> findTop10ByEmpresaAndEstadoTrueAndStockMinimoIsNotNullAndStockActualLessThanEqualOrderByStockActualAscStockMinimoAscNombreAsc(String empresa);
+
     @Query("""
         select count(p)
         from Producto p
