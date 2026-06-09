@@ -162,4 +162,16 @@ public interface MovimientoInventarioRepository extends JpaRepository<Movimiento
                 @Param("inicio") LocalDateTime inicio,
                 @Param("fin") LocalDateTime fin
             );
-}
+
+            @Query("""
+                select m
+                from Movimiento_Inventario m
+                where m.producto.id = :productoId
+                  and upper(m.tipoMovimiento) = :tipoMovimiento
+                order by m.fechaMovimiento asc
+            """)
+            List<Movimiento_Inventario> obtenerMovimientosPorProductoYTipo(
+                @Param("productoId") UUID productoId,
+                @Param("tipoMovimiento") String tipoMovimiento
+            );
+}

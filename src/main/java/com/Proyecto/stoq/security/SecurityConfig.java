@@ -95,6 +95,15 @@ public class SecurityConfig {
 
                 .requestMatchers(HttpMethod.PUT, "/api/alertas/**")
                     .hasAnyRole("ADMIN", "GERENTE")
+
+                .requestMatchers("/api/recomendaciones/**")
+                    .hasAnyRole("ADMIN", "GERENTE")
+
+                .requestMatchers(HttpMethod.POST, "/api/solicitudes/generar")
+                    .hasAnyRole("ADMIN", "GERENTE")
+
+                .requestMatchers("/api/solicitudes/**")
+                    .hasAnyRole("ADMIN", "OPERADOR", "GERENTE")
     
 
                 .anyRequest().authenticated()

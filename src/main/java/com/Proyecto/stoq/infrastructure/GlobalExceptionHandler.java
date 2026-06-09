@@ -78,6 +78,11 @@ public class GlobalExceptionHandler {
         if (msg.contains("no encontrado")) {
             return HttpStatus.NOT_FOUND;
         }
+        if (msg.contains("no tiene autorización") || msg.contains("no tiene permiso")
+                || msg.contains("autorización") || msg.contains("autorizacion")
+                || msg.contains("no autorizado") || msg.contains("forbidden")) {
+            return HttpStatus.FORBIDDEN;
+        }
         if (msg.contains("credenciales inválidas") || msg.contains("credenciales invalidas")
                 || msg.contains("contraseña incorrecta") || msg.contains("contrasena incorrecta")) {
             return HttpStatus.UNAUTHORIZED;
