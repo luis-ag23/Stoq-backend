@@ -19,6 +19,8 @@ public interface AlertaService {
 
     void verificarRiesgosInventario(Producto producto);
 
+    void evaluarRiesgosInventarioProgramado();
+
     Alerta marcarComoLeida(UUID id);
 
     void marcarTodasComoLeidas();

@@ -97,7 +97,6 @@ public class MovimientoInventarioServiceImpl implements MovimientoInventarioServ
         producto.setStockActual(stockResultante);
         productoRepository.save(producto);
         alertaService.verificarCambioStock(producto, stockAnterior, stockResultante);
-    alertaService.verificarRiesgosInventario(producto);
 
         Movimiento_Inventario movimiento = new Movimiento_Inventario();
         movimiento.setProducto(producto);
@@ -109,6 +108,7 @@ public class MovimientoInventarioServiceImpl implements MovimientoInventarioServ
         movimiento.setStockResultante(stockResultante);
 
         Movimiento_Inventario movimientoGuardado = movimientoRepository.save(movimiento);
+        alertaService.verificarRiesgosInventario(producto);
         auditService.registrarAuditoria(
                 "MovimientoInventario",
                 "CREATE",

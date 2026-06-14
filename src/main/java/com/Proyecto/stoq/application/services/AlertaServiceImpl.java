@@ -237,6 +237,28 @@ public class AlertaServiceImpl implements AlertaService {
     }
 
     @Override
+    @Transactional
+    public void evaluarRiesgosInventarioProgramado() {
+        List<Producto> productos = productoRepository.findAll();
+        if (productos == null || productos.isEmpty()) {
+            logger.info("{} RIESGO programado | sin productos para evaluar", BIZ_TAG);
+            return;
+        }
+
+        int evaluados = 0;
+        for (Producto producto : productos) {
+            if (producto == null || producto.getId() == null || !Boolean.TRUE.equals(producto.getEstado())) {
+                continue;
+            }
+
+            verificarRiesgosInventario(producto);
+            evaluados++;
+        }
+
+        logger.info("{} RIESGO programado completado | productosEvaluados={}", BIZ_TAG, evaluados);
+    }
+
+    @Override
     public List<Alerta> obtenerAlertas() {
         String empresa = obtenerEmpresaAutenticada();
         if (empresa == null) {
