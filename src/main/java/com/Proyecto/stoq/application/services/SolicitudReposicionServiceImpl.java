@@ -22,6 +22,7 @@ import com.Proyecto.stoq.domain.model.Usuario;
 import com.Proyecto.stoq.domain.ports.ProductosRepositoryPort;
 import com.Proyecto.stoq.domain.ports.SolicitudReposicionRepositoryPort;
 import com.Proyecto.stoq.domain.ports.UsuarioRepositoryPort;
+import com.Proyecto.stoq.dto.CreateSolicitudReposicionDTO;
 import com.Proyecto.stoq.dto.RecomendacionAutomaticaDTO;
 import com.Proyecto.stoq.dto.SolicitudReposicionResponseDTO;
 import com.Proyecto.stoq.security.RoleCatalog;
@@ -189,4 +190,37 @@ public class SolicitudReposicionServiceImpl implements SolicitudReposicionServic
         snapshot.put("fechaActualizacion", solicitud.getFechaActualizacion());
         return snapshot;
     }
+
+    @Override
+@Transactional
+public SolicitudReposicionResponseDTO crearSolicitudManual(String correoUsuario, CreateSolicitudReposicionDTO dto) {
+    Usuario usuario = usuarioRepository.findByCorreo(correoUsuario)
+            .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+    Producto producto = productoRepository.findById(dto.productoId())
+            .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+
+    String empresaUsuario = usuario.getEmpresa() != null ? usuario.getEmpresa().trim() : null;
+    String empresaProducto = producto.getEmpresa() != null ? producto.getEmpresa().trim() : null;
+
+    if (empresaUsuario == null || empresaProducto == null || !empresaUsuario.equalsIgnoreCase(empresaProducto)) {
+        throw new RuntimeException("Producto no encontrado");
+    }
+
+    SolicitudReposicion solicitud = new SolicitudReposicion();
+    solicitud.setProducto(producto);
+    solicitud.setEmpresa(empresaUsuario);
+    solicitud.setCantidadRecomendada(dto.cantidadSolicitada());
+    solicitud.setEstado(EstadoSolicitud.PENDIENTE);
+    solicitud.setFechaSolicitud(LocalDateTime.now());
+    solicitud.setFechaActualizacion(LocalDateTime.now());
+    solicitud.setPrioridad(PrioridadSolicitud.MEDIA);
+    solicitud.setRotacion(RotacionProducto.BAJA);
+    solicitud.setConsumoPromedioDiario(0.0);
+    solicitud.setTiempoAgotamiento(0);
+
+    SolicitudReposicion guardada = solicitudRepository.save(solicitud);
+
+    return SolicitudReposicionResponseDTO.fromEntity(guardada);
+}
 }

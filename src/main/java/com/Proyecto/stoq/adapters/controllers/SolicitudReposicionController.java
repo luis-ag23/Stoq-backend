@@ -6,15 +6,10 @@ import java.util.UUID;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.Proyecto.stoq.application.services.SolicitudReposicionService;
+import com.Proyecto.stoq.dto.CreateSolicitudReposicionDTO;
 import com.Proyecto.stoq.dto.SolicitudReposicionResponseDTO;
 import com.Proyecto.stoq.dto.UpdateSolicitudEstadoDTO;
 
@@ -36,10 +31,24 @@ public class SolicitudReposicionController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
-        List<SolicitudReposicionResponseDTO> solicitudes = 
-                solicitudService.obtenerSolicitudesPorEmpresa(authentication.getName());
+        return ResponseEntity.ok(
+                solicitudService.obtenerSolicitudesPorEmpresa(authentication.getName())
+        );
+    }
 
-        return ResponseEntity.ok(solicitudes);
+    @PostMapping
+    public ResponseEntity<SolicitudReposicionResponseDTO> crearSolicitudManual(
+            Authentication authentication,
+            @Valid @RequestBody CreateSolicitudReposicionDTO dto
+    ) {
+        if (authentication == null || authentication.getName() == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        SolicitudReposicionResponseDTO response =
+                solicitudService.crearSolicitudManual(authentication.getName(), dto);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PostMapping("/generar")
@@ -62,7 +71,7 @@ public class SolicitudReposicionController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
-        SolicitudReposicionResponseDTO response = 
+        SolicitudReposicionResponseDTO response =
                 solicitudService.actualizarEstadoSolicitud(id, authentication.getName(), dto.estado());
 
         return ResponseEntity.ok(response);
