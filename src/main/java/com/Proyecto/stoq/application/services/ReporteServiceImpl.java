@@ -38,6 +38,9 @@ import com.Proyecto.stoq.dto.ReporteCategoriaResumenDTO;
 import com.Proyecto.stoq.dto.ReporteCategoriasResponseDTO;
 import com.Proyecto.stoq.dto.ReporteDashboardResponseDTO;
 import com.Proyecto.stoq.dto.ReporteMovimientoTotalesDTO;
+import com.Proyecto.stoq.dto.ReporteProductoRotacionDTO;
+import com.Proyecto.stoq.dto.ReporteTendenciaMovimientoDTO;
+import com.Proyecto.stoq.dto.ProductoCriticoResponse;
 import com.Proyecto.stoq.infrastructure.persistence.repositories.MovimientoInventarioRepository;
 import com.Proyecto.stoq.infrastructure.persistence.repositories.ProductosRepository;
 
@@ -150,6 +153,9 @@ public class ReporteServiceImpl implements ReporteService {
                     0L,
                     0L,
                     List.of(),
+                    List.of(),
+                    List.of(),
+                    List.of(),
                     List.of()
             );
         }
@@ -169,6 +175,27 @@ public class ReporteServiceImpl implements ReporteService {
         ).stream()
                 .map(MovimientoInventarioResponseDTO::fromEntity)
                 .toList();
+
+        List<ProductoCriticoResponse> productosCriticos = productosRepository
+            .findTop10ByEmpresaAndEstadoTrueAndStockMinimoIsNotNullAndStockActualLessThanEqualOrderByStockActualAscStockMinimoAscNombreAsc(contexto.empresa())
+            .stream()
+            .map(ProductoCriticoResponse::fromEntity)
+            .toList();
+
+        List<ReporteProductoRotacionDTO> productosMayorRotacion = movimientoInventarioRepository.obtenerTopRotacionPorEmpresa(
+            contexto.empresa(),
+            contexto.inicioDateTime(),
+            contexto.finDateTime(),
+            PageRequest.of(0, 10)
+        );
+
+        List<ReporteTendenciaMovimientoDTO> tendencias = construirTendencias(
+            movimientoInventarioRepository.findByEmpresaAndFechaMovimientoBetween(
+                contexto.empresa(),
+                contexto.inicioDateTime(),
+                contexto.finDateTime()
+            )
+        );
 
         long movimientosTotales = safeLong(movimientoInventarioRepository.contarMovimientosPorEmpresa(
             contexto.empresa(),
@@ -194,7 +221,10 @@ public class ReporteServiceImpl implements ReporteService {
                 entradasCantidad,
                 salidasCantidad,
                 resultado.categoriasOrdenadas(),
-                recientes
+                recientes,
+                productosCriticos,
+                productosMayorRotacion,
+                tendencias
         );
     }
 
@@ -377,6 +407,63 @@ public class ReporteServiceImpl implements ReporteService {
 
     private long safeLong(Long value) {
         return value != null ? value : 0L;
+    }
+
+    private List<ReporteTendenciaMovimientoDTO> construirTendencias(List<com.Proyecto.stoq.domain.model.Movimiento_Inventario> movimientos) {
+        if (movimientos == null || movimientos.isEmpty()) {
+            return List.of();
+        }
+
+        Map<LocalDate, TendenciaBuilder> acumulado = new LinkedHashMap<>();
+
+        for (com.Proyecto.stoq.domain.model.Movimiento_Inventario movimiento : movimientos) {
+            if (movimiento == null || movimiento.getFechaMovimiento() == null) {
+                continue;
+            }
+
+            LocalDate fecha = movimiento.getFechaMovimiento().toLocalDate();
+            TendenciaBuilder builder = acumulado.computeIfAbsent(fecha, TendenciaBuilder::new);
+            builder.merge(movimiento);
+        }
+
+        return acumulado.values().stream()
+                .map(TendenciaBuilder::toDto)
+                .toList();
+    }
+
+    private static final class TendenciaBuilder {
+        private final LocalDate fecha;
+        private long entradasMovimientos;
+        private long salidasMovimientos;
+        private long entradasCantidad;
+        private long salidasCantidad;
+
+        private TendenciaBuilder(LocalDate fecha) {
+            this.fecha = fecha;
+        }
+
+        private void merge(com.Proyecto.stoq.domain.model.Movimiento_Inventario movimiento) {
+            String tipo = movimiento.getTipoMovimiento() != null ? movimiento.getTipoMovimiento().trim().toUpperCase() : "";
+            Integer cantidad = movimiento.getCantidad() != null ? movimiento.getCantidad() : 0;
+            if ("ENTRADA".equals(tipo)) {
+                entradasMovimientos++;
+                entradasCantidad += cantidad;
+            } else if ("SALIDA".equals(tipo)) {
+                salidasMovimientos++;
+                salidasCantidad += cantidad;
+            }
+        }
+
+        private ReporteTendenciaMovimientoDTO toDto() {
+            return new ReporteTendenciaMovimientoDTO(
+                    fecha,
+                    entradasMovimientos,
+                    salidasMovimientos,
+                    entradasCantidad,
+                    salidasCantidad,
+                    entradasCantidad - salidasCantidad
+            );
+        }
     }
 
     private ReporteContexto construirContexto(LocalDate inicio, LocalDate fin) {

@@ -16,6 +16,7 @@ import com.Proyecto.stoq.domain.ports.AlertaRepositoryPort;
 import com.Proyecto.stoq.domain.ports.ProductosRepositoryPort;
 import com.Proyecto.stoq.dto.AlertasResumenDTO;
 import com.Proyecto.stoq.domain.ports.UsuarioRepositoryPort;
+import com.Proyecto.stoq.infrastructure.persistence.repositories.MovimientoInventarioRepository;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,12 +35,15 @@ public class AlertaServiceImplTest {
     @Mock
     private UsuarioRepositoryPort usuarioRepository;
 
+    @Mock
+    private MovimientoInventarioRepository movimientoInventarioRepository;
+
     private AlertaServiceImpl alertaService;
 
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
-        alertaService = new AlertaServiceImpl(alertaRepository, productoRepository, usuarioRepository);
+        alertaService = new AlertaServiceImpl(alertaRepository, productoRepository, movimientoInventarioRepository, usuarioRepository);
     }
 
     @Test
@@ -122,5 +126,93 @@ public class AlertaServiceImplTest {
         assertEquals(0L, resumen.productosCriticos());
         assertEquals(0L, resumen.notificacionesSinLeer());
         assertEquals(0L, resumen.totalAlertas());
+    }
+
+    @Test
+    public void creaAlertaRiesgoAgotamientoCuandoLaCoberturaEsBaja() {
+        Producto producto = new Producto();
+        UUID id = UUID.randomUUID();
+        producto.setId(id);
+        producto.setCodigo("SKU-5");
+        producto.setNombre("Producto 5");
+        producto.setStockActual(1);
+        producto.setStockMinimo(5);
+
+        doReturn(0L).when(movimientoInventarioRepository).sumarCantidadSalidasPorProductoEntre(any(), any(), any());
+        doReturn(0L).when(movimientoInventarioRepository).contarSalidasPorProductoEntre(any(), any(), any());
+        doReturn(false).when(alertaRepository).existsByProductoIdAndTipoAndLeidaFalse(eq(id), eq("RIESGO_AGOTAMIENTO"));
+
+        alertaService.verificarRiesgosInventario(producto);
+
+        ArgumentCaptor<Alerta> captor = ArgumentCaptor.forClass(Alerta.class);
+        verify(alertaRepository).save(captor.capture());
+        assertEquals("RIESGO_AGOTAMIENTO", captor.getValue().getTipo());
+    }
+
+    @Test
+    public void creaAlertaConsumoAnormalCuandoSuperaUmbral() {
+        Producto producto = new Producto();
+        UUID id = UUID.randomUUID();
+        producto.setId(id);
+        producto.setCodigo("SKU-6");
+        producto.setNombre("Producto 6");
+        producto.setStockActual(50);
+        producto.setStockMinimo(5);
+
+        doReturn(210L).when(movimientoInventarioRepository).sumarCantidadSalidasPorProductoEntre(any(), any(), any());
+        doReturn(5L).when(movimientoInventarioRepository).contarSalidasPorProductoEntre(any(), any(), any());
+        doReturn(false).when(alertaRepository).existsByProductoIdAndTipoAndLeidaFalse(eq(id), eq("CONSUMO_ANORMAL"));
+
+        alertaService.verificarRiesgosInventario(producto);
+
+        ArgumentCaptor<Alerta> captor = ArgumentCaptor.forClass(Alerta.class);
+        verify(alertaRepository).save(captor.capture());
+        assertEquals("CONSUMO_ANORMAL", captor.getValue().getTipo());
+    }
+
+    @Test
+    public void creaAlertaBajaRotacionCuandoNoHaySalidasEn60Dias() {
+        Producto producto = new Producto();
+        UUID id = UUID.randomUUID();
+        producto.setId(id);
+        producto.setCodigo("SKU-7");
+        producto.setNombre("Producto 7");
+        producto.setStockActual(20);
+        producto.setStockMinimo(5);
+
+        doReturn(0L).when(movimientoInventarioRepository).sumarCantidadSalidasPorProductoEntre(any(), any(), any());
+        doReturn(0L).when(movimientoInventarioRepository).contarSalidasPorProductoEntre(any(), any(), any());
+        doReturn(false).when(alertaRepository).existsByProductoIdAndTipoAndLeidaFalse(eq(id), eq("BAJA_ROTACION_PROLONGADA"));
+
+        alertaService.verificarRiesgosInventario(producto);
+
+        ArgumentCaptor<Alerta> captor = ArgumentCaptor.forClass(Alerta.class);
+        verify(alertaRepository).save(captor.capture());
+        assertEquals("BAJA_ROTACION_PROLONGADA", captor.getValue().getTipo());
+    }
+
+    @Test
+    public void evaluacionProgramadaRecorreProductosActivos() {
+        Producto activo = new Producto();
+        UUID idActivo = UUID.randomUUID();
+        activo.setId(idActivo);
+        activo.setCodigo("SKU-8");
+        activo.setNombre("Producto activo");
+        activo.setStockActual(10);
+        activo.setStockMinimo(5);
+        activo.setEstado(true);
+
+        Producto inactivo = new Producto();
+        inactivo.setId(UUID.randomUUID());
+        inactivo.setEstado(false);
+
+        doReturn(List.of(activo, inactivo)).when(productoRepository).findAll();
+        doReturn(0L).when(movimientoInventarioRepository).sumarCantidadSalidasPorProductoEntre(any(), any(), any());
+        doReturn(0L).when(movimientoInventarioRepository).contarSalidasPorProductoEntre(any(), any(), any());
+
+        alertaService.evaluarRiesgosInventarioProgramado();
+
+        verify(movimientoInventarioRepository, org.mockito.Mockito.atLeastOnce())
+                .sumarCantidadSalidasPorProductoEntre(any(), any(), any());
     }
 }

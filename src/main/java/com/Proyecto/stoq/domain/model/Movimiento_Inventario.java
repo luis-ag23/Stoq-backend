@@ -110,4 +110,7 @@ public class Movimiento_Inventario {
         this.stockResultante = stockResultante;
     }
 
+    public void setFechaMovimiento(LocalDateTime fechaMovimiento) {
+        this.fechaMovimiento = fechaMovimiento;
+    }
 }

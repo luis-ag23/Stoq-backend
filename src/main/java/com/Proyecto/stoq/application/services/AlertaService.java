@@ -17,6 +17,10 @@ public interface AlertaService {
 
     AlertasResumenDTO obtenerResumen();
 
+    void verificarRiesgosInventario(Producto producto);
+
+    void evaluarRiesgosInventarioProgramado();
+
     Alerta marcarComoLeida(UUID id);
 
     void marcarTodasComoLeidas();

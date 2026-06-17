@@ -3,6 +3,7 @@ package com.Proyecto.stoq.dto;
 import java.util.UUID;
 
 import com.Proyecto.stoq.domain.model.Producto;
+import com.Proyecto.stoq.domain.model.ProductoCriticoView;
 
 public record ProductoCriticoResponse(
         UUID id,
@@ -31,6 +32,28 @@ public record ProductoCriticoResponse(
                 nivelAlerta,
                 producto.getCategoria() != null ? producto.getCategoria().getNombre() : null,
                 producto.getUnidad() != null ? producto.getUnidad().getAbreviatura() : null
+        );
+    }
+
+    public static ProductoCriticoResponse fromView(ProductoCriticoView producto) {
+        if (producto == null) {
+            return null;
+        }
+
+        Integer stockActual = producto.getStockActual() != null ? producto.getStockActual() : 0;
+        Integer stockMinimo = producto.getStockMinimo() != null ? producto.getStockMinimo() : 0;
+        Integer diferencia = producto.getDiferencia() != null ? producto.getDiferencia() : stockActual - stockMinimo;
+
+        return new ProductoCriticoResponse(
+                producto.getId(),
+                producto.getCodigo(),
+                producto.getNombre(),
+                stockActual,
+                stockMinimo,
+                diferencia,
+                producto.getNivelAlerta(),
+                producto.getCategoriaNombre(),
+                producto.getUnidadAbreviatura()
         );
     }
 }
