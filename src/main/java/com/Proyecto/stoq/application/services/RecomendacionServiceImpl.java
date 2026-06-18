@@ -95,8 +95,12 @@ public class RecomendacionServiceImpl implements RecomendacionService {
                 tiempoAgotamiento = (int) Math.round((double) stockActual / cpd);
             }
 
-            if (cpd >= 1.0) {
+            if (cpd >= 10.0) {
                 rotacion = "ALTA";
+            } else if (cpd >= 3.0) {
+                rotacion = "MEDIA";
+            } else {
+                rotacion = "BAJA";
             }
 
             logger.info("{} Producto: {} | {} salidas en {} días. CPD: {} | Tiempo agotamiento proyectado: {} días | Rotación: {}", 
@@ -108,10 +112,12 @@ public class RecomendacionServiceImpl implements RecomendacionService {
 
         // Prioridad
         String prioridad = "BAJA";
-        if (stockActual == 0 || stockActual <= stockMinimo || tiempoAgotamiento <= 3) {
-            prioridad = "ALTA";
-        } else if (tiempoAgotamiento <= 10) {
-            prioridad = "MEDIA";
+        if (cantidadRecomendada > 0) {
+            if (stockActual == 0 || stockActual <= stockMinimo || tiempoAgotamiento <= 3) {
+                prioridad = "ALTA";
+            } else if (tiempoAgotamiento <= 10) {
+                prioridad = "MEDIA";
+            }
         }
 
         logger.info("{} Producto: {} | Cantidad recomendada: {} | Prioridad asignada: {}", 
